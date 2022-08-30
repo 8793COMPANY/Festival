@@ -20,29 +20,69 @@ public class FindActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager2 viewPager;
     ViewpagerAdapter viewpagerAdapter;
-
+    FirstFragment firstFragment;
+    SecondFragment secondFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find);
 
-        tabLayout = findViewById(R.id.tabs);
-        viewPager = findViewById(R.id.viewPager);
-
-        viewpagerAdapter = new ViewpagerAdapter(this);
-        viewPager.setAdapter(viewpagerAdapter);
-
-        final List<String> tabElement = Arrays.asList("아이디 찾기", "비밀번호 찾기");
-
-        new TabLayoutMediator(tabLayout, viewPager, new TabLayoutMediator.TabConfigurationStrategy() {
-            @Override
-            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                TextView textView = new TextView(FindActivity.this);
-                textView.setText(tabElement.get(position));
-                tab.setCustomView(textView);
-            }
-        }).attach();
+        createFragment();
+        createViewpager();
+        settingTabLayout();
 
     }
+
+    //fragment 생성
+    public void createFragment()
+    {
+        firstFragment = new FirstFragment();
+        secondFragment = new SecondFragment();
+    }
+
+    //viewpager 및 어댑터 생성
+    public void createViewpager()
+    {
+        viewPager = findViewById(R.id.viewPager);
+        viewpagerAdapter = new ViewpagerAdapter(getSupportFragmentManager(), getLifecycle());
+        viewpagerAdapter.addFragment(firstFragment);
+        viewpagerAdapter.addFragment(secondFragment);
+
+        viewPager.setAdapter(viewpagerAdapter);
+        viewPager.setUserInputEnabled(false);//터치 스크롤 막음
+    }
+
+    //tablayout - viewpager 연결
+    public void settingTabLayout()
+    {
+        tabLayout = findViewById(R.id.tabs);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int pos = tab.getPosition();
+
+                switch (pos)
+                {
+                    case 0 :
+                        viewPager.setCurrentItem(0);
+                        break;
+                    case 1 :
+                        viewPager.setCurrentItem(1);
+                        break;
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+
 }
