@@ -11,8 +11,11 @@ import android.text.InputType;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -23,10 +26,9 @@ import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
 
-    TextView joinText;
+    TextView joinText, textView1, findText;
     String id, pw;
     EditText editText1, editText2;
-    TextView textView1;
     Button move_MainActivity;
     ImageView pw_eye, arrow_right;
 
@@ -42,27 +44,51 @@ public class LoginActivity extends AppCompatActivity {
         textView1 = findViewById(R.id.errorText);
         move_MainActivity = findViewById(R.id.loginButton);
         arrow_right = findViewById(R.id.arrow_right);
+        findText = findViewById(R.id.findText);
 
-        // 회원가입 색상 변경 및 클릭이벤트 넣기
+        // 회원가입 글자 색상 변경 및 클릭이벤트(페이지 이동)
+        Spannable span = (Spannable) joinText.getText();
         String textData = joinText.getText().toString();
-        SpannableStringBuilder builder = new SpannableStringBuilder(textData);
 
         String word = "회원가입";
         int start = textData.indexOf(word);
         int end = start + word.length();
 
-        builder.setSpan(new ForegroundColorSpan(Color.parseColor("#ad9cfd")), start, end, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-        joinText.setText(builder);
-
-        /*
-        Spannable spannable = Spannable.Factory.getInstance().newSpannable(textData);
-        spannable.setSpan(new ClickableSpan() {
+        span.setSpan(new ClickableSpan() {
+            // 클릭이벤트
             @Override
             public void onClick(@NonNull View widget) {
-
+                Intent intent = new Intent(getApplicationContext(), JoinActivity.class);
+                startActivity(intent);
             }
-        }, start, end, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
-        */
+            // 클릭이벤트 밑줄 제거
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                ds.setUnderlineText(false);
+            }
+        }, start, end, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+        joinText.setMovementMethod(LinkMovementMethod.getInstance());
+
+        // 글자 색상 변경
+        span.setSpan(new ForegroundColorSpan(Color.parseColor("#ad9cfd")), start, end, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+
+        // 버튼 이미지 클릭시 회원가입 페이지로 이동
+        arrow_right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), JoinActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // 아이디 비밀번호 찾기 클릭시 페이지로 이동
+        findText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), FindActivity.class);
+                startActivity(intent);
+            }
+        });
 
         // 비밀번호 보이기/숨기기
         pw_eye.setOnClickListener(new View.OnClickListener() {
@@ -99,8 +125,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
-        // 회원가입 페이지로 이동
 
     }
 }
