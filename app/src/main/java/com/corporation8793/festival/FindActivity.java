@@ -1,19 +1,20 @@
 package com.corporation8793.festival;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class FindActivity extends AppCompatActivity {
 
@@ -22,6 +23,7 @@ public class FindActivity extends AppCompatActivity {
     ViewpagerAdapter viewpagerAdapter;
     FirstFragment firstFragment;
     SecondFragment secondFragment;
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,18 +59,20 @@ public class FindActivity extends AppCompatActivity {
     public void settingTabLayout()
     {
         tabLayout = findViewById(R.id.tabs);
+        textView = findViewById(R.id.textView);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int pos = tab.getPosition();
-
                 switch (pos)
                 {
                     case 0 :
                         viewPager.setCurrentItem(0);
+                        textView.setText("아이디 찾기");
                         break;
                     case 1 :
                         viewPager.setCurrentItem(1);
+                        textView.setText("비밀번호 찾기");
                         break;
                 }
             }

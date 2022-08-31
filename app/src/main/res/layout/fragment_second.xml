@@ -1,16 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="#2e2c36"
     tools:context=".SecondFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="두번째 프래그먼트"
-        android:textColor="#2e2c36"/>
+    <EditText
+        android:id="@+id/rectangle4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/shape_rectangle"
+        android:fontFamily="@font/pretendard_medium"
+        android:hint="아이디 입력"
+        android:inputType="textNoSuggestions|textVisiblePassword"
+        android:maxLength="20"
+        android:paddingLeft="20dp"
+        android:textColor="#ffffff"
+        android:textColorHint="#9a9a9a"
+        android:textSize="15dp"
+        app:layout_constraintHeight_percent="0.074"
+        app:layout_constraintWidth_percent="0.89"
+        app:layout_constraintVertical_bias="0.033"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-</FrameLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/pwButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/pretendard_medium"
+        android:text="비밀번호찾기"
+        android:textColor="#ffffff"
+        android:textSize="17dp"
+        android:paddingBottom="5dp"
+        app:layout_constraintHeight_percent="0.074"
+        app:layout_constraintWidth_percent="0.89"
+        app:layout_constraintVertical_bias="0.054"
+        app:layout_constraintTop_toBottomOf="@+id/rectangle4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

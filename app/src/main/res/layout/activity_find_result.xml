@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2e2c36"
+    tools:context=".FindResultActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendard_medium"
+        android:textColor="#ffffff"
+        android:text="아이디 찾기"
+        android:textSize="18dp"
+        app:layout_constraintVertical_bias="0.047"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/findIdText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendard_regular"
+        android:textColor="#8e76ff"
+        android:text="아이디를 찾았습니다."
+        android:textSize="15dp"
+        app:layout_constraintVertical_bias="0.044"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/findId"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/shape_rectangle"
+        android:fontFamily="@font/pretendard_regular"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="12dp"
+        app:layout_constraintHeight_percent="0.071"
+        app:layout_constraintWidth_percent="0.89"
+        app:layout_constraintVertical_bias="0.049"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/findIdText"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/pwChangeButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/shape_rectangle_puple"
+        android:fontFamily="@font/pretendard_medium"
+        android:text="비밀번호 변경"
+        android:textColor="#8e76ff"
+        android:textSize="17dp"
+        android:paddingBottom="5dp"
+        app:layout_constraintHeight_percent="0.071"
+        app:layout_constraintWidth_percent="0.89"
+        app:layout_constraintVertical_bias="0.041"
+        app:layout_constraintTop_toBottomOf="@+id/findId"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/loginButton2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/pretendard_medium"
+        android:text="로그인"
+        android:textColor="#ffffff"
+        android:textSize="17dp"
+        android:paddingBottom="4dp"
+        app:layout_constraintHeight_percent="0.071"
+        app:layout_constraintWidth_percent="0.89"
+        app:layout_constraintVertical_bias="0.030"
+        app:layout_constraintTop_toBottomOf="@+id/pwChangeButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
