@@ -1,18 +1,353 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#2e2c36"
     tools:context=".JoinActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="회원가입화면"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:textColor="#ffffff"
+            android:text="회원가입"
+            android:textSize="18dp"
+            android:letterSpacing="-0.03"
+            android:layout_marginTop="35dp"
+            app:layout_constraintVertical_bias="0.047"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/nameInputText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:textColor="#ffffff"
+            android:text="이름"
+            android:textSize="15dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintHorizontal_bias="0.065"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <EditText
+            android:id="@+id/rectangle5"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="@drawable/shape_rectangle"
+            android:fontFamily="@font/pretendard_medium"
+            android:inputType="textNoSuggestions|textVisiblePassword"
+            android:paddingLeft="20dp"
+            android:textColor="#ffffff"
+            android:textColorHint="#626262"
+            android:hint="ddd"
+            android:textSize="12dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintWidth_percent="0.89"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameInputText" />
+
+        <TextView
+            android:id="@+id/idInputText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:textColor="#ffffff"
+            android:text="아이디"
+            android:textSize="15dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintHorizontal_bias="0.065"
+            app:layout_constraintVertical_bias="0.031"
+            app:layout_constraintTop_toBottomOf="@+id/rectangle5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <EditText
+            android:id="@+id/rectangle6"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="@drawable/shape_rectangle"
+            android:fontFamily="@font/pretendard_medium"
+            android:inputType="textNoSuggestions|textVisiblePassword"
+            android:textColor="#ffffff"
+            android:textColorHint="#626262"
+            android:hint="ddd"
+            android:textSize="12dp"
+            android:paddingLeft="20dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintWidth_percent="0.89"
+            app:layout_constraintTop_toBottomOf="@+id/idInputText"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/pwInputText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:textColor="#ffffff"
+            android:text="비밀번호"
+            android:textSize="15dp"
+            app:layout_constraintHorizontal_bias="0.065"
+            app:layout_constraintVertical_bias="0.031"
+            app:layout_constraintTop_toBottomOf="@+id/rectangle6"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <EditText
+            android:id="@+id/rectangle7"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_rectangle"
+            android:fontFamily="@font/pretendard_medium"
+            android:inputType="textNoSuggestions|textVisiblePassword"
+            android:textColor="#ffffff"
+            android:textColorHint="#626262"
+            android:hint="ddd"
+            android:textSize="12dp"
+            android:paddingLeft="20dp"
+            app:layout_constraintWidth_percent="0.89"
+            app:layout_constraintHeight_percent="0.06"
+            app:layout_constraintVertical_bias="0.007"
+            app:layout_constraintTop_toBottomOf="@+id/pwInputText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/pwCheckInputText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:textColor="#ffffff"
+            android:text="비밀번호 확인"
+            android:textSize="15dp"
+            app:layout_constraintHorizontal_bias="0.065"
+            app:layout_constraintVertical_bias="0.031"
+            app:layout_constraintTop_toBottomOf="@+id/rectangle7"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <EditText
+            android:id="@+id/rectangle8"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_rectangle"
+            android:fontFamily="@font/pretendard_medium"
+            android:inputType="textNoSuggestions|textVisiblePassword"
+            android:textColor="#ffffff"
+            android:textColorHint="#626262"
+            android:hint="ddd"
+            android:textSize="12dp"
+            android:paddingLeft="20dp"
+            app:layout_constraintWidth_percent="0.89"
+            app:layout_constraintHeight_percent="0.06"
+            app:layout_constraintVertical_bias="0.007"
+            app:layout_constraintTop_toBottomOf="@+id/pwCheckInputText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/pwHintChoiceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:textColor="#ffffff"
+            android:text="비밀번호 질문"
+            android:textSize="15dp"
+            app:layout_constraintHorizontal_bias="0.065"
+            app:layout_constraintVertical_bias="0.031"
+            app:layout_constraintTop_toBottomOf="@+id/rectangle8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <EditText
+            android:id="@+id/rectangle9"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_rectangle"
+            android:fontFamily="@font/pretendard_medium"
+            android:inputType="textNoSuggestions|textVisiblePassword"
+            android:textColor="#ffffff"
+            android:textColorHint="#626262"
+            android:hint="ddd"
+            android:textSize="12dp"
+            android:paddingLeft="20dp"
+            app:layout_constraintWidth_percent="0.89"
+            app:layout_constraintHeight_percent="0.06"
+            app:layout_constraintVertical_bias="0.007"
+            app:layout_constraintTop_toBottomOf="@+id/pwHintChoiceText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <EditText
+            android:id="@+id/rectangle10"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_rectangle"
+            android:fontFamily="@font/pretendard_medium"
+            android:inputType="textNoSuggestions|textVisiblePassword"
+            android:textColor="#ffffff"
+            android:textColorHint="#626262"
+            android:hint="ddd"
+            android:textSize="12dp"
+            android:paddingLeft="20dp"
+            app:layout_constraintWidth_percent="0.89"
+            app:layout_constraintHeight_percent="0.06"
+            app:layout_constraintVertical_bias="0.007"
+            app:layout_constraintTop_toBottomOf="@+id/rectangle9"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/emailInputText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:textColor="#ffffff"
+            android:text="이메일"
+            android:textSize="15dp"
+            app:layout_constraintHorizontal_bias="0.065"
+            app:layout_constraintVertical_bias="0.031"
+            app:layout_constraintTop_toBottomOf="@+id/rectangle10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <EditText
+            android:id="@+id/rectangle11"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_rectangle"
+            android:fontFamily="@font/pretendard_medium"
+            android:inputType="textNoSuggestions|textVisiblePassword"
+            android:textColor="#ffffff"
+            android:textColorHint="#626262"
+            android:textSize="12dp"
+            android:paddingLeft="20dp"
+            app:layout_constraintWidth_percent="0.89"
+            app:layout_constraintHeight_percent="0.06"
+            app:layout_constraintVertical_bias="0.007"
+            app:layout_constraintTop_toBottomOf="@+id/emailInputText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/numInputText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:textColor="#ffffff"
+            android:text="이메일"
+            android:textSize="15dp"
+            app:layout_constraintHorizontal_bias="0.065"
+            app:layout_constraintVertical_bias="0.031"
+            app:layout_constraintTop_toBottomOf="@+id/rectangle11"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <EditText
+            android:id="@+id/rectangle12"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_rectangle"
+            android:fontFamily="@font/pretendard_medium"
+            android:inputType="textNoSuggestions|textVisiblePassword"
+            android:textColor="#ffffff"
+            android:textColorHint="#626262"
+            android:textSize="12dp"
+            android:paddingLeft="20dp"
+            app:layout_constraintWidth_percent="0.89"
+            app:layout_constraintHeight_percent="0.06"
+            app:layout_constraintVertical_bias="0.007"
+            app:layout_constraintTop_toBottomOf="@+id/numInputText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/regionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:textColor="#ffffff"
+            android:text="지역"
+            android:textSize="15dp"
+            app:layout_constraintHorizontal_bias="0.065"
+            app:layout_constraintVertical_bias="0.031"
+            app:layout_constraintTop_toBottomOf="@+id/rectangle12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/regionText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+
+        </RadioGroup>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/seoulGyeonggiButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/custom_button"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="서울/경기"
+            android:textColor="#ffffff"
+            android:textSize="17dp"
+            android:paddingBottom="4dp"
+            app:layout_constraintHeight_percent="0.071"
+            app:layout_constraintWidth_percent="0.275"
+            app:layout_constraintVertical_bias="0.030"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/chungcheongDaejeonButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/custom_button"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="충청/대전"
+            android:textColor="#ffffff"
+            android:textSize="17dp"
+            android:paddingBottom="4dp"
+            app:layout_constraintHeight_percent="0.071"
+            app:layout_constraintWidth_percent="0.275"
+            app:layout_constraintVertical_bias="0.030"
+            app:layout_constraintTop_toBottomOf="@+id/seoulGyeonggiButton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

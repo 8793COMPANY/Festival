@@ -25,7 +25,8 @@
             android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".JoinActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">
