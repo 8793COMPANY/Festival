@@ -37,8 +37,9 @@ public class FirstFragment extends Fragment {
                     Toast.makeText(getActivity(), "해당 이메일을 없는 이메일입니다.", Toast.LENGTH_SHORT).show();
                 }else {
                     Intent intent = new Intent(getActivity(), FindResultActivity.class);
-                    intent.putExtra("상단타이틀", "아이디를 찾았습니다.");
-                    intent.putExtra("버튼타이틀", "로그인");
+                    intent.putExtra("아이디제목", "아이디 찾기");
+                    intent.putExtra("아이디상단", "아이디를 찾았습니다.");
+                    intent.putExtra("아이디버튼", "로그인");
                     intent.putExtra("아이디", "wisi8793");
                     startActivity(intent);
                 }
