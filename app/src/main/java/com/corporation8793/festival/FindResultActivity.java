@@ -4,13 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class FindResultActivity extends AppCompatActivity {
 
     TextView maintextView, findIdText, findId;
     Button loginButton2;
+    ImageView arrow_left;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +24,7 @@ public class FindResultActivity extends AppCompatActivity {
         findIdText = findViewById(R.id.findIdText);
         loginButton2 = findViewById(R.id.loginButton2);
         findId = findViewById(R.id.findId);
+        arrow_left = findViewById(R.id.arrow_left);
 
         Intent intent = getIntent();
 
@@ -35,4 +39,19 @@ public class FindResultActivity extends AppCompatActivity {
             findId.setText(intent.getStringExtra("비밀번호"));
             loginButton2.setText(intent.getStringExtra("비밀번호버튼"));
         }else { }
-    }}
+
+        arrow_left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(intent.hasExtra("아이디제목")) {
+                    Intent intent = new Intent(getApplicationContext(), FindActivity.class);
+                    startActivity(intent);
+                }else if(intent.hasExtra("비밀번호제목")) {
+                    Intent intent = new Intent(getApplicationContext(), FindPwActivity.class);
+                    startActivity(intent);
+                }else { }
+            }
+        });
+
+    }
+}

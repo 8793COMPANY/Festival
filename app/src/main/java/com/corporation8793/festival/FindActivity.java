@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
@@ -24,6 +25,7 @@ public class FindActivity extends AppCompatActivity {
     FirstFragment firstFragment;
     SecondFragment secondFragment;
     TextView textView;
+    ImageView arrow_left;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,15 @@ public class FindActivity extends AppCompatActivity {
         createFragment();
         createViewpager();
         settingTabLayout();
+
+        arrow_left = findViewById(R.id.arrow_left);
+        arrow_left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
