@@ -12,12 +12,16 @@ import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
     ArrayList<Festival> items = new ArrayList<Festival>();
+    int height;
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View itemView = inflater.inflate(R.layout.item_recyclerview_main, parent, false);
+
+        //height = itemView.getHeight() / 3;
+        //itemView.getLayoutParams().height = height;
 
         return new ViewHolder(itemView);
     }
