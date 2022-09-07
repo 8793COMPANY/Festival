@@ -34,7 +34,11 @@
             android:fontFamily="@font/pretendard_regular"
             android:textColor="#ffffff"
             android:textSize="14.5dp"
-            app:layout_constraintHeight_percent="0.063"
+            android:spinnerMode="dropdown"
+            android:overlapAnchor="false"
+            android:popupBackground="@drawable/custom_spinner_dropdown"
+            android:scrollbarTrackHorizontal="@drawable/custom_scroll_track"
+            app:layout_constraintHeight_percent="0.06"
             app:layout_constraintWidth_percent="0.311"
             app:layout_constraintHorizontal_bias="0.056"
             app:layout_constraintVertical_bias="0.038"
@@ -42,6 +46,22 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/monthText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_semi_bold"
+            android:textColor="#ffffff"
+            android:text="날짜"
+            android:textSize="16dp"
+            android:paddingLeft="10dp"
+            app:layout_constraintHorizontal_bias="0.056"
+            app:layout_constraintVertical_bias="0.054"
+            app:layout_constraintTop_toBottomOf="@+id/festivalText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
 
         <Spinner
             android:id="@+id/choiceArea"
@@ -51,7 +71,9 @@
             android:fontFamily="@font/pretendard_regular"
             android:textColor="#ffffff"
             android:textSize="14.5dp"
-            app:layout_constraintHeight_percent="0.063"
+            android:overlapAnchor="false"
+            android:popupBackground="@drawable/custom_spinner_dropdown"
+            app:layout_constraintHeight_percent="0.06"
             app:layout_constraintWidth_percent="0.421"
             app:layout_constraintHorizontal_bias="0.090"
             app:layout_constraintVertical_bias="0.038"
@@ -60,6 +82,22 @@
             app:layout_constraintLeft_toRightOf="@+id/choiceMonth"
             app:layout_constraintRight_toRightOf="parent" />
 
+        <TextView
+            android:id="@+id/areaText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_semi_bold"
+            android:textColor="#ffffff"
+            android:text="지역"
+            android:textSize="16dp"
+            android:paddingLeft="5dp"
+            app:layout_constraintHorizontal_bias="0.090"
+            app:layout_constraintVertical_bias="0.054"
+            app:layout_constraintTop_toBottomOf="@+id/festivalText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/choiceMonth"
+            app:layout_constraintRight_toRightOf="parent"/>
+
         <ImageView
             android:id="@+id/searchButton"
             android:layout_width="wrap_content"
@@ -67,7 +105,7 @@
             android:src="@drawable/search_resize_white"
             android:layout_marginTop="5dp"
             app:layout_constraintHorizontal_bias="0.455"
-            app:layout_constraintVertical_bias="0.040"
+            app:layout_constraintVertical_bias="0.037"
             app:layout_constraintTop_toBottomOf="@+id/festivalText"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/choiceArea"

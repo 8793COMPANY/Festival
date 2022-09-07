@@ -1,18 +1,28 @@
 package com.corporation8793.festival;
 
+import android.content.Context;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
     ArrayList<Festival> items = new ArrayList<Festival>();
-    int height;
+    Context context;
+    DisplayMetrics displayMetrics;
+
+    public RecyclerAdapter(Context context) {
+        this.context = context;
+    }
 
     @NonNull
     @Override
@@ -20,8 +30,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View itemView = inflater.inflate(R.layout.item_recyclerview_main, parent, false);
 
-        //height = itemView.getHeight() / 3;
+        //displayMetrics = context.getResources().getDisplayMetrics();
+        //int width = displayMetrics.widthPixels;
+        //int height = displayMetrics.heightPixels * (339/1031);
+        //ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(width,height);
+        //.LayoutParams layoutParams = new ViewGroup.LayoutParams(itemView.getWidth(),height);
+        //itemView.setLayoutParams(layoutParams);
         //itemView.getLayoutParams().height = height;
+
+        itemView.getLayoutParams().height = 520;
 
         return new ViewHolder(itemView);
     }
@@ -55,17 +72,20 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView periodText, festivalName;
+        ImageView festivalImage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             periodText = itemView.findViewById(R.id.periodText);
             festivalName = itemView.findViewById(R.id.festivalName);
+            festivalImage = itemView.findViewById(R.id.festivalImage);
         }
 
         public void setItem(Festival item) {
             periodText.setText(item.getPeriod());
             festivalName.setText(item.getName());
+            festivalImage.setImageResource(item.getImage());
         }
     }
 }
