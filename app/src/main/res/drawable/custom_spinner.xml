@@ -15,7 +15,6 @@
             <item
                 android:gravity="center|end"
                 android:drawable="@drawable/arrow_down"
-                android:color="#8670e5"
                 android:width="20dp"
                 android:height="20dp"
                 android:right="10dp" />
