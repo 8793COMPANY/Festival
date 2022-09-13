@@ -1,5 +1,6 @@
 package com.corporation8793.festival;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -15,7 +16,7 @@ import android.widget.TextView;
 public class MyPageFragment extends Fragment {
 
     TextView logoutText;
-    ArrayAdapter<CharSequence> myPageAdapter;
+    ListAdapter myPageAdapter;
     ListView listView;
 
     @Override
@@ -34,7 +35,12 @@ public class MyPageFragment extends Fragment {
         });
 
         listView = view.findViewById(R.id.listView);
-        myPageAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.mypage_array, android.R.layout.simple_list_item_1);
+        myPageAdapter = new ListAdapter(getActivity());
+
+        myPageAdapter.addItem(new MyList("예약내역", R.drawable.festival_resize_month, R.drawable.arrow_resize_right_white2));
+        myPageAdapter.addItem(new MyList("앱 정보", R.drawable.mypage_resize_image1, R.drawable.arrow_resize_right_white2));
+        myPageAdapter.addItem(new MyList("자동로그인", R.drawable.mypage_resize_image2, R.drawable.arrow_resize_right_white2));
+
         listView.setAdapter(myPageAdapter);
 
         return view;

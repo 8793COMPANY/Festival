@@ -2,7 +2,6 @@ package com.corporation8793.festival;
 
 import android.content.Context;
 import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -56,11 +54,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public void setItems(ArrayList<Festival> items) {
         this.items = items;
     }
-
     public Festival getItem(int position) {
         return items.get(position);
     }
-
     public void setItem(int position, Festival item) {
         items.set(position, item);
     }
@@ -80,6 +76,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             periodText = itemView.findViewById(R.id.periodText);
             festivalName = itemView.findViewById(R.id.festivalName);
             festivalImage = itemView.findViewById(R.id.festivalImage);
+
         }
 
         public void setItem(Festival item) {
@@ -87,5 +84,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             festivalName.setText(item.getName());
             festivalImage.setImageResource(item.getImage());
         }
+
     }
+
 }
