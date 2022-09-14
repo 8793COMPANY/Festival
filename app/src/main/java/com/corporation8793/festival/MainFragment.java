@@ -25,6 +25,10 @@ public class MainFragment extends Fragment {
     ArrayAdapter<CharSequence> choiceMonth_adapter, choiceArea_adapter;
     Context context;
 
+    public static MainFragment newInstance() {
+        return new MainFragment();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -48,6 +52,16 @@ public class MainFragment extends Fragment {
         recyclerAdapter.addItem(new Festival("5", "5", R.drawable.festival_image_2));
 
         recyclerView.setAdapter(recyclerAdapter);
+
+
+        recyclerAdapter.setOnItemClicklistener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(RecyclerAdapter.ViewHolder holder, View view, int position) {
+                Festival item = recyclerAdapter.getItem(position);
+                //Toast.makeText(context,"d",Toast.LENGTH_SHORT).show();
+                ((MainActivity)getActivity()).fragmentChange(FestivalInfoFragment.newInstance());
+            }
+        });
 
         choiceMonth_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.month_array, R.layout.spinner_item);
         choiceMonth_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);

@@ -1,5 +1,6 @@
 package com.corporation8793.festival;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -34,6 +35,9 @@ public class SearchFragment extends Fragment {
         recyclerAdapter2.addItem(new Festival2("불꽃", R.drawable.search_image2));
 
         recyclerView.setAdapter(recyclerAdapter2);
+
+        Intent intent = new Intent();
+        intent.putExtra("순위","인기 검색 순위");
 
         return view;
     }

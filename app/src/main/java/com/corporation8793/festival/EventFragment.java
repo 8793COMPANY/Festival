@@ -3,6 +3,7 @@ package com.corporation8793.festival;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +20,10 @@ public class EventFragment extends Fragment {
     RecyclerAdapter recyclerAdapter2;
     Spinner choiceMonth2, choiceArea2;
     ArrayAdapter<CharSequence> choiceMonth_adapter2, choiceArea_adapter2;
+
+    public static EventFragment newInstance() {
+        return new EventFragment();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,6 +46,27 @@ public class EventFragment extends Fragment {
         recyclerAdapter2.addItem(new Festival("5", "5", R.drawable.festival_image_2));
 
         recyclerView2.setAdapter(recyclerAdapter2);
+
+        recyclerAdapter2.setOnItemClicklistener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(RecyclerAdapter.ViewHolder holder, View view, int position) {
+                Festival item = recyclerAdapter2.getItem(position);
+
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                FestivalInfoFragment festivalInfoFragment = new FestivalInfoFragment();
+
+                Bundle bundle = new Bundle();
+                bundle.putString("축제","광주 불꽃 축제");
+                bundle.putInt("이미지", R.drawable.event_image2);
+
+                festivalInfoFragment.setArguments(bundle);
+                transaction.replace(R.id.containers,festivalInfoFragment);
+                transaction.commit();
+
+                //((MainActivity)getActivity()).fragmentChange(FestivalInfoFragment.newInstance());
+            }
+        });
+
 
         choiceMonth_adapter2 = ArrayAdapter.createFromResource(getActivity(), R.array.month_array, R.layout.spinner_item);
         choiceMonth_adapter2.setDropDownViewResource(R.layout.spinner_dropdown_item);

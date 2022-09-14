@@ -15,9 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> implements OnItemClickListener{
     ArrayList<Festival> items = new ArrayList<Festival>();
     Context context;
+    OnItemClickListener listener;
     DisplayMetrics displayMetrics;
 
     public RecyclerAdapter(Context context) {
@@ -40,7 +41,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         itemView.getLayoutParams().height = 520;
 
-        return new ViewHolder(itemView);
+        return new ViewHolder(itemView, this);
     }
 
     @Override
@@ -68,29 +69,51 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         return items.size();
     }
 
+    public void setOnItemClicklistener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    public void onItemClick(ViewHolder holder, View view, int position) {
+        if(listener != null) {
+            listener.onItemClick(holder, view, position);
+        }
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView periodText, festivalName;
         ImageView festivalImage;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
 
             periodText = itemView.findViewById(R.id.periodText);
             festivalName = itemView.findViewById(R.id.festivalName);
             festivalImage = itemView.findViewById(R.id.festivalImage);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if(listener != null) {
+                        listener.onItemClick(ViewHolder.this, v, position);
+                    }
+                }
+            });
+
+            /*
             //itemView.setClickable(true);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int pos = getAdapterPosition();
                     if(pos != RecyclerView.NO_POSITION) {
-                        //Intent intent = new Intent(context, FestivalInfoFragment.class);
-                        //context.startActivity(intent);
+                        Intent intent = new Intent(context, FestivalInfoFragment.class);
+                        context.startActivity(intent);
                         Toast.makeText(context,"ddddddddddd",Toast.LENGTH_SHORT).show();
                     }
                 }
             });
+             */
 
         }
 

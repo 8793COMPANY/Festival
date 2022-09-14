@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -42,6 +43,13 @@ public class MyPageFragment extends Fragment {
         myPageAdapter.addItem(new MyList("자동로그인", R.drawable.mypage_resize_image2, R.drawable.arrow_resize_right_white2));
 
         listView.setAdapter(myPageAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ((MainActivity)getActivity()).fragmentChange(BreakdownFragment.newInstance());
+            }
+        });
 
         return view;
     }
