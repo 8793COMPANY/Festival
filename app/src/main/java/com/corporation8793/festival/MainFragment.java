@@ -1,5 +1,6 @@
 package com.corporation8793.festival;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -22,6 +23,7 @@ public class MainFragment extends Fragment {
     RecyclerAdapter recyclerAdapter;
     Spinner choiceMonth, choiceArea;
     ArrayAdapter<CharSequence> choiceMonth_adapter, choiceArea_adapter;
+    Context context;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,13 +31,15 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
+        context = container.getContext();
+
         recyclerView = view.findViewById(R.id.recyclerView);
         choiceMonth = view.findViewById(R.id.choiceMonth);
         choiceArea = view.findViewById(R.id.choiceArea);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerAdapter = new RecyclerAdapter(getActivity());
+        recyclerAdapter = new RecyclerAdapter(context);
 
         recyclerAdapter.addItem(new Festival("2022.09.01~09.12", "광주 맥주 축제", R.drawable.festival_image_1));
         recyclerAdapter.addItem(new Festival("2022.09.14~09.20", "가을 꽃 축제", R.drawable.festival_image_2));

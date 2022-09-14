@@ -8,12 +8,12 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/mainText"
+        android:id="@+id/rankText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/pretendard_semi_bold"
-        android:textColor="#ffffff"
-        android:textSize="16dp"
+        android:fontFamily="@font/pretendard_medium"
+        android:textColor="#a995ff"
+        android:textSize="15dp"
         app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,13 +21,13 @@
         app:layout_constraintLeft_toLeftOf="parent"/>
 
     <TextView
-        android:id="@+id/subText"
+        android:id="@+id/rankNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/pretendard_regular"
-        android:textColor="#b9b9b9"
-        android:textSize="16dp"
-        app:layout_constraintHorizontal_bias="0.35"
+        android:textColor="#ffffff"
+        android:textSize="15dp"
+        app:layout_constraintHorizontal_bias="0.258"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"

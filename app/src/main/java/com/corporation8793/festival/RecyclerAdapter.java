@@ -1,12 +1,14 @@
 package com.corporation8793.festival;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -66,7 +68,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         return items.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView periodText, festivalName;
         ImageView festivalImage;
 
@@ -76,6 +78,19 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             periodText = itemView.findViewById(R.id.periodText);
             festivalName = itemView.findViewById(R.id.festivalName);
             festivalImage = itemView.findViewById(R.id.festivalImage);
+
+            //itemView.setClickable(true);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    if(pos != RecyclerView.NO_POSITION) {
+                        //Intent intent = new Intent(context, FestivalInfoFragment.class);
+                        //context.startActivity(intent);
+                        Toast.makeText(context,"ddddddddddd",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
 
         }
 
