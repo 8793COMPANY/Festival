@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PwCheckActivity"
+    android:background="#2e2c37">
+
+
+    <ImageView
+        android:id="@+id/arrow_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arrow_resize_left"
+        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintVertical_bias="0.047"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendard_medium"
+        android:textColor="#ffffff"
+        android:text="회원정보 수정"
+        android:textSize="18dp"
+        app:layout_constraintVertical_bias="0.047"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+    <TextView
+        android:id="@+id/user_info_modify_check_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendard_medium"
+        android:textColor="#ffffff"
+        android:text="회원정보를 안전하게 보호하기 위해\n비밀번호를 한번 더 확인해 주세요"
+        android:textSize="14dp"
+        app:layout_constraintVertical_bias="0.047"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+    <TextView
+        android:id="@+id/pw_check_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendard_medium"
+        android:textColor="#ffffff"
+        android:text="비밀번호 확인"
+        android:textSize="15dp"
+        app:layout_constraintVertical_bias="0.047"
+        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintTop_toBottomOf="@+id/user_info_modify_check_msg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/left_guide"
+        app:layout_constraintRight_toRightOf="@+id/right_guide" />
+
+    <EditText
+        android:id="@+id/pw_check_input_box"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/shape_rectangle"
+        android:fontFamily="@font/pretendard_medium"
+        android:inputType="textNoSuggestions|textVisiblePassword"
+        android:maxLength="20"
+        android:textColor="#ffffff"
+        android:hint="비밀번호를 입력해주세요"
+        android:textColorHint="#626262"
+        android:textSize="13dp"
+        android:paddingLeft="20dp"
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintVertical_bias="0.014"
+        app:layout_constraintTop_toBottomOf="@+id/pw_check_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/left_guide"
+        app:layout_constraintRight_toRightOf="@id/right_guide" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/next_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/pretendard_semi_bold"
+        android:letterSpacing="0.05"
+        android:text="다음"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        android:paddingBottom="5dp"
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintVertical_bias="0.067"
+        app:layout_constraintTop_toBottomOf="@+id/pw_check_input_box"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/left_guide"
+        app:layout_constraintRight_toRightOf="@id/right_guide" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/left_guide"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintGuide_percent="0.05"
+        android:orientation="vertical"></androidx.constraintlayout.widget.Guideline>
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/right_guide"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintGuide_percent="0.95"
+        android:orientation="vertical"></androidx.constraintlayout.widget.Guideline>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
