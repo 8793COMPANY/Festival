@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2e2c36"
+    tools:context=".ReservationFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/reservationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_semi_bold"
+            android:textColor="#ffffff"
+            android:text="부스예약"
+            android:textSize="22dp"
+            app:layout_constraintVertical_bias="0.059"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/arrow_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_resize_left"
+            app:layout_constraintHorizontal_bias="0.065"
+            app:layout_constraintVertical_bias="0.059"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/reservationDateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:textColor="#ffffff"
+            android:text="예약날짜"
+            android:textSize="19dp"
+            app:layout_constraintHorizontal_bias="0.136"
+            app:layout_constraintVertical_bias="0.047"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reservationText"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <Spinner
+            android:id="@+id/yearSpinner"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/custom_spinner2"
+            android:fontFamily="@font/pretendard_regular"
+            android:textColor="#ffffff"
+            android:textSize="15dp"
+            android:spinnerMode="dropdown"
+            android:overlapAnchor="false"
+            android:popupBackground="@drawable/custom_spinner_dropdown2"
+            app:layout_constraintHeight_percent="0.069"
+            app:layout_constraintWidth_percent="0.299"
+            app:layout_constraintVertical_bias="0.025"
+            app:layout_constraintHorizontal_bias="0.086"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reservationDateText"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <Spinner
+            android:id="@+id/monthSpinner"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/custom_spinner2"
+            android:fontFamily="@font/pretendard_regular"
+            android:textColor="#ffffff"
+            android:textSize="15dp"
+            android:spinnerMode="dropdown"
+            android:overlapAnchor="false"
+            android:popupBackground="@drawable/custom_spinner_dropdown2"
+            app:layout_constraintHeight_percent="0.069"
+            app:layout_constraintWidth_percent="0.288"
+            app:layout_constraintVertical_bias="0.025"
+            app:layout_constraintHorizontal_bias="0.022"
+            app:layout_constraintLeft_toRightOf="@+id/yearSpinner"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reservationDateText"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <Spinner
+            android:id="@+id/dateSpinner"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/custom_spinner2"
+            android:fontFamily="@font/pretendard_regular"
+            android:textColor="#ffffff"
+            android:textSize="15dp"
+            android:spinnerMode="dropdown"
+            android:overlapAnchor="false"
+            android:popupBackground="@drawable/custom_spinner_dropdown2"
+            app:layout_constraintHeight_percent="0.069"
+            app:layout_constraintWidth_percent="0.274"
+            app:layout_constraintVertical_bias="0.025"
+            app:layout_constraintHorizontal_bias="0.044"
+            app:layout_constraintLeft_toRightOf="@+id/monthSpinner"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reservationDateText"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/personnelText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:textColor="#ffffff"
+            android:text="인원"
+            android:textSize="19dp"
+            app:layout_constraintHorizontal_bias="0.136"
+            app:layout_constraintVertical_bias="0.08"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dateSpinner"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <Spinner
+            android:id="@+id/personnelSpinner"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/custom_spinner2"
+            android:fontFamily="@font/pretendard_regular"
+            android:textColor="#ffffff"
+            android:textSize="15dp"
+            android:spinnerMode="dropdown"
+            android:overlapAnchor="false"
+            android:popupBackground="@drawable/custom_spinner_dropdown2"
+            app:layout_constraintHeight_percent="0.069"
+            app:layout_constraintWidth_percent="0.57"
+            app:layout_constraintVertical_bias="0.064"
+            app:layout_constraintHorizontal_bias="0.82"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/yearSpinner"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/reservationButton2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/custom_button"
+            android:fontFamily="@font/pretendard_semi_bold"
+            android:text="예약하기"
+            android:textColor="#ffffff"
+            android:textSize="17dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintWidth_percent="0.89"
+            app:layout_constraintHeight_percent="0.069"
+            app:layout_constraintVertical_bias="0.089"
+            app:layout_constraintTop_toBottomOf="@+id/personnelSpinner"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

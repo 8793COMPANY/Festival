@@ -1,6 +1,5 @@
 package com.corporation8793.festival;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -61,7 +60,7 @@ public class FestivalInfoFragment extends Fragment {
         });
 
         listView = view.findViewById(R.id.listView2);
-        myPageAdapter2 = new ListAdapter2(getActivity());
+        myPageAdapter2 = new ListAdapter2(getActivity(),2);
 
         myPageAdapter2.addItem(new MyList2("입장료", "무료"));
         myPageAdapter2.addItem(new MyList2("주관/주최", "보령시/보령축제관광재단"));
@@ -69,8 +68,12 @@ public class FestivalInfoFragment extends Fragment {
 
         listView.setAdapter(myPageAdapter2);
 
-        Intent intent = new Intent();
-        intent.putExtra("정보","축제 상세 정보");
+        reservationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).fragmentChange(ReservationFragment.newInstance());
+            }
+        });
 
         return view;
     }

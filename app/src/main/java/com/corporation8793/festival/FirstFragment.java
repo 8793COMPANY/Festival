@@ -30,7 +30,7 @@ public class FirstFragment extends Fragment {
             public void onClick(View v) {
                 String user_address = editText.getText().toString();
                 String address = "wisi8793@gmail.com";
-                
+
                 if(user_address.equals("")) {
                     Toast.makeText(getActivity(), "이메일을 입력해주세요.", Toast.LENGTH_SHORT).show();
                 }else if(!user_address.equals(address)) {

@@ -184,18 +184,17 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>
 
-        <EditText
+        <Spinner
             android:id="@+id/rectangle9"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:background="@drawable/shape_rectangle"
+            android:background="@drawable/custom_spinner2"
             android:fontFamily="@font/pretendard_medium"
-            android:inputType="textNoSuggestions|textVisiblePassword"
             android:textColor="#ffffff"
-            android:textColorHint="#626262"
-            android:hint="스피너"
             android:textSize="12dp"
-            android:paddingLeft="20dp"
+            android:spinnerMode="dropdown"
+            android:overlapAnchor="false"
+            android:popupBackground="@drawable/custom_spinner_dropdown2"
             android:layout_marginTop="5dp"
             app:layout_constraintWidth_percent="0.89"
             app:layout_constraintTop_toBottomOf="@+id/pwHintChoiceText"

@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -36,8 +35,8 @@ public class FindPwActivity extends AppCompatActivity {
         findId = findViewById(R.id.findId);
         arrow_left = findViewById(R.id.arrow_left);
 
-        choiceQuestion_adapter = ArrayAdapter.createFromResource(this, R.array.question_text, android.R.layout.simple_spinner_item);
-        choiceQuestion_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        choiceQuestion_adapter = ArrayAdapter.createFromResource(this, R.array.question_text, R.layout.spinner_item3);
+        choiceQuestion_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item3);
         choiceQuestion.setAdapter(choiceQuestion_adapter);
 
         nextButton.setOnClickListener(new View.OnClickListener() {

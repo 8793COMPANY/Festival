@@ -1,25 +1,22 @@
 package com.corporation8793.festival;
 
 import android.content.Context;
-import android.content.Intent;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> implements OnItemClickListener{
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> implements OnItemClickListener {
     ArrayList<Festival> items = new ArrayList<Festival>();
     Context context;
     OnItemClickListener listener;
-    DisplayMetrics displayMetrics;
+    //DisplayMetrics displayMetrics;
 
     public RecyclerAdapter(Context context) {
         this.context = context;

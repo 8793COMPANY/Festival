@@ -51,8 +51,8 @@
 
         <ImageView
             android:id="@+id/pictureImage"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
             android:background="@drawable/shape_circle"
             app:layout_constraintWidth_percent="0.205"
             app:layout_constraintHeight_percent="0.111"
