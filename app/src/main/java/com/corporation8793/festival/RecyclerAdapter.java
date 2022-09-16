@@ -87,6 +87,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             festivalName = itemView.findViewById(R.id.festivalName);
             festivalImage = itemView.findViewById(R.id.festivalImage);
 
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -117,7 +118,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         public void setItem(Festival item) {
             periodText.setText(item.getPeriod());
             festivalName.setText(item.getName());
-            festivalImage.setImageResource(item.getImage());
+            festivalImage.setBackgroundResource(item.getImage());
         }
 
     }

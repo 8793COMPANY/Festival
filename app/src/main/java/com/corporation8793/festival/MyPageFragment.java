@@ -18,6 +18,10 @@ public class MyPageFragment extends Fragment {
     ListAdapter myPageAdapter;
     ListView listView;
 
+    public static MyPageFragment newInstance() {
+        return new MyPageFragment();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

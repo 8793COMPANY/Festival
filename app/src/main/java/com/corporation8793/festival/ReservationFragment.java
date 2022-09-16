@@ -1,12 +1,15 @@
 package com.corporation8793.festival;
 
+import android.graphics.Point;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -54,15 +57,23 @@ public class ReservationFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 customDialog = new CustomDialog(getActivity(),"d");
-                //customDialog.callDialog();
                 customDialog.show();
+
+                Display display = getActivity().getWindowManager().getDefaultDisplay();
+                Point size = new Point();
+                display.getSize(size);
+
+                WindowManager.LayoutParams params = new WindowManager.LayoutParams();
+                params.width = size.x * 640/720;
+                params.height = size.y * 540/1329;
+                customDialog.getWindow().setAttributes(params);
+                //customDialog.callDialog();
                 /*
                 WindowManager.LayoutParams params = new WindowManager.LayoutParams();
                 params = customDialog.getWindow().getAttributes();
                 params.width = 1000;
                 params.height = 670;
                 customDialog.getWindow().setAttributes(params);
-
                  */
             }
         });

@@ -2,8 +2,11 @@ package com.corporation8793.festival;
 
 import androidx.annotation.NonNull;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Point;
+import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -37,7 +40,7 @@ public class CustomDialog extends Dialog {
         });
 
     }
-
+    /*
     public void callDialog() {
         Dialog dialog = new Dialog(getContext());
 
@@ -49,4 +52,5 @@ public class CustomDialog extends Dialog {
         dialog.getWindow().setAttributes((WindowManager.LayoutParams) params);
         dialog.show();
     }
+     */
 }

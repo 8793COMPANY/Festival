@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rounded_corner2"
+    android:layout_marginBottom="20dp">
+
+    <TextView
+        android:id="@+id/boothName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendard_medium"
+        android:textColor="#ffffff"
+        android:textSize="19dp"
+        android:text="비누만들기 부스"
+        app:layout_constraintVertical_bias="0.141"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/left_guide" />
+
+    <TextView
+        android:id="@+id/boothTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendard_regular"
+        android:textColor="#aaaaaa"
+        android:textSize="15dp"
+        android:text="운영시간: 12:00~18:00"
+        app:layout_constraintVertical_bias="0.061"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintTop_toBottomOf="@+id/boothName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/left_guide" />
+
+    <TextView
+        android:id="@+id/boothPoint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendard_medium"
+        android:textColor="#ac93ff"
+        android:textSize="19dp"
+        android:text="260p"
+        app:layout_constraintVertical_bias="0.079"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintTop_toBottomOf="@+id/boothTime"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/left_guide" />
+
+    <TextView
+        android:id="@+id/saveResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendard_regular"
+        android:textColor="#ffff"
+        android:textSize="15dp"
+        android:text="적립완료"
+        app:layout_constraintVertical_bias="0.128"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintTop_toBottomOf="@+id/boothPoint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/left_guide" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cameraButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/custom_button_camera"
+        android:fontFamily="@font/pretendard_regular"
+        android:text="QR코드\n촬영하기"
+        android:textColor="#dddddd"
+        android:textSize="15dp"
+        app:layout_constraintHorizontal_bias="0.94"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/left_guide"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintGuide_percent="0.05"
+        android:orientation="vertical"></androidx.constraintlayout.widget.Guideline>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
