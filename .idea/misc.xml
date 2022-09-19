@@ -50,6 +50,8 @@
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/activity_product.xml" value="0.30055579307396324" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/activity_pw_check.xml" value="0.30055579307396324" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/activity_update.xml" value="0.30055579307396324" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/activity_user_information.xml" value="0.30055579307396324" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/fragment_booth_reservation.xml" value="0.30055579307396324" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/fragment_breakdown.xml" value="0.30055579307396324" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/fragment_event.xml" value="0.2" />
@@ -67,6 +69,7 @@
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/item_recyclerview_main.xml" value="0.25" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/item_recyclerview_mypage.xml" value="0.2997007268063275" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/item_recyclerview_search.xml" value="0.2997007268063275" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/item_recyclerview_user.xml" value="0.2997007268063275" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/listview_item.xml" value="0.2997007268063275" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/listview_item2.xml" value="0.2997007268063275" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/listview_item3.xml" value="0.2997007268063275" />

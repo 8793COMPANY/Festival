@@ -1,6 +1,8 @@
 package com.corporation8793.festival;
 
+import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -67,6 +69,7 @@ public class ReservationFragment extends Fragment {
                 params.width = size.x * 640/720;
                 params.height = size.y * 540/1329;
                 customDialog.getWindow().setAttributes(params);
+                customDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 //customDialog.callDialog();
                 /*
                 WindowManager.LayoutParams params = new WindowManager.LayoutParams();

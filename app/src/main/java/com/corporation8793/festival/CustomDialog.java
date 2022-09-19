@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Point;
 import android.view.Display;
 import android.view.View;

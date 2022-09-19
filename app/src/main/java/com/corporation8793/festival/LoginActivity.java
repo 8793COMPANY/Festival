@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView joinText, textView1, findText;
     String id, pw;
     EditText editText1, editText2;
-    Button move_MainActivity;
+    Button move_MainActivity, userPageButton;
     ImageView pw_eye, arrow_right;
 
     @Override
@@ -39,6 +39,15 @@ public class LoginActivity extends AppCompatActivity {
         move_MainActivity = findViewById(R.id.loginButton);
         arrow_right = findViewById(R.id.arrow_right);
         findText = findViewById(R.id.findText);
+        userPageButton = findViewById(R.id.userPageButton);
+
+        userPageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), UserInformationActivity.class);
+                startActivity(intent);
+            }
+        });
 
         // 회원가입 글자 색상 변경 및 클릭이벤트(페이지 이동)
         Spannable span = (Spannable) joinText.getText();
