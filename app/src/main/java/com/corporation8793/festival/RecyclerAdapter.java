@@ -1,6 +1,7 @@
 package com.corporation8793.festival;
 
 import android.content.Context;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

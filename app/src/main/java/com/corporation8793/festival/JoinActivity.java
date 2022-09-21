@@ -26,6 +26,7 @@ public class JoinActivity extends AppCompatActivity {
     Spinner rectangle9;
     ArrayAdapter<CharSequence> rectangle9_adapter;
     EditText rectangle5, rectangle6, rectangle7, rectangle8, rectangle10, rectangle11, rectangle12;
+    String sArea;
     /**
      * rectangle5 이름
      * rectangle6 아이디
@@ -59,6 +60,29 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
 
+        for(i=0; i<7; i++) {
+            button[i] = findViewById(ridButton[i]);
+        }
+
+        for(i=0; i<button.length; i++) {
+            final int INDEX;
+            INDEX = i;
+            button[INDEX].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    for(j=0; j< button.length; j++) {
+                        if(INDEX == j) {
+                            button[INDEX].setChecked(true);
+                            sArea = button[INDEX].getText().toString();
+                        } else {
+                            button[j].setChecked(false);
+                        }
+                    }
+                    //Toast.makeText(JoinActivity.this, "눌림", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
         // 가입시 필요한 내용이 없으면 알려주기, 다 적으면 페이지 이동
         joinButton = findViewById(R.id.joinButton);
         joinButton.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +103,7 @@ public class JoinActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "회원정보가 부족합니다 모두 입력해주세요.", Toast.LENGTH_SHORT).show();
                 } else {
                     //사용자 등록
-                    insertUser(sName, sId, sPw/*, sPwQuestion*/, sEmail, sPhoneNumber);
+                    insertUser(sName, sId, sPw, sPwQuestion, sPwAnswer, sEmail, sPhoneNumber, sArea);
 
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     //Intent intent = new Intent(getApplicationContext(), UserInformationActivity.class);
@@ -88,43 +112,23 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
 
-        for(i=0; i<7; i++) {
-            button[i] = findViewById(ridButton[i]);
-        }
-
-        for(i=0; i<button.length; i++) {
-            final int INDEX;
-            INDEX = i;
-            button[INDEX].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    for(j=0; j< button.length; j++) {
-                        if(INDEX == j) {
-                            button[INDEX].setChecked(true);
-                        } else {
-                            button[j].setChecked(false);
-                        }
-                    }
-                    //Toast.makeText(JoinActivity.this, "눌림", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-
         rectangle9_adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.question_text, R.layout.spinner_item2);
         rectangle9_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item2);
         rectangle9.setAdapter(rectangle9_adapter);
 
     }
 
-    private void insertUser(String name, String id, String pw/*, String pwQuestion*/, String email, String phoneNumber) {
+    private void insertUser(String name, String id, String pw, String pwQuestion, String pwAnswer, String email, String phoneNumber, String area) {
 
         User user = new User();
         user.userName = name;
         user.userId = id;
         user.userPw = pw;
-        //user.userPwQuestion = pwQuestion;
+        user.userPwQuestion = pwQuestion;
+        user.userPwAnswer = pwAnswer;
         user.userEmail = email;
         user.userPhoneNumber = phoneNumber;
+        user.userArea = area;
 
         AppDatabase db = AppDatabase.getDBInstance(this.getApplicationContext());
         db.userDao().insertUser(user);

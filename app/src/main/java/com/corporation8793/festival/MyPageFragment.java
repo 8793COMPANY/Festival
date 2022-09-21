@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -16,7 +18,9 @@ public class MyPageFragment extends Fragment {
 
     TextView logoutText;
     ListAdapter myPageAdapter;
-    ListView listView;
+    //ListView listView;
+    ImageView list1Image2;
+    Button dataModify;
 
     public static MyPageFragment newInstance() {
         return new MyPageFragment();
@@ -37,6 +41,24 @@ public class MyPageFragment extends Fragment {
             }
         });
 
+        list1Image2 = view.findViewById(R.id.list1Image2);
+        list1Image2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).fragmentChange(BreakdownFragment.newInstance());
+            }
+        });
+
+        dataModify = view.findViewById(R.id.dataModify);
+        dataModify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), JoinActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        /*
         listView = view.findViewById(R.id.listView);
         myPageAdapter = new ListAdapter(getActivity());
 
@@ -54,6 +76,7 @@ public class MyPageFragment extends Fragment {
                 }
             }
         });
+         */
 
         return view;
     }

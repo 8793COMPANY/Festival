@@ -104,6 +104,155 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"/>
 
+        <ImageView
+            android:id="@+id/list1Image"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/festival_month_image"
+            app:layout_constraintHorizontal_bias="0.063"
+            app:layout_constraintVertical_bias="0.059"
+            app:layout_constraintTop_toBottomOf="@+id/backgroundImage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <TextView
+            android:id="@+id/list1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_regular"
+            android:textSize="17dp"
+            android:textColor="#ffffff"
+            android:text="예약내역"
+            app:layout_constraintHorizontal_bias="0.203"
+            app:layout_constraintVertical_bias="0.059"
+            app:layout_constraintTop_toBottomOf="@+id/backgroundImage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <ImageView
+            android:id="@+id/list1Image2"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/arrow_right_white"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintVertical_bias="0.059"
+            app:layout_constraintTop_toBottomOf="@+id/backgroundImage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <ImageView
+            android:id="@+id/list1Image3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#434343"
+            app:layout_constraintVertical_bias="0.152"
+            app:layout_constraintTop_toBottomOf="@+id/backgroundImage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <ImageView
+            android:id="@+id/list12Image"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/mypage_image1"
+            app:layout_constraintHorizontal_bias="0.063"
+            app:layout_constraintVertical_bias="0.216"
+            app:layout_constraintTop_toBottomOf="@+id/backgroundImage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <TextView
+            android:id="@+id/list2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_regular"
+            android:textSize="17dp"
+            android:textColor="#ffffff"
+            android:text="앱 정보"
+            app:layout_constraintHorizontal_bias="0.203"
+            app:layout_constraintVertical_bias="0.216"
+            app:layout_constraintTop_toBottomOf="@+id/backgroundImage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <ImageView
+            android:id="@+id/list2Image2"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/arrow_right_white"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintVertical_bias="0.216"
+            app:layout_constraintTop_toBottomOf="@+id/backgroundImage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <ImageView
+            android:id="@+id/list2Image3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#434343"
+            app:layout_constraintVertical_bias="0.304"
+            app:layout_constraintTop_toBottomOf="@+id/backgroundImage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <ImageView
+            android:id="@+id/list13Image"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/mypage_image2"
+            app:layout_constraintHorizontal_bias="0.063"
+            app:layout_constraintVertical_bias="0.368"
+            app:layout_constraintTop_toBottomOf="@+id/backgroundImage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <TextView
+            android:id="@+id/list3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_regular"
+            android:textSize="17dp"
+            android:textColor="#ffffff"
+            android:text="자동 로그인"
+            app:layout_constraintHorizontal_bias="0.203"
+            app:layout_constraintVertical_bias="0.368"
+            app:layout_constraintTop_toBottomOf="@+id/backgroundImage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <Switch
+            android:id="@+id/list3Switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintHorizontal_bias="0.933"
+            app:layout_constraintVertical_bias="0.368"
+            app:layout_constraintTop_toBottomOf="@+id/backgroundImage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <ImageView
+            android:id="@+id/list3Image2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#434343"
+            app:layout_constraintVertical_bias="0.456"
+            app:layout_constraintTop_toBottomOf="@+id/backgroundImage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

@@ -37,6 +37,18 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 
+        <ImageView
+            android:id="@+id/reservationImage"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/mypage_image3"
+            app:layout_constraintVertical_bias="0.047"
+            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintTop_toBottomOf="@+id/reservationText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
         <TextView
             android:id="@+id/reservationDateText"
             android:layout_width="wrap_content"
@@ -45,7 +57,7 @@
             android:textColor="#ffffff"
             android:text="예약날짜"
             android:textSize="19dp"
-            app:layout_constraintHorizontal_bias="0.136"
+            app:layout_constraintHorizontal_bias="0.156"
             app:layout_constraintVertical_bias="0.047"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -112,6 +124,18 @@
             app:layout_constraintTop_toBottomOf="@+id/reservationDateText"
             app:layout_constraintBottom_toBottomOf="parent" />
 
+        <ImageView
+            android:id="@+id/personnelImage"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/mypage_image2"
+            app:layout_constraintVertical_bias="0.08"
+            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintTop_toBottomOf="@+id/dateSpinner"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
         <TextView
             android:id="@+id/personnelText"
             android:layout_width="wrap_content"
@@ -120,7 +144,7 @@
             android:textColor="#ffffff"
             android:text="인원"
             android:textSize="19dp"
-            app:layout_constraintHorizontal_bias="0.136"
+            app:layout_constraintHorizontal_bias="0.146"
             app:layout_constraintVertical_bias="0.08"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
