@@ -1,5 +1,6 @@
 package com.corporation8793.festival;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -82,4 +83,5 @@ public class MainFragment extends Fragment {
 
         return view;
     }
+
 }

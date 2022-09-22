@@ -15,17 +15,18 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 
 public class SearchFragment extends Fragment {
 
@@ -65,6 +66,41 @@ public class SearchFragment extends Fragment {
 
         recyclerView.setAdapter(recyclerAdapter2);
 
+        /*
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            String queryUrl = "http://api.data.go.kr/openapi/tn_pubr_public_cltur_fstvl_api"
+                                    + "?ServiceKey=" + key + "&type=json"/*+ "&opar=" + str*/;    //&type=json
+/*
+                            System.out.println(queryUrl);
+                            JSONObject jsonObject = new JSONObject(queryUrl);
+                            String name = jsonObject.getString("records");
+
+                            JSONArray jsonArray = jsonObject.getJSONArray(name);
+                            System.out.println("길이: " + jsonArray.length());
+
+                            for(int i=0; i<jsonArray.length(); i++) {
+                                JSONObject subJsonObject = jsonArray.getJSONObject(i);
+                                String festival = subJsonObject.getString("축제명");
+                                String start = subJsonObject.getString("축제시작일자");
+                                String end = subJsonObject.getString("축제종료일자");
+
+                                System.out.println("축제이름: " + festival + "\n" + "기간: " + start + "~" + end);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }.start();
+            }
+        }); */
+
+
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,12 +134,13 @@ public class SearchFragment extends Fragment {
         return view;
     }
 
+
     private String getData() {
         buffer = new StringBuffer();
         String str = rectangle13.getText().toString();
         //String location = URLEncoder.encode(str);
         String queryUrl = "http://api.data.go.kr/openapi/tn_pubr_public_cltur_fstvl_api"
-                + "?ServiceKey=" + key /*+ "&opar=" + str*/;
+                + "?ServiceKey=" + key /*+ "&opar=" + str*/;    //&type=json
 
         try {
             URL url = new URL(queryUrl);
@@ -125,6 +162,7 @@ public class SearchFragment extends Fragment {
                         break;
                     case XmlPullParser.START_TAG:
                         tag = xpp.getName();
+                        System.out.println(tag.length());
 
                         if(tag.equals("item"));
                         else if(tag.equals("fstvlNm")) {
