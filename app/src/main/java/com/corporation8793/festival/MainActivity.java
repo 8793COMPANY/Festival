@@ -7,20 +7,21 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationBarView;
-import com.google.android.material.tabs.TabLayout;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserFactory;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,8 +30,11 @@ public class MainActivity extends AppCompatActivity {
     EventFragment eventFragment;
     MyPageFragment myPageFragment;
 
-    String key = "asO9jixtVSQd1RMbVCUr%2F1yFhPuiL5H9VXW1qGHbnb8TXnIWvVQ4MP0qS0pi4gf2EplaNECQC6ucPukAlFhnyA%3D%3D";
-    String festivalName, festivalStart, festivalEnd, festivalCo, festivalLocation, festivalMnnst, festivalAuspcInstt;
+    List<FestivalInfo> festivalInfoList;
+    AppDatabase2 db;
+
+    //String key = "asO9jixtVSQd1RMbVCUr%2F1yFhPuiL5H9VXW1qGHbnb8TXnIWvVQ4MP0qS0pi4gf2EplaNECQC6ucPukAlFhnyA%3D%3D";
+    //String festivalName, festivalStart, festivalEnd, festivalCo, festivalLocation, festivalMnnst, festivalAuspcInstt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,20 +70,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        SharedPreferences pref = getSharedPreferences("isFirst", Activity.MODE_PRIVATE);
+        boolean first = pref.getBoolean("isFirst", false);
+        if(first==false){
+            Log.d("Is first Time?", "first");
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putBoolean("isFirst",true);
+            editor.commit();
+            //앱 최초 실행시 하고 싶은 작업
+            jsonParsing(getJsonString());
+        }else{
+            Log.d("Is first Time?", "not first");
+        }
 
+/*
         new Thread(new Runnable() {
             @Override
             public void run() {
-                getData(); /*
+                getData();
 
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         insertFestivalInfo(festivalName, festivalStart, festivalEnd, festivalCo, festivalLocation, festivalMnnst, festivalAuspcInstt);
                     }
-                }); */
+                });
             }
-        }).start();
+        }).start();*/
 
     }
 
@@ -89,6 +106,69 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.containers, fragment).commit();
     }
 
+    private String getJsonString() {
+
+        String json = "";
+
+        try {
+            InputStream is = getAssets().open("Festivals.json");
+            int fileSize = is.available();
+
+            byte[] buffer = new byte[fileSize];
+            is.read(buffer);
+            is.close();
+
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        return json;
+    }
+
+    private void jsonParsing(String json) {
+
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            JSONArray festivalArray = jsonObject.getJSONArray("records");
+
+            Toast.makeText(getApplicationContext(), "축제수 :" + festivalArray.length(), Toast.LENGTH_SHORT).show();
+
+            for(int i=0; i<festivalArray.length(); i++) {
+                JSONObject festivalObject = festivalArray.getJSONObject(i);
+                FestivalInfo festivalInfo = new FestivalInfo();
+
+                festivalInfo.festivalName = festivalObject.getString("축제명");
+                festivalInfo.festivalStart = festivalObject.getString("축제시작일자");
+                festivalInfo.festivalEnd = festivalObject.getString("축제종료일자");
+                festivalInfo.festivalCo = festivalObject.getString("축제내용");
+                festivalInfo.festivalLocation = festivalObject.getString("개최장소");
+                festivalInfo.festivalMnnst = festivalObject.getString("주관기관");
+                festivalInfo.festivalAuspcInstt = festivalObject.getString("주최기관");
+
+                db = AppDatabase2.getDBInstance(this.getApplicationContext());
+                db.festivalInfoDao().insertFestivalInfo(festivalInfo);
+
+                //setResult(Activity.RESULT_OK);
+                //finish();
+                /*
+                festivalInfo.setFestivalName(festivalObject.getString("축제명"));
+                festivalInfo.setFestivalStart(festivalObject.getString("축제시작일자"));
+                festivalInfo.setFestivalEnd(festivalObject.getString("축제종료일자"));
+                festivalInfo.setFestivalCo(festivalObject.getString("축제내용"));
+                festivalInfo.setFestivalLocation(festivalObject.getString("개최장소"));
+                festivalInfo.setFestivalMnnst(festivalObject.getString("주관기관"));
+                festivalInfo.setFestivalAuspcInstt(festivalObject.getString("주최기관"));
+                 */
+            }
+            festivalInfoList = db.festivalInfoDao().getAllFestivalInfo();
+            Toast.makeText(getApplicationContext(), "등록된수 :" + festivalInfoList.size(), Toast.LENGTH_SHORT).show();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+/*
     private void insertFestivalInfo(String name, String start, String end, String co, String location, String mnnst, String auspcInstt) {
 
         FestivalInfo festivalInfo = new FestivalInfo();
@@ -172,5 +252,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+ */
 
 }

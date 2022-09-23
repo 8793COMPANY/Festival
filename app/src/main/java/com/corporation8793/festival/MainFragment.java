@@ -1,7 +1,7 @@
 package com.corporation8793.festival;
 
-import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,10 +15,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import java.util.List;
+
 public class MainFragment extends Fragment {
 
     RecyclerView recyclerView;
-    RecyclerAdapter recyclerAdapter;
+    //RecyclerAdapter recyclerAdapter;
+    FestivalInfoAdapter festivalInfoAdapter;
     Spinner choiceMonth, choiceArea;
     ArrayAdapter<CharSequence> choiceMonth_adapter, choiceArea_adapter;
     Context context;
@@ -39,6 +42,14 @@ public class MainFragment extends Fragment {
         choiceMonth = view.findViewById(R.id.choiceMonth);
         choiceArea = view.findViewById(R.id.choiceArea);
 
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        festivalInfoAdapter = new FestivalInfoAdapter(context);
+        recyclerView.setAdapter(festivalInfoAdapter);
+
+        //축제 조회
+        loadUserList();
+
+        /*
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerAdapter = new RecyclerAdapter(context);
@@ -60,6 +71,7 @@ public class MainFragment extends Fragment {
                 ((MainActivity)getActivity()).fragmentChange(FestivalInfoFragment.newInstance());
             }
         });
+         */
 
         choiceMonth_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.month_array, R.layout.spinner_item);
         choiceMonth_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
@@ -82,6 +94,15 @@ public class MainFragment extends Fragment {
         choiceArea.setAdapter(choiceArea_adapter);
 
         return view;
+    }
+
+    private void loadUserList() {
+        AppDatabase2 db  = AppDatabase2.getDBInstance(this.getActivity());
+
+        List<FestivalInfo> festivalInfoList = db.festivalInfoDao().getAllFestivalInfo();
+
+        //리스트 저장
+        festivalInfoAdapter.setFestivalInfoList(festivalInfoList);
     }
 
 }

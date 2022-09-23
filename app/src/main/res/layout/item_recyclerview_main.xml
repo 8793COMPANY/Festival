@@ -10,6 +10,7 @@
         android:id="@+id/festivalImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/festival_image_1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -21,11 +22,11 @@
         android:layout_height="wrap_content"
         android:background="@drawable/festival_resize_month"
         app:layout_constraintVertical_bias="0.587"
-        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintLeft_toLeftOf="@+id/left_guide"/>
 
     <TextView
         android:id="@+id/periodText"
@@ -44,17 +45,34 @@
 
     <TextView
         android:id="@+id/festivalName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/pretendard_semi_bold"
         android:textColor="#ffffff"
         android:text="광주 맥주 축제"
         android:textSize="22dp"
-        app:layout_constraintHorizontal_bias="0.1"
+        android:maxLines="2"
+        android:ellipsize="end"
+        app:layout_constraintWidth_percent="0.87"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintVertical_bias="0.08"
         app:layout_constraintTop_toBottomOf="@+id/periodText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintLeft_toLeftOf="@+id/left_guide2"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/left_guide"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintGuide_percent="0.05"
+        android:orientation="vertical"></androidx.constraintlayout.widget.Guideline>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/left_guide2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintGuide_percent="0.06"
+        android:orientation="vertical"></androidx.constraintlayout.widget.Guideline>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

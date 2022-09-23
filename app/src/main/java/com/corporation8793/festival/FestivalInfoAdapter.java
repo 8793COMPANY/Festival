@@ -1,6 +1,7 @@
 package com.corporation8793.festival;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +18,10 @@ public class FestivalInfoAdapter extends RecyclerView.Adapter<FestivalInfoAdapte
     Context context;
     AppDatabase2 database2;
 
-    public  FestivalInfoAdapter(Context context, List<FestivalInfo> festivalInfoList) {
+    public  FestivalInfoAdapter(Context context/*, List<FestivalInfo> festivalInfoList*/) {
         this.context = context;
-        this.festivalInfoList = festivalInfoList;
-        notifyDataSetChanged();
+        //this.festivalInfoList = festivalInfoList;
+        //notifyDataSetChanged();
     }
 
     @NonNull
@@ -28,6 +29,8 @@ public class FestivalInfoAdapter extends RecyclerView.Adapter<FestivalInfoAdapte
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.item_recyclerview_main, parent, false);
+
+        view.getLayoutParams().height = 520;
 
         return new MyViewHolder(view);
     }
@@ -39,6 +42,13 @@ public class FestivalInfoAdapter extends RecyclerView.Adapter<FestivalInfoAdapte
 
         holder.festivalNameText.setText(festivalInfoList.get(position).festivalName);
         holder.festivalPeriodText.setText(festivalInfoList.get(position).festivalStart + "~" + festivalInfoList.get(position).festivalEnd);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)context).fragmentChange(FestivalInfoFragment.newInstance());
+            }
+        });
     }
 
     @Override

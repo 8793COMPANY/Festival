@@ -14,20 +14,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserFactory;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-
-
 public class SearchFragment extends Fragment {
 
     RecyclerView recyclerView;
@@ -38,9 +24,9 @@ public class SearchFragment extends Fragment {
     ImageView search;
     TextView testText;
 
-    String key = "asO9jixtVSQd1RMbVCUr%2F1yFhPuiL5H9VXW1qGHbnb8TXnIWvVQ4MP0qS0pi4gf2EplaNECQC6ucPukAlFhnyA%3D%3D";
-    String data;
-    StringBuffer buffer;
+    //String key = "asO9jixtVSQd1RMbVCUr%2F1yFhPuiL5H9VXW1qGHbnb8TXnIWvVQ4MP0qS0pi4gf2EplaNECQC6ucPukAlFhnyA%3D%3D";
+    //String data;
+    //StringBuffer buffer;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -98,8 +84,7 @@ public class SearchFragment extends Fragment {
                     }
                 }.start();
             }
-        }); */
-
+        });
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,6 +106,7 @@ public class SearchFragment extends Fragment {
             }
 
         });
+        */
 
         myPageAdapter2 = new ListAdapter2(getActivity(),1);
 
@@ -134,14 +120,14 @@ public class SearchFragment extends Fragment {
         return view;
     }
 
-
+    /*
     private String getData() {
         buffer = new StringBuffer();
         String str = rectangle13.getText().toString();
         //String location = URLEncoder.encode(str);
         String queryUrl = "http://api.data.go.kr/openapi/tn_pubr_public_cltur_fstvl_api"
                 + "?ServiceKey=" + key /*+ "&opar=" + str*/;    //&type=json
-
+    /*
         try {
             URL url = new URL(queryUrl);
             InputStream is = url.openStream();
@@ -199,4 +185,5 @@ public class SearchFragment extends Fragment {
 
         return buffer.toString();
     }
+    */
 }
