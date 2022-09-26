@@ -52,10 +52,10 @@
             android:text="광주 맥주 축제"
             android:textSize="25dp"
             android:layout_marginTop="245dp"
-            app:layout_constraintHorizontal_bias="0.056"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintVertical_bias="0.357"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/left_guide"
             app:layout_constraintRight_toRightOf="parent" />
 
         <ImageView
@@ -65,9 +65,9 @@
             android:background="@drawable/festival_month_image_white"
             android:layout_marginTop="6dp"
             app:layout_constraintVertical_bias="0.013"
-            app:layout_constraintHorizontal_bias="0.04"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintTop_toBottomOf="@+id/infoFestivalText"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/left_guide"
             app:layout_constraintRight_toRightOf="parent" />
 
         <TextView
@@ -79,16 +79,16 @@
             android:text="2022.09.01~09.12"
             android:textSize="16dp"
             android:layout_marginTop="5dp"
-            app:layout_constraintHorizontal_bias="0.156"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintVertical_bias="0.013"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/left_guide2"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/infoFestivalText" />
 
         <TextView
             android:id="@+id/infoText"
             android:layout_width="0dp"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/pretendard_regular"
             android:textColor="#d3d3d3"
             android:text="어떤어떤 체험을 할 수 있고 어디에 있으며 어떤걸 즐길 수 있는 축제입니다. 자세한 설명은 홈페이지 참고해주세요"
@@ -101,24 +101,123 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/infoFestivalPeriod" />
 
-        <ListView
-            android:id="@+id/listView2"
-            android:layout_width="0dp"
-            android:layout_height="180dp"
-            android:dividerHeight="1dp"
-            android:divider="#434343"
-            app:layout_constraintWidth_percent="0.889"
-            app:layout_constraintHeight_percent="0.249"
-            app:layout_constraintVertical_bias="0"
-            app:layout_constraintLeft_toLeftOf="parent"
+        <TextView
+            android:id="@+id/mainText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_semi_bold"
+            android:textColor="#ffffff"
+            android:textSize="16dp"
+            android:text="주관"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintVertical_bias="0.085"
+            app:layout_constraintTop_toBottomOf="@+id/infoText"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/infoText"/>
+            app:layout_constraintLeft_toLeftOf="@+id/left_guide"/>
+
+        <TextView
+            android:id="@+id/subText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_regular"
+            android:textColor="#b9b9b9"
+            android:textSize="16dp"
+            app:layout_constraintVertical_bias="0.085"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintTop_toBottomOf="@+id/infoText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/left_guide3"/>
+
+        <ImageView
+            android:id="@+id/listLine1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#434343"
+            app:layout_constraintWidth_percent="0.889"
+            app:layout_constraintVertical_bias="0.052"
+            app:layout_constraintTop_toBottomOf="@+id/mainText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <TextView
+            android:id="@+id/mainText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_semi_bold"
+            android:textColor="#ffffff"
+            android:textSize="16dp"
+            android:text="주최"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintVertical_bias="0.055"
+            app:layout_constraintTop_toBottomOf="@+id/listLine1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/left_guide"/>
+
+        <TextView
+            android:id="@+id/subText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_regular"
+            android:textColor="#b9b9b9"
+            android:textSize="16dp"
+            app:layout_constraintVertical_bias="0.055"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintTop_toBottomOf="@+id/listLine1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/left_guide3"/>
+
+        <ImageView
+            android:id="@+id/listLine2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#434343"
+            app:layout_constraintWidth_percent="0.889"
+            app:layout_constraintVertical_bias="0.062"
+            app:layout_constraintTop_toBottomOf="@+id/mainText2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <TextView
+            android:id="@+id/mainText3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_semi_bold"
+            android:textColor="#ffffff"
+            android:textSize="16dp"
+            android:text="위치"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintVertical_bias="0.067"
+            app:layout_constraintTop_toBottomOf="@+id/listLine2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/left_guide"/>
+
+        <TextView
+            android:id="@+id/subText3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_regular"
+            android:textColor="#b9b9b9"
+            android:textSize="16dp"
+            app:layout_constraintVertical_bias="0.067"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintTop_toBottomOf="@+id/listLine2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/left_guide3"/>
 
         <ImageView
             android:id="@+id/mapView"
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:background="@drawable/map"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             app:layout_constraintWidth_percent="0.885"
             app:layout_constraintHeight_percent="0.26"
@@ -126,7 +225,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/listView2" />
+            app:layout_constraintTop_toBottomOf="@+id/mainText3" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/reservationButton"
@@ -145,6 +244,27 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/left_guide"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintGuide_percent="0.05"
+            android:orientation="vertical"></androidx.constraintlayout.widget.Guideline>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/left_guide2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintGuide_percent="0.11"
+            android:orientation="vertical"></androidx.constraintlayout.widget.Guideline>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/left_guide3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintGuide_percent="0.3"
+            android:orientation="vertical"></androidx.constraintlayout.widget.Guideline>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

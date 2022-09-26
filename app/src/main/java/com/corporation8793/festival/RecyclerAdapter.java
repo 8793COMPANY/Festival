@@ -1,12 +1,14 @@
 package com.corporation8793.festival;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -67,6 +69,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         return items.size();
     }
 
+
     public void setOnItemClicklistener(OnItemClickListener listener) {
         this.listener = listener;
     }
@@ -76,6 +79,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             listener.onItemClick(holder, view, position);
         }
     }
+
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView periodText, festivalName;
@@ -94,12 +99,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     if(listener != null) {
-                        listener.onItemClick(ViewHolder.this, v, position);
+                        //listener.onItemClick(ViewHolder.this, v, position);
                     }
                 }
             });
 
-            /*
             //itemView.setClickable(true);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -112,7 +116,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                     }
                 }
             });
-             */
 
         }
 
@@ -121,7 +124,5 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             festivalName.setText(item.getName());
             festivalImage.setBackgroundResource(item.getImage());
         }
-
     }
-
 }

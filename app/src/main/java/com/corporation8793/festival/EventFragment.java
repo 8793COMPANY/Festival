@@ -1,9 +1,9 @@
 package com.corporation8793.festival;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,14 +12,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
+
+import java.util.List;
 
 public class EventFragment extends Fragment {
 
     RecyclerView recyclerView2;
-    RecyclerAdapter recyclerAdapter2;
+    //RecyclerAdapter recyclerAdapter2;
+    FestivalInfoAdapter festivalInfoAdapter;
     Spinner choiceMonth2, choiceArea2;
+    Context context;
+    ImageView searchButton2;
     ArrayAdapter<CharSequence> choiceMonth_adapter2, choiceArea_adapter2;
+    List<FestivalInfo> festivalInfoList;
 
     public static EventFragment newInstance() {
         return new EventFragment();
@@ -31,10 +38,21 @@ public class EventFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_event, container, false);
 
+        context = container.getContext();
+
         recyclerView2 = view.findViewById(R.id.recyclerView2);
         choiceMonth2 = view.findViewById(R.id.choiceMonth2);
         choiceArea2 = view.findViewById(R.id.choiceArea2);
+        searchButton2 = view.findViewById(R.id.searchButton2);
 
+        recyclerView2.setLayoutManager(new LinearLayoutManager(context));
+        festivalInfoAdapter = new FestivalInfoAdapter(context, 2);
+        recyclerView2.setAdapter(festivalInfoAdapter);
+
+        //축제 조회
+        loadUserList();
+
+        /*
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView2.setLayoutManager(layoutManager2);
         recyclerAdapter2 = new RecyclerAdapter(getActivity());
@@ -56,6 +74,7 @@ public class EventFragment extends Fragment {
                 FestivalInfoFragment festivalInfoFragment = new FestivalInfoFragment();
 
                 Bundle bundle = new Bundle();
+                bundle.putString("이동","이벤트페이지");
                 bundle.putString("축제","광주 불꽃 축제");
                 bundle.putInt("이미지", R.drawable.event_image2);
 
@@ -66,7 +85,7 @@ public class EventFragment extends Fragment {
                 //((MainActivity)getActivity()).fragmentChange(FestivalInfoFragment.newInstance());
             }
         });
-
+         */
 
         choiceMonth_adapter2 = ArrayAdapter.createFromResource(getActivity(), R.array.month_array, R.layout.spinner_item);
         choiceMonth_adapter2.setDropDownViewResource(R.layout.spinner_dropdown_item);
@@ -89,5 +108,14 @@ public class EventFragment extends Fragment {
         choiceArea2.setAdapter(choiceArea_adapter2);
 
         return view;
+    }
+
+    private void loadUserList() {
+        AppDatabase2 db  = AppDatabase2.getDBInstance(this.getActivity());
+
+        festivalInfoList = db.festivalInfoDao().getAllFestivalInfo();
+
+        //리스트 저장
+        festivalInfoAdapter.setFestivalInfoList(festivalInfoList);
     }
 }

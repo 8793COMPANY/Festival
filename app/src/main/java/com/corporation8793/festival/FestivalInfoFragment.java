@@ -9,17 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 public class FestivalInfoFragment extends Fragment {
 
     ImageView arrow_left, infoImage;
-    ListAdapter2 myPageAdapter2;
-    ListView listView;
-    TextView infoFestivalText;
-    String name;
-    int image;
+    TextView infoFestivalText, infoFestivalPeriod, infoText, subText, subText2, subText3;
+    int[] image;
     Button reservationButton;
 
     public static FestivalInfoFragment newInstance() {
@@ -33,10 +29,39 @@ public class FestivalInfoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_festival_info, container, false);
 
         infoFestivalText = view.findViewById(R.id.infoFestivalText);
+        infoFestivalPeriod = view.findViewById(R.id.infoFestivalPeriod);
+        infoText = view.findViewById(R.id.infoText);
         infoImage = view.findViewById(R.id.infoImage);
         reservationButton = view.findViewById(R.id.reservationButton);
+        subText = view.findViewById(R.id.subText);
+        subText2 = view.findViewById(R.id.subText2);
+        subText3 = view.findViewById(R.id.subText3);
+
+        image = new int[] {R.drawable.event_image1, R.drawable.event_image2};
+        int imageId = (int)(Math.random() * image.length);
+
         Bundle bundle = getArguments();
 
+        if(bundle.getString("이동").equals("메인")) {
+            infoFestivalText.setText(bundle.getString("이름"));
+            infoFestivalPeriod.setText(bundle.getString("기간"));
+            infoText.setText(bundle.getString("내용"));
+            subText.setText(bundle.getString("주관"));
+            subText2.setText(bundle.getString("주최"));
+            subText3.setText(bundle.getString("위치"));
+            infoImage.setBackgroundResource(image[imageId]);
+            reservationButton.setVisibility(View.GONE);
+        } else {
+            infoFestivalText.setText(bundle.getString("이름"));
+            infoFestivalPeriod.setText(bundle.getString("기간"));
+            infoText.setText(bundle.getString("내용"));
+            subText.setText(bundle.getString("주관"));
+            subText2.setText(bundle.getString("주최"));
+            subText3.setText(bundle.getString("위치"));
+            infoImage.setBackgroundResource(image[imageId]);
+        }
+
+        /*
         if(bundle != null) {
             name = bundle.getString("축제");
             infoFestivalText.setText(name);
@@ -46,27 +71,19 @@ public class FestivalInfoFragment extends Fragment {
             infoImage.setBackgroundResource(R.drawable.event_image1);
             reservationButton.setVisibility(View.GONE);
         }
+         */
 
         arrow_left = view.findViewById(R.id.arrow_left);
         arrow_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(bundle != null) {
-                    ((MainActivity)getActivity()).fragmentChange(EventFragment.newInstance());
-                } else {
+                if(bundle.getString("이동").equals("메인")) {
                     ((MainActivity)getActivity()).fragmentChange(MainFragment.newInstance());
+                } else {
+                    ((MainActivity)getActivity()).fragmentChange(EventFragment.newInstance());
                 }
             }
         });
-
-        listView = view.findViewById(R.id.listView2);
-        myPageAdapter2 = new ListAdapter2(getActivity(),2);
-
-        myPageAdapter2.addItem(new MyList2("입장료", "무료"));
-        myPageAdapter2.addItem(new MyList2("주관/주최", "보령시/보령축제관광재단"));
-        myPageAdapter2.addItem(new MyList2("위치", "광주광역시 동구 동계천로 150"));
-
-        listView.setAdapter(myPageAdapter2);
 
         reservationButton.setOnClickListener(new View.OnClickListener() {
             @Override

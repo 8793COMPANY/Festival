@@ -1,7 +1,6 @@
 package com.corporation8793.festival;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import java.util.List;
@@ -25,6 +25,9 @@ public class MainFragment extends Fragment {
     Spinner choiceMonth, choiceArea;
     ArrayAdapter<CharSequence> choiceMonth_adapter, choiceArea_adapter;
     Context context;
+    ImageView searchButton;
+    List<FestivalInfo> festivalInfoList;
+    List<FestivalInfo> festivalInfoList2;
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -41,37 +44,14 @@ public class MainFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         choiceMonth = view.findViewById(R.id.choiceMonth);
         choiceArea = view.findViewById(R.id.choiceArea);
+        searchButton = view.findViewById(R.id.searchButton);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        festivalInfoAdapter = new FestivalInfoAdapter(context);
+        festivalInfoAdapter = new FestivalInfoAdapter(context, 1);
         recyclerView.setAdapter(festivalInfoAdapter);
 
         //축제 조회
         loadUserList();
-
-        /*
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerAdapter = new RecyclerAdapter(context);
-
-        recyclerAdapter.addItem(new Festival("2022.09.01~09.12", "광주 맥주 축제", R.drawable.festival_image_1));
-        recyclerAdapter.addItem(new Festival("2022.09.14~09.20", "가을 꽃 축제", R.drawable.festival_image_2));
-        recyclerAdapter.addItem(new Festival("2022.09.31", "3", R.drawable.festival_image_3));
-        recyclerAdapter.addItem(new Festival("4", "4", R.drawable.festival_image_1));
-        recyclerAdapter.addItem(new Festival("5", "5", R.drawable.festival_image_2));
-
-        recyclerView.setAdapter(recyclerAdapter);
-
-
-        recyclerAdapter.setOnItemClicklistener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(RecyclerAdapter.ViewHolder holder, View view, int position) {
-                Festival item = recyclerAdapter.getItem(position);
-                //Toast.makeText(context,"d",Toast.LENGTH_SHORT).show();
-                ((MainActivity)getActivity()).fragmentChange(FestivalInfoFragment.newInstance());
-            }
-        });
-         */
 
         choiceMonth_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.month_array, R.layout.spinner_item);
         choiceMonth_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
@@ -80,12 +60,10 @@ public class MainFragment extends Fragment {
         choiceMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //((TextView));
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
@@ -93,16 +71,44 @@ public class MainFragment extends Fragment {
         choiceArea_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         choiceArea.setAdapter(choiceArea_adapter);
 
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //loadUserList2(choiceMonth.getSelectedItem().toString(), choiceArea.getSelectedItem().toString());
+            }
+        });
+
         return view;
     }
 
     private void loadUserList() {
         AppDatabase2 db  = AppDatabase2.getDBInstance(this.getActivity());
 
-        List<FestivalInfo> festivalInfoList = db.festivalInfoDao().getAllFestivalInfo();
+        festivalInfoList = db.festivalInfoDao().getAllFestivalInfo();
 
         //리스트 저장
         festivalInfoAdapter.setFestivalInfoList(festivalInfoList);
+    }
+
+    private void loadUserList2(String s1, String s2) {
+        festivalInfoList2.clear();
+
+        for(int i=0; i < festivalInfoList.size(); i++) {
+           if(festivalInfoList.get(i).festivalLocation.toLowerCase().contains(s2.toLowerCase())) {
+               festivalInfoList2.add(festivalInfoList.get(i));
+               /*
+               FestivalInfo festivalInfo = new FestivalInfo();
+               festivalInfo.festivalName = festivalInfoList.get(i).festivalName;
+               festivalInfo.festivalStart = festivalInfoList.get(i).festivalStart;
+               festivalInfo.festivalEnd = festivalInfoList.get(i).festivalEnd;
+
+               db.festivalInfoDao().insertFestivalInfo(festivalInfo);
+                */
+           }
+           //festivalInfoList2 = db.festivalInfoDao().getAllFestivalInfo();
+        }
+        //리스트 저장
+        //festivalInfoAdapter.setFestivalInfoList(festivalInfoList2);
     }
 
 }
