@@ -49,17 +49,7 @@ public class FestivalInfoAdapter extends RecyclerView.Adapter<FestivalInfoAdapte
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         final FestivalInfo data = festivalInfoList.get(position);
         database2 = AppDatabase2.getDBInstance(context);
-        /*
-        long now = System.currentTimeMillis();
-        Date date = new Date(now);
-        SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
-        String getTime = simpleDate.format(date);
 
-        for(int i = 0; i < festivalInfoList.size(); i++) {
-            int compare = getTime.compareTo(festivalInfoList.get(i).festivalStart);
-            if(compare > 0) {
-            }
-        }*/
         holder.festivalNameText.setText(data.festivalName);
         holder.festivalPeriodText.setText(data.festivalStart + "~" + data.festivalEnd);
 
@@ -74,8 +64,10 @@ public class FestivalInfoAdapter extends RecyclerView.Adapter<FestivalInfoAdapte
 
                 if(page == 1) {
                     bundle.putString("이동", "메인");
-                } else if(page ==2) {
+                } else if(page == 2) {
                     bundle.putString("이동", "이벤트");
+                } else if(page == 3) {
+                    bundle.putString("이동", "검색");
                 }
 
                 bundle.putString("이름", data.festivalName);
@@ -84,9 +76,14 @@ public class FestivalInfoAdapter extends RecyclerView.Adapter<FestivalInfoAdapte
                 bundle.putString("주관", data.festivalMnnst);
                 bundle.putString("주최", data.festivalAuspcInstt);
                 bundle.putString("위치", data.festivalLocation);
+                bundle.putString("도로명", data.festivalRdnmadr);
+                bundle.putString("지번", data.festivalLnmadr);
+                bundle.putString("위도", data.festivalLatitude);
+                bundle.putString("경도", data.festivalLongitude);
 
                 festivalInfoFragment.setArguments(bundle);
                 transaction.replace(R.id.containers,festivalInfoFragment);
+                transaction.addToBackStack(null);
                 transaction.commit();
             }
         });

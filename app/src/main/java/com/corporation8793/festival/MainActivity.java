@@ -145,6 +145,10 @@ public class MainActivity extends AppCompatActivity {
                 festivalInfo.festivalLocation = festivalObject.getString("개최장소");
                 festivalInfo.festivalMnnst = festivalObject.getString("주관기관");
                 festivalInfo.festivalAuspcInstt = festivalObject.getString("주최기관");
+                festivalInfo.festivalRdnmadr = festivalObject.getString("소재지도로명주소");
+                festivalInfo.festivalLnmadr = festivalObject.getString("소재지지번주소");
+                festivalInfo.festivalLatitude = festivalObject.getString("위도");
+                festivalInfo.festivalLongitude = festivalObject.getString("경도");
 
                 db = AppDatabase2.getDBInstance(this.getApplicationContext());
                 db.festivalInfoDao().insertFestivalInfo(festivalInfo);

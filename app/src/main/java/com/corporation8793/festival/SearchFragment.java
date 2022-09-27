@@ -1,5 +1,6 @@
 package com.corporation8793.festival;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,20 +14,28 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class SearchFragment extends Fragment {
 
-    RecyclerView recyclerView;
+    RecyclerView recyclerView, recyclerView5;
     RecyclerAdapter2 recyclerAdapter2;
+    FestivalInfoAdapter festivalInfoAdapter;
+    Context context;
     ListView listView;
     ListAdapter2 myPageAdapter2;
     EditText rectangle13;
     ImageView search;
     TextView testText;
 
-    //String key = "asO9jixtVSQd1RMbVCUr%2F1yFhPuiL5H9VXW1qGHbnb8TXnIWvVQ4MP0qS0pi4gf2EplaNECQC6ucPukAlFhnyA%3D%3D";
-    //String data;
-    //StringBuffer buffer;
+    List<FestivalInfo> festivalInfoList = new ArrayList<>();
+    List<FestivalInfo> festivalInfoList2 = new ArrayList<>();
+    List<FestivalInfo> festivalInfoList3 = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,11 +43,17 @@ public class SearchFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
+        context = container.getContext();
+
         recyclerView = view.findViewById(R.id.recyclerView2);
+        recyclerView5 = view.findViewById(R.id.recyclerView5);
         listView = view.findViewById(R.id.listView);
         rectangle13 = view.findViewById(R.id.rectangle13);
         search = view.findViewById(R.id.search);
         testText = view.findViewById(R.id.testText);
+
+        recyclerView5.setVisibility((View.GONE));
+        testText.setVisibility((View.GONE));
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
@@ -52,6 +67,36 @@ public class SearchFragment extends Fragment {
 
         recyclerView.setAdapter(recyclerAdapter2);
 
+        myPageAdapter2 = new ListAdapter2(getActivity(),1);
+
+        myPageAdapter2.addItem(new MyList2("1", "맥주축제"));
+        myPageAdapter2.addItem(new MyList2("2", "보령머드축제"));
+        myPageAdapter2.addItem(new MyList2("3", "조치원복숭아축제"));
+        myPageAdapter2.addItem(new MyList2("4", "태백 해바라기축제"));
+
+        listView.setAdapter(myPageAdapter2);
+
+        recyclerView5.setLayoutManager(new LinearLayoutManager(context));
+        festivalInfoAdapter = new FestivalInfoAdapter(context, 3);
+        recyclerView5.setAdapter(festivalInfoAdapter);
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(rectangle13.getText().toString().equals("")) {
+                    Toast.makeText(context, "검색어를 입력해주세요", Toast.LENGTH_SHORT).show();
+                } else {
+                    recyclerView5.setVisibility((View.VISIBLE));
+                    loadUserList(rectangle13.getText().toString());
+                }
+            }
+        });
+
+        return view;
+
+        //String key = "asO9jixtVSQd1RMbVCUr%2F1yFhPuiL5H9VXW1qGHbnb8TXnIWvVQ4MP0qS0pi4gf2EplaNECQC6ucPukAlFhnyA%3D%3D";
+        //String data;
+        //StringBuffer buffer;
         /*
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +106,7 @@ public class SearchFragment extends Fragment {
                     public void run() {
                         try {
                             String queryUrl = "http://api.data.go.kr/openapi/tn_pubr_public_cltur_fstvl_api"
-                                    + "?ServiceKey=" + key + "&type=json"/*+ "&opar=" + str*/;    //&type=json
+                                    + "?ServiceKey=" + key + "&type=json"/*+ "&opar=" + str;    //&type=json*/
 /*
                             System.out.println(queryUrl);
                             JSONObject jsonObject = new JSONObject(queryUrl);
@@ -107,17 +152,40 @@ public class SearchFragment extends Fragment {
 
         });
         */
+    }
 
-        myPageAdapter2 = new ListAdapter2(getActivity(),1);
+    private void loadUserList(String s1) {
+        AppDatabase2 db  = AppDatabase2.getDBInstance(this.getActivity());
 
-        myPageAdapter2.addItem(new MyList2("1", "맥주축제"));
-        myPageAdapter2.addItem(new MyList2("2", "보령머드축제"));
-        myPageAdapter2.addItem(new MyList2("3", "조치원복숭아축제"));
-        myPageAdapter2.addItem(new MyList2("4", "태백 해바라기축제"));
+        festivalInfoList = db.festivalInfoDao().getAllFestivalInfo();
+        festivalInfoList2.clear();
+        festivalInfoList3.clear();
 
-        listView.setAdapter(myPageAdapter2);
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+        String getTime = simpleDate.format(date);
 
-        return view;
+        for(int i=0; i < festivalInfoList.size(); i++) {
+            int compare = getTime.compareTo(festivalInfoList.get(i).festivalEnd);
+            //현재 날짜가 축제 마지막날보다 전일때만 리스트에 추가
+            if(compare < 0) {
+                festivalInfoList2.add(festivalInfoList.get(i));
+            }
+        }
+
+        for(int i=0; i < festivalInfoList2.size(); i++) {
+            if(festivalInfoList2.get(i).festivalName.contains(s1) || festivalInfoList2.get(i).festivalLocation.contains(s1)
+                    || festivalInfoList2.get(i).festivalRdnmadr.contains(s1) || festivalInfoList2.get(i).festivalLnmadr.contains(s1)) {
+                festivalInfoList3.add(festivalInfoList2.get(i));
+            }
+        }
+
+        if(festivalInfoList3.isEmpty()) {
+            testText.setVisibility((View.VISIBLE));
+        }
+        //리스트 저장
+        festivalInfoAdapter.setFestivalInfoList(festivalInfoList3);
     }
 
     /*

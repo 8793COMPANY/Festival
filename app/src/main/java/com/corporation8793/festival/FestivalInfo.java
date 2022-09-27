@@ -29,6 +29,19 @@ public class FestivalInfo {
     // 축제 주최기관
     @ColumnInfo(name = "festivalAuspcInstt")
     public String festivalAuspcInstt;
+    // 소재지도로명주소
+    @ColumnInfo(name = "festivalRdnmadr")
+    public String festivalRdnmadr;
+    // 소재지지번주소
+    @ColumnInfo(name = "festivalLnmadr")
+    public String festivalLnmadr;
+    // 위도
+    @ColumnInfo(name = "festivalLatitude")
+    public String festivalLatitude;
+    // 경도
+    @ColumnInfo(name = "festivalLongitude")
+    public String festivalLongitude;
+
 
     public int getFid() {
         return fid;
@@ -92,5 +105,36 @@ public class FestivalInfo {
 
     public void setFestivalAuspcInstt(String festivalAuspcInstt) {
         this.festivalAuspcInstt = festivalAuspcInstt;
+    }
+    public String getFestivalRdnmadr() {
+        return festivalRdnmadr;
+    }
+
+    public void setFestivalRdnmadr(String festivalRdnmadr) {
+        this.festivalRdnmadr = festivalRdnmadr;
+    }
+
+    public String getFestivalLnmadr() {
+        return festivalLnmadr;
+    }
+
+    public void setFestivalLnmadr(String festivalLnmadr) {
+        this.festivalLnmadr = festivalLnmadr;
+    }
+
+    public String getFestivalLatitude() {
+        return festivalLatitude;
+    }
+
+    public void setFestivalLatitude(String festivalLatitude) {
+        this.festivalLatitude = festivalLatitude;
+    }
+
+    public String getFestivalLongitude() {
+        return festivalLongitude;
+    }
+
+    public void setFestivalLongitude(String festivalLongitude) {
+        this.festivalLongitude = festivalLongitude;
     }
 }

@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 public class ReservationFragment extends Fragment {
@@ -26,6 +27,7 @@ public class ReservationFragment extends Fragment {
     ArrayAdapter<CharSequence> yearSpinner_adapter, monthSpinner_adapter, dateSpinner_adapter, personnelSpinner_adapter;
     Button reservationButton2;
     CustomDialog customDialog;
+    ImageView arrow_left;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,6 +40,7 @@ public class ReservationFragment extends Fragment {
         dateSpinner = view.findViewById(R.id.dateSpinner);
         personnelSpinner = view.findViewById(R.id.personnelSpinner);
         reservationButton2 = view.findViewById(R.id.reservationButton2);
+        arrow_left = view.findViewById(R.id.arrow_left);
 
         yearSpinner_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.year, R.layout.spinner_item3);
         yearSpinner_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item3);
@@ -67,7 +70,7 @@ public class ReservationFragment extends Fragment {
 
                 WindowManager.LayoutParams params = new WindowManager.LayoutParams();
                 params.width = size.x * 640/720;
-                params.height = size.y * 540/1329;
+                params.height = size.y * 440/1329;
                 customDialog.getWindow().setAttributes(params);
                 customDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 //customDialog.callDialog();
@@ -78,6 +81,14 @@ public class ReservationFragment extends Fragment {
                 params.height = 670;
                 customDialog.getWindow().setAttributes(params);
                  */
+            }
+        });
+
+        arrow_left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //((MainActivity)getActivity()).fragmentChange(EventFragment.newInstance());
+                getActivity().onBackPressed();
             }
         });
 

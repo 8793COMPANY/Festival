@@ -18,13 +18,16 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LoginActivity extends AppCompatActivity {
 
     TextView joinText, textView1, findText;
-    String id, pw;
     EditText editText1, editText2;
     Button move_MainActivity, userPageButton;
     ImageView pw_eye, arrow_right;
+    List<User> userList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,15 +112,14 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         // 로그인시 MainActivity 이동
-        id = "wisi8793";
-        pw = "1234";
-
         move_MainActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String user_id = editText1.getText().toString();
                 String user_pw = editText2.getText().toString();
 
+                loginUser(user_id, user_pw);
+                /*
                 if(user_id.equals("") || user_pw.equals("")) {
                     textView1.setText("아이디와 비밀번호를 입력하세요.");
                 } else if(!user_id.equals(id) || !user_pw.equals(pw)) {
@@ -126,8 +128,26 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                 }
+                 */
             }
         });
-
     }
+
+    private void loginUser(String e1, String e2) {
+        AppDatabase db  = AppDatabase.getDBInstance(this.getApplicationContext());
+
+        userList = db.userDao().getAllUser();
+
+        for (int i=0; i < userList.size(); i++) {
+            if(e1.equals("") || e2.equals("")) {
+                textView1.setText("아이디와 비밀번호를 입력하세요.");
+            } else if(!userList.get(i).userId.equals(e1) || !userList.get(i).userPw.equals(e2)) {
+                textView1.setText("아이디와 비밀번호가 일치하지 않습니다.");
+            } else {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        }
+    }
+
 }

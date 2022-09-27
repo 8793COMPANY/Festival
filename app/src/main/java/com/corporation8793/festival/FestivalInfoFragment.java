@@ -3,6 +3,7 @@ package com.corporation8793.festival;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,18 +47,26 @@ public class FestivalInfoFragment extends Fragment {
             infoFestivalText.setText(bundle.getString("이름"));
             infoFestivalPeriod.setText(bundle.getString("기간"));
             infoText.setText(bundle.getString("내용"));
-            subText.setText(bundle.getString("주관"));
+            subText.setText(bundle.getString("위치"));
             subText2.setText(bundle.getString("주최"));
-            subText3.setText(bundle.getString("위치"));
+            if(bundle.getString("도로명").isEmpty()) {
+                subText3.setText(bundle.getString("지번"));
+            } else {
+                subText3.setText(bundle.getString("도로명"));
+            }
             infoImage.setBackgroundResource(image[imageId]);
             reservationButton.setVisibility(View.GONE);
         } else {
             infoFestivalText.setText(bundle.getString("이름"));
             infoFestivalPeriod.setText(bundle.getString("기간"));
             infoText.setText(bundle.getString("내용"));
-            subText.setText(bundle.getString("주관"));
-            subText2.setText(bundle.getString("주최"));
-            subText3.setText(bundle.getString("위치"));
+            subText.setText(bundle.getString("위치"));
+            subText2.setText(bundle.getString("주관"));
+            if(bundle.getString("도로명").isEmpty()) {
+                subText3.setText(bundle.getString("지번"));
+            } else {
+                subText3.setText(bundle.getString("도로명"));
+            }
             infoImage.setBackgroundResource(image[imageId]);
         }
 
@@ -77,18 +86,27 @@ public class FestivalInfoFragment extends Fragment {
         arrow_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getActivity().onBackPressed();
+                /*
                 if(bundle.getString("이동").equals("메인")) {
                     ((MainActivity)getActivity()).fragmentChange(MainFragment.newInstance());
                 } else {
                     ((MainActivity)getActivity()).fragmentChange(EventFragment.newInstance());
                 }
+                 */
             }
         });
 
         reservationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getActivity()).fragmentChange(ReservationFragment.newInstance());
+                //((MainActivity)getActivity()).fragmentChange(ReservationFragment.newInstance());
+                FragmentTransaction transaction = ((MainActivity)getActivity()).getSupportFragmentManager().beginTransaction();
+                ReservationFragment reservationFragment = new ReservationFragment();
+
+                transaction.replace(R.id.containers,reservationFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 
