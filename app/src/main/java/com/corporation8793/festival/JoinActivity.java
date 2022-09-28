@@ -14,6 +14,9 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class JoinActivity extends AppCompatActivity {
 
     ImageView arrow_left;
@@ -21,12 +24,17 @@ public class JoinActivity extends AppCompatActivity {
     RadioButton button[] = new RadioButton[7];
     int [] ridButton = {R.id.radioButton1, R.id.radioButton2, R.id.radioButton3, R.id.radioButton4,
             R.id.radioButton5, R.id.radioButton6, R.id.radioButton7};
-    int i, j, uId;
+    int i, j;
     // rectangle9 비밀번호 질문
     Spinner rectangle9;
     ArrayAdapter<CharSequence> rectangle9_adapter;
     EditText rectangle5, rectangle6, rectangle7, rectangle8, rectangle10, rectangle11, rectangle12;
     String sArea;
+
+    AppDatabase db;
+    List<User> userList = new ArrayList<>();
+    String id, email;
+
     /**
      * rectangle5 이름
      * rectangle6 아이디
@@ -64,24 +72,30 @@ public class JoinActivity extends AppCompatActivity {
             button[i] = findViewById(ridButton[i]);
         }
 
-        for(i=0; i<button.length; i++) {
-            final int INDEX;
-            INDEX = i;
-            button[INDEX].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    for(j=0; j< button.length; j++) {
-                        if(INDEX == j) {
-                            button[INDEX].setChecked(true);
-                            sArea = button[INDEX].getText().toString();
-                        } else {
-                            button[j].setChecked(false);
+        if(button[0].isChecked()) {
+            sArea = "서울/경기";
+        } else {
+            for(i=0; i<button.length; i++) {
+                final int INDEX;
+                INDEX = i;
+                button[INDEX].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        for(j=0; j< button.length; j++) {
+                            if(INDEX == j) {
+                                button[INDEX].setChecked(true);
+                                sArea = button[INDEX].getText().toString();
+                            } else {
+                                button[j].setChecked(false);
+                            }
                         }
+                        //Toast.makeText(JoinActivity.this, "눌림", Toast.LENGTH_SHORT).show();
                     }
-                    //Toast.makeText(JoinActivity.this, "눌림", Toast.LENGTH_SHORT).show();
-                }
-            });
+                });
+            }
         }
+
+        db = AppDatabase.getDBInstance(this.getApplicationContext());
 
         // 가입시 필요한 내용이 없으면 알려주기, 다 적으면 페이지 이동
         joinButton = findViewById(R.id.joinButton);
@@ -102,12 +116,30 @@ public class JoinActivity extends AppCompatActivity {
                 } else if(sName.equals("")||sId.equals("")||sPw.equals("")||sPwCheck.equals("")||sPwAnswer.equals("")||sEmail.equals("")||sPhoneNumber.equals("")) {
                     Toast.makeText(getApplicationContext(), "회원정보가 부족합니다 모두 입력해주세요.", Toast.LENGTH_SHORT).show();
                 } else {
-                    //사용자 등록
-                    insertUser(sName, sId, sPw, sPwQuestion, sPwAnswer, sEmail, sPhoneNumber, sArea);
+                    //중복확인
+                    userList = db.userDao().getAllUser();
+                    for (int i=0; i < userList.size(); i++) {
+                        if(userList.get(i).userId.equals(sId)) {
+                            id = userList.get(i).userId;
+                        } else if(userList.get(i).userEmail.equals(sEmail)) {
+                            email = userList.get(i).userEmail;
+                        }
+                    }
 
-                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                    //Intent intent = new Intent(getApplicationContext(), UserInformationActivity.class);
-                    startActivity(intent);
+                    if(sId.equals(id)) {
+                        Toast.makeText(getApplicationContext(), "아이디가 중복됩니다. 다른 아이디를 사용해주세요.", Toast.LENGTH_SHORT).show();
+                    } else if(sEmail.equals(email)) {
+                        Toast.makeText(getApplicationContext(), "이미 등록된 이메일입니다. 다른 이메일을 사용해주세요.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        //사용자 등록
+                        insertUser(sName, sId, sPw, sPwQuestion, sPwAnswer, sEmail, sPhoneNumber, sArea);
+
+                        Toast.makeText(getApplicationContext(), "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                        //Intent intent = new Intent(getApplicationContext(), UserInformationActivity.class);
+                        startActivity(intent);
+                    }
                 }
             }
         });
@@ -130,7 +162,6 @@ public class JoinActivity extends AppCompatActivity {
         user.userPhoneNumber = phoneNumber;
         user.userArea = area;
 
-        AppDatabase db = AppDatabase.getDBInstance(this.getApplicationContext());
         db.userDao().insertUser(user);
 
         setResult(Activity.RESULT_OK);

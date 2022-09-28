@@ -1,6 +1,8 @@
 package com.corporation8793.festival;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,10 +10,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 public class MyPageFragment extends Fragment {
@@ -21,6 +22,8 @@ public class MyPageFragment extends Fragment {
     //ListView listView;
     ImageView list1Image2;
     Button dataModify;
+    Switch list3Switch;
+    String userId, userPw;
 
     public static MyPageFragment newInstance() {
         return new MyPageFragment();
@@ -36,6 +39,11 @@ public class MyPageFragment extends Fragment {
         logoutText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences auto = getActivity().getSharedPreferences("autoLogin", Activity.MODE_PRIVATE);
+                SharedPreferences.Editor autoLoginEdit = auto.edit();
+                autoLoginEdit.clear();
+                autoLoginEdit.commit();
+
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
             }
@@ -58,6 +66,42 @@ public class MyPageFragment extends Fragment {
             }
         });
 
+        list3Switch = view.findViewById(R.id.list3Switch);
+        //자동로그인 체크 처리
+        SharedPreferences auto = getActivity().getSharedPreferences("autoLogin", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor autoLoginEdit = auto.edit();
+        String check = auto.getString("check", null);
+
+        Bundle bundle = getArguments();
+
+        if(check != null) {
+            list3Switch.setChecked(true);
+        }
+
+        list3Switch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(list3Switch.isChecked()) {
+                    SharedPreferences auto = getActivity().getSharedPreferences("autoLogin", Activity.MODE_PRIVATE);
+                    SharedPreferences.Editor autoLoginEdit = auto.edit();
+                    //로그인시 자동로그인 체크를 했을때
+                    //로그인시 자동로그인 체크를 안했을때
+                    //autoLoginEdit.putString("userId", userId);
+                    //autoLoginEdit.putString("userPw", userPw);
+
+                    autoLoginEdit.putString("userId", bundle.getString("메인아이디"));
+                    autoLoginEdit.putString("userPw", bundle.getString("메인비밀번호"));
+                    //마이페이지의 스위치버튼 체크
+                    autoLoginEdit.putString("check", "on");
+                    autoLoginEdit.commit();
+                } else {
+                    userId = auto.getString("userId", null);
+                    userPw = auto.getString("userPw", null);
+                    autoLoginEdit.clear();
+                    autoLoginEdit.commit();
+                }
+            }
+        });
         /*
         listView = view.findViewById(R.id.listView);
         myPageAdapter = new ListAdapter(getActivity());
@@ -77,7 +121,6 @@ public class MyPageFragment extends Fragment {
             }
         });
          */
-
         return view;
     }
 }

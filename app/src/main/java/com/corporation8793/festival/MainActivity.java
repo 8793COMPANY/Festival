@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
         eventFragment = new EventFragment();
         myPageFragment = new MyPageFragment();
 
+        Intent intent = getIntent();
+        Bundle bundle = new Bundle();
+        bundle.putString("메인아이디", intent.getStringExtra("로그인페이지아이디"));
+        bundle.putString("메인비밀번호", intent.getStringExtra("로그인페이지비밀번호"));
+
         getSupportFragmentManager().beginTransaction().replace(R.id.containers, mainFragment).commit();
 
         NavigationBarView navigationBarView = findViewById(R.id.bottom_navigationview);
@@ -63,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.containers, eventFragment).commit();
                         return true;
                     case R.id.mypage:
+                        myPageFragment.setArguments(bundle);
                         getSupportFragmentManager().beginTransaction().replace(R.id.containers, myPageFragment).commit();
                         return true;
                 }

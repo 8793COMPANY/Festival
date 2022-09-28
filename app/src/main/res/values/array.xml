@@ -3,8 +3,9 @@
 
     <string-array name="question_text">
         <item>기억에 남는 추억의 장소는?</item>
-        <item>질문2</item>
-        <item>질문3</item>
+        <item>자신의 인생 좌우명은?</item>
+        <item>자신의 보물 제1호는?</item>
+        <item>내가 좋아하는 캐릭터는?</item>
     </string-array>
 
     <string-array name="month_array">

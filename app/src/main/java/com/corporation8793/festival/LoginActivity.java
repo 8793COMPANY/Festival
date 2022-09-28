@@ -3,7 +3,9 @@ package com.corporation8793.festival;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
@@ -13,7 +15,10 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,7 +32,12 @@ public class LoginActivity extends AppCompatActivity {
     EditText editText1, editText2;
     Button move_MainActivity, userPageButton;
     ImageView pw_eye, arrow_right;
+
     List<User> userList = new ArrayList<>();
+    String id, pw;
+    Animation animation;
+
+    CheckBox checkButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +53,19 @@ public class LoginActivity extends AppCompatActivity {
         arrow_right = findViewById(R.id.arrow_right);
         findText = findViewById(R.id.findText);
         userPageButton = findViewById(R.id.userPageButton);
+        checkButton = findViewById(R.id.checkButton);
+
+        animation = AnimationUtils.loadAnimation(this, R.anim.blink_animation);
+
+        //자동로그인 처리
+        SharedPreferences auto = getSharedPreferences("autoLogin", Activity.MODE_PRIVATE);
+        String userId = auto.getString("userId", null);
+        String userPw = auto.getString("userPw", null);
+
+        if(userId != null && userPw != null) {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        }
 
         userPageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +134,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        AppDatabase db  = AppDatabase.getDBInstance(this.getApplicationContext());
+        userList = db.userDao().getAllUser();
+
         // 로그인시 MainActivity 이동
         move_MainActivity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,36 +144,83 @@ public class LoginActivity extends AppCompatActivity {
                 String user_id = editText1.getText().toString();
                 String user_pw = editText2.getText().toString();
 
-                loginUser(user_id, user_pw);
+                if(user_id.equals("") || user_pw.equals("")) {
+                    textView1.setText("아이디와 비밀번호를 입력하세요.");
+                    textView1.startAnimation(animation);
+                } else {
+                    for (int i=0; i < userList.size(); i++) {
+                        if(userList.get(i).userId.equals(user_id) && userList.get(i).userPw.equals(user_pw)) {
+                            id = userList.get(i).userId;
+                            pw = userList.get(i).userPw;
+                        }
+                    }
+
+                    if(!user_id.equals(id) || !user_pw.equals(pw)) {
+                        textView1.setText("아이디와 비밀번호가 일치하지 않습니다.");
+                        textView1.startAnimation(animation);
+                    } else {
+                        if(checkButton.isChecked()) {
+                            SharedPreferences auto = getSharedPreferences("autoLogin", Activity.MODE_PRIVATE);
+                            SharedPreferences.Editor autoLoginEdit = auto.edit();
+
+                            autoLoginEdit.putString("userId", id);
+                            autoLoginEdit.putString("userPw", pw);
+                            //마이페이지 스위치버튼 체크
+                            autoLoginEdit.putString("check", "on");
+                            autoLoginEdit.commit();
+                        }
+
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.putExtra("로그인페이지아이디", id);
+                        intent.putExtra("로그인페이지비밀번호", pw);
+                        startActivity(intent);
+                    }
+                }
                 /*
                 if(user_id.equals("") || user_pw.equals("")) {
                     textView1.setText("아이디와 비밀번호를 입력하세요.");
+                    textView1.startAnimation(animation);
                 } else if(!user_id.equals(id) || !user_pw.equals(pw)) {
                     textView1.setText("아이디와 비밀번호가 일치하지 않습니다.");
+                    textView1.startAnimation(animation);
                 } else {
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
-                }
-                 */
+                }*/
             }
         });
     }
 
+    /*
     private void loginUser(String e1, String e2) {
         AppDatabase db  = AppDatabase.getDBInstance(this.getApplicationContext());
-
         userList = db.userDao().getAllUser();
+        String id, pw;
 
-        for (int i=0; i < userList.size(); i++) {
-            if(e1.equals("") || e2.equals("")) {
-                textView1.setText("아이디와 비밀번호를 입력하세요.");
-            } else if(!userList.get(i).userId.equals(e1) || !userList.get(i).userPw.equals(e2)) {
-                textView1.setText("아이디와 비밀번호가 일치하지 않습니다.");
-            } else {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+        if(e1.equals("") || e2.equals("")) {
+            textView1.setText("아이디와 비밀번호를 입력하세요.");
+        } else {
+            for (int i=0; i < userList.size(); i++) {
+                if(userList.get(i).userId.equals(e1) && userList.get(i).userPw.equals(e2)) {
+                    id = userList.get(i).userId;
+                    pw = userList.get(i).userPw;
+                }
+            }
+        }*/
+
+        /*
+        if(e1.equals("") || e2.equals("")) {
+            textView1.setText("아이디와 비밀번호를 입력하세요.");
+        } else {
+            for (int i=0; i < userList.size(); i++) {
+                if(!userList.get(i).userId.equals(e1) || !userList.get(i).userPw.equals(e2)) {
+                    textView1.setText("아이디와 비밀번호가 일치하지 않습니다.");
+                } else {
+                    //Toast.makeText(getApplicationContext(), String.valueOf(userList.get(i).uid), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                }
             }
         }
-    }
-
+         */
 }
