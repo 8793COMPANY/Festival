@@ -8,17 +8,20 @@
 
     <TextView
         android:id="@+id/rFestivalName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/pretendard_medium"
         android:textColor="#ac93ff"
         android:textSize="19dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintWidth_percent="0.8"
         app:layout_constraintVertical_bias="0.071"
-        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="@+id/left_guide" />
 
     <ImageView
         android:id="@+id/rEtcImage"
@@ -40,11 +43,11 @@
         android:textColor="#ffffff"
         android:textSize="15dp"
         app:layout_constraintVertical_bias="0.02"
-        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintTop_toBottomOf="@+id/rFestivalName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="@+id/left_guide" />
 
     <ImageView
         android:id="@+id/rFestivalImage"
@@ -61,7 +64,7 @@
         app:layout_constraintLeft_toLeftOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/pwChangeButton"
+        android:id="@+id/rDeleteButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/shape_rectangle_puple"
@@ -76,5 +79,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/left_guide"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintGuide_percent="0.05"
+        android:orientation="vertical"></androidx.constraintlayout.widget.Guideline>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

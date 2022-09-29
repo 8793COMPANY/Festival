@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-
+/*
 public class RecyclerAdapter3 extends RecyclerView.Adapter<RecyclerAdapter3.ViewHolder> implements OnItemClickListener2{
     ArrayList<Festival> items = new ArrayList<Festival>();
     Context context;
@@ -99,4 +99,4 @@ public class RecyclerAdapter3 extends RecyclerView.Adapter<RecyclerAdapter3.View
         }
 
     }
-}
+}*/

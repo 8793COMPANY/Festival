@@ -28,6 +28,7 @@ public class ReservationFragment extends Fragment {
     Button reservationButton2;
     CustomDialog customDialog;
     ImageView arrow_left;
+    String year, month, date, total, num, name;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,7 +62,16 @@ public class ReservationFragment extends Fragment {
         reservationButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                customDialog = new CustomDialog(getActivity(),"d");
+                Bundle bundle = getArguments();
+
+                year = yearSpinner.getSelectedItem().toString();
+                month = monthSpinner.getSelectedItem().toString();
+                date = dateSpinner.getSelectedItem().toString();
+                total = year + "." + month + "." + date;
+                num = personnelSpinner.getSelectedItem().toString();
+                name = bundle.getString("예약축제이름");
+
+                customDialog = new CustomDialog(getActivity(), total, num, name);
                 customDialog.show();
 
                 Display display = getActivity().getWindowManager().getDefaultDisplay();

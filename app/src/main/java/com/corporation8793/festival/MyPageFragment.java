@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,7 +54,17 @@ public class MyPageFragment extends Fragment {
         list1Image2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getActivity()).fragmentChange(BreakdownFragment.newInstance());
+                //((MainActivity)getActivity()).fragmentChange(BreakdownFragment.newInstance());
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                BreakdownFragment breakdownFragment = new BreakdownFragment();
+
+                Bundle bundle = new Bundle();
+                bundle.putString("예약내역", "추가안함");
+
+                breakdownFragment.setArguments(bundle);
+                transaction.replace(R.id.containers,breakdownFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 

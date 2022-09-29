@@ -49,7 +49,8 @@ public class BoothReservationFragment extends Fragment {
         arrow_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getActivity()).fragmentChange(BreakdownFragment.newInstance());
+                //((MainActivity)getActivity()).fragmentChange(BreakdownFragment.newInstance());
+                getActivity().onBackPressed();
             }
         });
 

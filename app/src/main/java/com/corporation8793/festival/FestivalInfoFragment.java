@@ -104,6 +104,10 @@ public class FestivalInfoFragment extends Fragment {
                 FragmentTransaction transaction = ((MainActivity)getActivity()).getSupportFragmentManager().beginTransaction();
                 ReservationFragment reservationFragment = new ReservationFragment();
 
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("예약축제이름", bundle.getString("이름"));
+
+                reservationFragment.setArguments(bundle1);
                 transaction.replace(R.id.containers,reservationFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();

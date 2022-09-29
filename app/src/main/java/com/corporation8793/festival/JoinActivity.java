@@ -74,25 +74,25 @@ public class JoinActivity extends AppCompatActivity {
 
         if(button[0].isChecked()) {
             sArea = "서울/경기";
-        } else {
-            for(i=0; i<button.length; i++) {
-                final int INDEX;
-                INDEX = i;
-                button[INDEX].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        for(j=0; j< button.length; j++) {
-                            if(INDEX == j) {
-                                button[INDEX].setChecked(true);
-                                sArea = button[INDEX].getText().toString();
-                            } else {
-                                button[j].setChecked(false);
-                            }
+        }
+
+        for(i=0; i<button.length; i++) {
+            final int INDEX;
+            INDEX = i;
+            button[INDEX].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    for(j=0; j< button.length; j++) {
+                        if(INDEX == j) {
+                            button[INDEX].setChecked(true);
+                            sArea = button[INDEX].getText().toString();
+                        } else {
+                            button[j].setChecked(false);
                         }
-                        //Toast.makeText(JoinActivity.this, "눌림", Toast.LENGTH_SHORT).show();
                     }
-                });
-            }
+                    //Toast.makeText(JoinActivity.this, "눌림", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
         db = AppDatabase.getDBInstance(this.getApplicationContext());
@@ -168,6 +168,17 @@ public class JoinActivity extends AppCompatActivity {
 
         finish();
 
+    }
+
+    private void insertUserData(int id) {
+        Reservation reservation = new Reservation();
+        reservation.uid = id;
+
+        db.reservationDao().insertReservation(reservation);
+
+        setResult(Activity.RESULT_OK);
+
+        finish();
     }
 
 }

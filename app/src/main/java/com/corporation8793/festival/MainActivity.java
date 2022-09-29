@@ -63,9 +63,11 @@ public class MainActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.containers, mainFragment).commit();
                         return true;
                     case R.id.search:
+                        searchFragment.setArguments(bundle);
                         getSupportFragmentManager().beginTransaction().replace(R.id.containers, searchFragment).commit();
                         return true;
                     case R.id.event:
+                        eventFragment.setArguments(bundle);
                         getSupportFragmentManager().beginTransaction().replace(R.id.containers, eventFragment).commit();
                         return true;
                     case R.id.mypage:
