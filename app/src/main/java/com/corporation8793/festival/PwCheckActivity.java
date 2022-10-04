@@ -16,7 +16,12 @@ public class PwCheckActivity extends AppCompatActivity {
             finish();
             Intent intent= new Intent(PwCheckActivity.this, JoinActivity.class);
             intent.putExtra("modify","회원정보 수정");
+            intent.putExtra("수정페이지제목", "회원정보 수정");
             startActivity(intent);
+        });
+
+        findViewById(R.id.arrow_left).setOnClickListener(v->{
+            onBackPressed();
         });
     }
 }

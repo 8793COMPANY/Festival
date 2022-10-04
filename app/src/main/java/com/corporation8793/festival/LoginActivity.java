@@ -34,7 +34,8 @@ public class LoginActivity extends AppCompatActivity {
     ImageView pw_eye, arrow_right;
 
     List<User> userList = new ArrayList<>();
-    String id, pw;
+    String id, pw, name, pwQ, pwA, email, phone, area;
+    int uid, pwQIndex, areaIndex;
     Animation animation;
 
     CheckBox checkButton;
@@ -61,9 +62,29 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences auto = getSharedPreferences("autoLogin", Activity.MODE_PRIVATE);
         String userId = auto.getString("userId", null);
         String userPw = auto.getString("userPw", null);
+        int userUid = auto.getInt("userUid", 0);
+        String userName = auto.getString("userName", null);
+        String userPwQ = auto.getString("userPwQ", null);
+        int userPwQIndex = auto.getInt("userPwQIndex", 0);
+        String userPwA = auto.getString("userPwA", null);
+        String userEmail = auto.getString("userEmail", null);
+        String userPhone = auto.getString("userPhone", null);
+        String userArea = auto.getString("userArea", null);
+        int userAreaIndex = auto.getInt("userAreaIndex", 0);
 
         if(userId != null && userPw != null) {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.putExtra("로그인페이지아이디", userId);
+            intent.putExtra("로그인페이지비밀번호", userPw);
+            intent.putExtra("로그인페이지예약구별", userUid);
+            intent.putExtra("로그인페이지이름", userName);
+            intent.putExtra("로그인페이지질문", userPwQ);
+            intent.putExtra("로그인페이지질문인덱스", userPwQIndex);
+            intent.putExtra("로그인페이지답변", userPwA);
+            intent.putExtra("로그인페이지이메일", userEmail);
+            intent.putExtra("로그인페이지연락처", userPhone);
+            intent.putExtra("로그인페이지지역", userArea);
+            intent.putExtra("로그인페이지지역인덱스", userAreaIndex);
             startActivity(intent);
         }
 
@@ -88,6 +109,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(@NonNull View widget) {
                 Intent intent = new Intent(getApplicationContext(), JoinActivity.class);
+                intent.putExtra("회원가입페이지이동", "회원가입페이지");
                 startActivity(intent);
             }
             // 클릭이벤트 밑줄 제거
@@ -106,6 +128,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), JoinActivity.class);
+                intent.putExtra("회원가입페이지이동", "회원가입페이지");
                 startActivity(intent);
             }
         });
@@ -152,6 +175,15 @@ public class LoginActivity extends AppCompatActivity {
                         if(userList.get(i).userId.equals(user_id) && userList.get(i).userPw.equals(user_pw)) {
                             id = userList.get(i).userId;
                             pw = userList.get(i).userPw;
+                            uid = userList.get(i).uid;
+                            name = userList.get(i).userName;
+                            pwQ = userList.get(i).userPwQuestion;
+                            pwQIndex = userList.get(i).PwQuestionIndex;
+                            pwA = userList.get(i).userPwAnswer;
+                            email = userList.get(i).userEmail;
+                            phone = userList.get(i).userPhoneNumber;
+                            area = userList.get(i).userArea;
+                            areaIndex = userList.get(i).userAreaIndex;
                         }
                     }
 
@@ -165,6 +197,16 @@ public class LoginActivity extends AppCompatActivity {
 
                             autoLoginEdit.putString("userId", id);
                             autoLoginEdit.putString("userPw", pw);
+                            autoLoginEdit.putInt("userUid", uid);
+                            autoLoginEdit.putString("userName", name);
+                            autoLoginEdit.putString("userPwQ", pwQ);
+                            autoLoginEdit.putInt("userPwQIndex", pwQIndex);
+                            autoLoginEdit.putString("userPwA", pwA);
+                            autoLoginEdit.putString("userEmail", email);
+                            autoLoginEdit.putString("userPhone", phone);
+                            autoLoginEdit.putString("userArea", area);
+                            autoLoginEdit.putInt("userAreaIndex", areaIndex);
+
                             //마이페이지 스위치버튼 체크
                             autoLoginEdit.putString("check", "on");
                             autoLoginEdit.commit();
@@ -173,6 +215,15 @@ public class LoginActivity extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.putExtra("로그인페이지아이디", id);
                         intent.putExtra("로그인페이지비밀번호", pw);
+                        intent.putExtra("로그인페이지예약구별", uid);
+                        intent.putExtra("로그인페이지이름", name);
+                        intent.putExtra("로그인페이지질문", pwQ);
+                        intent.putExtra("로그인페이지질문인덱스", pwQIndex);
+                        intent.putExtra("로그인페이지답변", pwA);
+                        intent.putExtra("로그인페이지이메일", email);
+                        intent.putExtra("로그인페이지연락처", phone);
+                        intent.putExtra("로그인페이지지역", area);
+                        intent.putExtra("로그인페이지지역인덱스", areaIndex);
                         startActivity(intent);
                     }
                 }

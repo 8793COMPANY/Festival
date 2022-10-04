@@ -55,7 +55,7 @@ public class MainFragment extends Fragment {
         searchButton = view.findViewById(R.id.searchButton);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        festivalInfoAdapter = new FestivalInfoAdapter(context, 1);
+        festivalInfoAdapter = new FestivalInfoAdapter(context, 1, 1);
         recyclerView.setAdapter(festivalInfoAdapter);
 
         //축제 조회

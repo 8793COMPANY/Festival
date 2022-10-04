@@ -137,6 +137,21 @@
             app:layout_constraintRight_toRightOf="parent" />
 
         <TextView
+            android:id="@+id/pwChangeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:textColor="#a895ff"
+            android:text="비밀번호 변경"
+            android:textSize="13dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintHorizontal_bias="0.86"
+            app:layout_constraintVertical_bias="0.031"
+            app:layout_constraintTop_toBottomOf="@+id/pwInputText"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <TextView
             android:id="@+id/pwCheckInputText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

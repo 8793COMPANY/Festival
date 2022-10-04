@@ -20,6 +20,9 @@ public class User {
     //사용자 비밀번호 확인 질문
     @ColumnInfo(name = "userPwQuestion")
     public String userPwQuestion;
+    //사용자 비밀번호 확인 질문 인덱스
+    @ColumnInfo(name = "PwQuestionIndex")
+    public int PwQuestionIndex;
     //사용자 비밀번호 확인 답
     @ColumnInfo(name = "userPwAnswer")
     public String userPwAnswer;
@@ -32,6 +35,9 @@ public class User {
     //사용자 지역
     @ColumnInfo(name = "userArea")
     public String userArea;
+    //사용자 지역 버튼 인덱스
+    @ColumnInfo(name = "userAreaIndex")
+    public int userAreaIndex;
 
     public int getUid() {
         return uid;
@@ -103,5 +109,21 @@ public class User {
 
     public void setUserArea(String userArea) {
         this.userArea = userArea;
+    }
+
+    public int getPwQuestionIndex() {
+        return PwQuestionIndex;
+    }
+
+    public void setPwQuestionIndex(int pwQuestionIndex) {
+        PwQuestionIndex = pwQuestionIndex;
+    }
+
+    public int getUserAreaIndex() {
+        return userAreaIndex;
+    }
+
+    public void setUserAreaIndex(int userAreaIndex) {
+        this.userAreaIndex = userAreaIndex;
     }
 }

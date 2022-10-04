@@ -1,6 +1,5 @@
 package com.corporation8793.festival;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -13,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +24,11 @@ public class BreakdownFragment extends Fragment {
     ReservationAdapter reservationAdapter;
     Context context;
     ImageView arrow_left;
+    TextView testText;
+    int uid;
 
     List<Reservation> reservationList = new ArrayList<>();
+    List<Reservation> reservationList2 = new ArrayList<>();
 
     public static BreakdownFragment newInstance() {
         return new BreakdownFragment();
@@ -41,30 +44,39 @@ public class BreakdownFragment extends Fragment {
 
         arrow_left = view.findViewById(R.id.arrow_left);
         recyclerView = view.findViewById(R.id.recyclerView3);
+        testText = view.findViewById(R.id.testText);
+
+        testText.setVisibility(View.GONE);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         reservationAdapter = new ReservationAdapter(context);
         recyclerView.setAdapter(reservationAdapter);
 
         Bundle bundle = getArguments();
+
         if(bundle.getString("예약내역").equals("추가")) {
             //예약 내역 추가
-            insertReservation(bundle.getString("알람예약축제이름"), bundle.getString("예약날짜"), bundle.getString("예약인원"));
+            //insertReservation(bundle.getString("알람예약축제이름"), bundle.getString("예약날짜"), bundle.getString("예약인원"));
+            uid = bundle.getInt("알람사용자구분");
+        }else {
+            uid = bundle.getInt("알람사용자구분2");
         }
         //예약 내역 조회
         loadBreakdown();
+
+        if(reservationList.isEmpty()) {
+            testText.setVisibility(View.VISIBLE);
+        }
 
         reservationAdapter.setOnItemClickListener(new OnItemClickListener3() {
             @Override
             public void onItemClick(ReservationAdapter.ViewHolder holder, View view, int position) {
                 //Reservation item = reservationAdapter.getItem(position);
-
                 FragmentTransaction transaction = ((MainActivity)context).getSupportFragmentManager().beginTransaction();
                 BoothReservationFragment boothReservationFragment = new BoothReservationFragment();
                 transaction.replace(R.id.containers,boothReservationFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
-
                 //((MainActivity)getActivity()).fragmentChange(BoothReservationFragment.newInstance());
             }
         });
@@ -120,7 +132,15 @@ public class BreakdownFragment extends Fragment {
         AppDatabase db = AppDatabase.getDBInstance(this.context);
 
         reservationList = db.reservationDao().getAllReservation();
+        reservationList2.clear();
 
-        reservationAdapter.setReservationList(reservationList);
+        for(int i=0; i < reservationList.size(); i++) {
+            if(reservationList.get(i).uid == uid) {
+                reservationList2.add(reservationList.get(i));
+                //festivalInfoList3.add(festivalInfoList2.get(i));
+            }
+        }
+
+        reservationAdapter.setReservationList(reservationList2);
     }
 }

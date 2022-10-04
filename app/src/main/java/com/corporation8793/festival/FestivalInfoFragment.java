@@ -106,6 +106,7 @@ public class FestivalInfoFragment extends Fragment {
 
                 Bundle bundle1 = new Bundle();
                 bundle1.putString("예약축제이름", bundle.getString("이름"));
+                bundle1.putInt("사용자구별", bundle.getInt("예약구별"));
 
                 reservationFragment.setArguments(bundle1);
                 transaction.replace(R.id.containers,reservationFragment);

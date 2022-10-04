@@ -54,8 +54,11 @@ public class EventFragment extends Fragment {
         choiceArea2 = view.findViewById(R.id.choiceArea2);
         searchButton2 = view.findViewById(R.id.searchButton2);
 
+        Bundle bundle = getArguments();
+        int uid = bundle.getInt("메인예약구별");
+
         recyclerView2.setLayoutManager(new LinearLayoutManager(context));
-        festivalInfoAdapter = new FestivalInfoAdapter(context, 2);
+        festivalInfoAdapter = new FestivalInfoAdapter(context, 2, uid);
         recyclerView2.setAdapter(festivalInfoAdapter);
 
         //축제 조회

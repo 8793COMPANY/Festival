@@ -21,6 +21,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
     int[] image;
 
     OnItemClickListener3 listener;
+    AppDatabase db;
 
     public ReservationAdapter(Context context) {
         this.context = context;
@@ -49,10 +50,26 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         holder.rFestivalName.setText(reservationList.get(position).rFestival);
-        holder.rFestivalInfo.setText(reservationList.get(position).rDate + " | " + reservationList.get(position).rNum);
+        holder.rFestivalInfo.setText(reservationList.get(position).rDate + " | " + reservationList.get(position).rNum + "명");
 
+        holder.rDeleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(context, "삭제버튼이 클릭되었습니다", Toast.LENGTH_SHORT).show();
+                Reservation reservation = reservationList.get(holder.getAdapterPosition());
+
+                db = AppDatabase.getDBInstance(context);
+                db.reservationDao().deleteReservation(reservation);
+
+                int position = holder.getAdapterPosition();
+                reservationList.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, reservationList.size());
+            }
+        });
     }
 
+    //리스트 위치 가져오기 > 현재 사용하지 않음
     public Reservation getItem(int position) {
         return reservationList.get(position);
     }
@@ -77,7 +94,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
             listener.onItemClick(holder, view, position);
         }
     }
-    //아이템 삭제
+    //아이템 삭제 > 현재 사용하지 않음
     public void removeItem(int position) {
         reservationList.remove(position);
         notifyItemRemoved(position);
@@ -106,18 +123,18 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
                     }
                 }
             });
-
+            /*
             rDeleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     // reservationList.remove(mPosition);
-                    //removeItem(mPosition);
+                    removeItem(position);
                     if (listener!=null){
                         //listener.onItemDelete(ViewHolder.this, v, position);
                     }
                 }
-            });
+            });*/
         }
     }
 }

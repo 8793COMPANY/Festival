@@ -29,6 +29,7 @@ public class ReservationFragment extends Fragment {
     CustomDialog customDialog;
     ImageView arrow_left;
     String year, month, date, total, num, name;
+    int uid;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,8 +71,11 @@ public class ReservationFragment extends Fragment {
                 total = year + "." + month + "." + date;
                 num = personnelSpinner.getSelectedItem().toString();
                 name = bundle.getString("예약축제이름");
+                uid = bundle.getInt("사용자구별");
 
-                customDialog = new CustomDialog(getActivity(), total, num, name);
+                insertReservation(name, total, num, uid);
+
+                customDialog = new CustomDialog(getActivity(), total, num, name, uid);
                 customDialog.show();
 
                 Display display = getActivity().getWindowManager().getDefaultDisplay();
@@ -103,6 +107,18 @@ public class ReservationFragment extends Fragment {
         });
 
         return view;
+    }
+
+    //예약 내역 추가
+    private void insertReservation(String name, String date, String num, int uid) {
+        Reservation reservation = new Reservation();
+        reservation.rFestival = name;
+        reservation.rDate = date;
+        reservation.rNum = num;
+        reservation.uid = uid;
+
+        AppDatabase db = AppDatabase.getDBInstance(getActivity());
+        db.reservationDao().insertReservation(reservation);
     }
 
 }

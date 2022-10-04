@@ -48,6 +48,21 @@
             app:layout_constraintBottom_toBottomOf="parent">
         </androidx.recyclerview.widget.RecyclerView>
 
+        <TextView
+            android:id="@+id/testText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_regular"
+            android:textColor="#8a7ac4"
+            android:textSize="17dp"
+            android:text="예약된 축제가 없습니다."
+            android:layout_marginTop="30dp"
+            app:layout_constraintVertical_bias="0.035"
+            app:layout_constraintTop_toBottomOf="@+id/reservationText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

@@ -18,13 +18,14 @@ public class FestivalInfoAdapter extends RecyclerView.Adapter<FestivalInfoAdapte
     List<FestivalInfo> festivalInfoList;
     Context context;
     AppDatabase2 database2;
-    int page;
+    int page, uid;
     int[] image;
     ImageView festivalImage;
 
-    public  FestivalInfoAdapter(Context context, int page) {
+    public  FestivalInfoAdapter(Context context, int page, int uid) {
         this.context = context;
         this.page = page;
+        this.uid = uid;
     }
 
     @NonNull
@@ -66,8 +67,10 @@ public class FestivalInfoAdapter extends RecyclerView.Adapter<FestivalInfoAdapte
                     bundle.putString("이동", "메인");
                 } else if(page == 2) {
                     bundle.putString("이동", "이벤트");
+                    bundle.putInt("예약구별", uid);
                 } else if(page == 3) {
                     bundle.putString("이동", "검색");
+                    bundle.putInt("예약구별", uid);
                 }
 
                 bundle.putString("이름", data.festivalName);

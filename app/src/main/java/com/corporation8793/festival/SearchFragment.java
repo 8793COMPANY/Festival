@@ -76,8 +76,11 @@ public class SearchFragment extends Fragment {
 
         listView.setAdapter(myPageAdapter2);
 
+        Bundle bundle = getArguments();
+        int uid = bundle.getInt("메인예약구별");
+
         recyclerView5.setLayoutManager(new LinearLayoutManager(context));
-        festivalInfoAdapter = new FestivalInfoAdapter(context, 3);
+        festivalInfoAdapter = new FestivalInfoAdapter(context, 3, uid);
         recyclerView5.setAdapter(festivalInfoAdapter);
 
         search.setOnClickListener(new View.OnClickListener() {

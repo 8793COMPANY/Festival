@@ -19,7 +19,7 @@ import android.widget.TextView;
 public class MyPageFragment extends Fragment {
 
     TextView logoutText;
-    ListAdapter myPageAdapter;
+    //ListAdapter myPageAdapter;
     //ListView listView;
     ImageView list1Image2;
     Button dataModify;
@@ -59,7 +59,10 @@ public class MyPageFragment extends Fragment {
                 BreakdownFragment breakdownFragment = new BreakdownFragment();
 
                 Bundle bundle = new Bundle();
+                Bundle bundle1 = getArguments();
+
                 bundle.putString("예약내역", "추가안함");
+                bundle.putInt("알람사용자구분2", bundle1.getInt("메인예약구별"));
 
                 breakdownFragment.setArguments(bundle);
                 transaction.replace(R.id.containers,breakdownFragment);
@@ -72,7 +75,21 @@ public class MyPageFragment extends Fragment {
         dataModify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle1 = getArguments();
+
                 Intent intent = new Intent(getActivity(), JoinActivity.class);
+                intent.putExtra("수정페이지제목", "회원정보 수정");
+                intent.putExtra("수정페이지사용자구분", bundle1.getInt("메인예약구별"));
+                intent.putExtra("수정페이지이름", bundle1.getString("메인이름"));
+                intent.putExtra("수정페이지아이디", bundle1.getString("메인아이디"));
+                intent.putExtra("수정페이지비밀번호", bundle1.getString("메인비밀번호"));
+                intent.putExtra("수정페이지질문", bundle1.getInt("메인질문"));
+                intent.putExtra("수정페이지질문인덱스", bundle1.getInt("메인질문인덱스"));
+                intent.putExtra("수정페이지답변", bundle1.getString("메인답변"));
+                intent.putExtra("수정페이지이메일", bundle1.getString("메인이메일"));
+                intent.putExtra("수정페이지연락처", bundle1.getString("메인연락처"));
+                intent.putExtra("수정페이지지역", bundle1.getInt("메인지역"));
+                intent.putExtra("수정페이지지역인덱스", bundle1.getInt("메인지역인덱스"));
                 startActivity(intent);
             }
         });

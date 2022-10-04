@@ -20,7 +20,7 @@ public class CustomDialog extends Dialog {
     TextView dialogDateText, dialogNumText;
     Button okButton, closeButton;
 
-    public CustomDialog(@NonNull Context context, String total, String num, String name) {
+    public CustomDialog(@NonNull Context context, String total, String num, String name, int uid) {
         super(context);
         setContentView(R.layout.activity_custom_dialog);
 
@@ -42,6 +42,7 @@ public class CustomDialog extends Dialog {
                 bundle.putString("예약날짜", total);
                 bundle.putString("예약인원", num + "명");
                 bundle.putString("알람예약축제이름", name);
+                bundle.putInt("알람사용자구분", uid);
 
                 breakdownFragment.setArguments(bundle);
                 transaction.replace(R.id.containers,breakdownFragment);
