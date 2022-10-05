@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
         bundle.putString("메인아이디", intent.getStringExtra("로그인페이지아이디"));
         bundle.putString("메인비밀번호", intent.getStringExtra("로그인페이지비밀번호"));
         bundle.putInt("메인예약구별", intent.getIntExtra("로그인페이지예약구별", 0));
-        //bundle.putString("메인예약구별", intent.getStringExtra("로그인페이지예약구별"));
         bundle.putString("메인이름", intent.getStringExtra("로그인페이지이름"));
         bundle.putString("메인질문", intent.getStringExtra("로그인페이지질문"));
         bundle.putInt("메인질문인덱스", intent.getIntExtra("로그인페이지질문인덱스", 0));

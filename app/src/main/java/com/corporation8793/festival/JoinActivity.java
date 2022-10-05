@@ -1,9 +1,11 @@
 package com.corporation8793.festival;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -77,36 +79,36 @@ public class JoinActivity extends AppCompatActivity {
             button[i] = findViewById(ridButton[i]);
         }
 
+        if(button[0].isChecked()) {
+            sArea = "서울/경기";
+        }
+
+        for(i=0; i<button.length; i++) {
+            final int INDEX;
+            INDEX = i;
+            button[INDEX].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    for(j=0; j< button.length; j++) {
+                        if(INDEX == j) {
+                            button[INDEX].setChecked(true);
+                            sArea = button[INDEX].getText().toString();
+                            index = INDEX;
+                        } else {
+                            button[j].setChecked(false);
+                        }
+                    }
+                    //Toast.makeText(JoinActivity.this, "눌림", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
         db = AppDatabase.getDBInstance(this.getApplicationContext());
 
         Intent intent = getIntent();
 
         if(intent.hasExtra("회원가입페이지이동")) {
             pwChangeText.setVisibility(View.GONE);
-
-            if(button[0].isChecked()) {
-                sArea = "서울/경기";
-            }
-
-            for(i=0; i<button.length; i++) {
-                final int INDEX;
-                INDEX = i;
-                button[INDEX].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        for(j=0; j< button.length; j++) {
-                            if(INDEX == j) {
-                                button[INDEX].setChecked(true);
-                                sArea = button[INDEX].getText().toString();
-                                index = INDEX;
-                            } else {
-                                button[j].setChecked(false);
-                            }
-                        }
-                        //Toast.makeText(JoinActivity.this, "눌림", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
 
             // 가입시 필요한 내용이 없으면 알려주기, 다 적으면 페이지 이동
             joinButton.setOnClickListener(new View.OnClickListener() {
@@ -163,8 +165,8 @@ public class JoinActivity extends AppCompatActivity {
             pwChangeText.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(JoinActivity.this, PwCheckActivity.class);
-                    startActivity(intent);
+                    //Intent intent = new Intent(JoinActivity.this, PwCheckActivity.class);
+                    //startActivity(intent);
                 }
             });
 
@@ -202,25 +204,6 @@ public class JoinActivity extends AppCompatActivity {
             joinButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    for(i=0; i<button.length; i++) {
-                        final int INDEX;
-                        INDEX = i;
-                        button[INDEX].setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                for(j=0; j< button.length; j++) {
-                                    if(INDEX == j) {
-                                        button[INDEX].setChecked(true);
-                                        sArea = button[INDEX].getText().toString();
-                                        index = INDEX;
-                                    } else {
-                                        button[j].setChecked(false);
-                                    }
-                                }
-                            }
-                        });
-                    }
-
                     String userName = rectangle5.getText().toString();
                     String userId = rectangle6.getText().toString();
                     String userPw = rectangle7.getText().toString();
@@ -274,13 +257,24 @@ public class JoinActivity extends AppCompatActivity {
 
                             db.userDao().updateUser(user);
 
-                            Toast.makeText(getApplicationContext(), "정보수정이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                            //자동로그인 체크되어있으면 해제
+                            SharedPreferences auto = getSharedPreferences("autoLogin", Activity.MODE_PRIVATE);
+                            SharedPreferences.Editor autoLoginEdit = auto.edit();
+                            String userId2 = auto.getString("userId", null);
+                            String userPw2 = auto.getString("userPw", null);
 
-                            onBackPressed();
+                            if(userId2 != null && userPw2 != null) {
+                                autoLoginEdit.clear();
+                                autoLoginEdit.commit();
+                            }
 
-                            //Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                            Toast.makeText(getApplicationContext(), "회원 정보가 수정되었습니다. 다시 로그인해주세요.", Toast.LENGTH_SHORT).show();
+
+                            //onBackPressed();
+                            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                             //Intent intent = new Intent(getApplicationContext(), UserInformationActivity.class);
-                            //startActivity(intent);
+                            startActivity(intent);
+                            finish();
                         }
                         //Intent intent  = new Intent(UpdateActivity.this, LoginActivity.class);
                         //startActivity(intent);
