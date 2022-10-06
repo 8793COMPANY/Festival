@@ -16,6 +16,14 @@ public class RecyclerAdapter2 extends RecyclerView.Adapter<RecyclerAdapter2.View
     ArrayList<Festival2> items = new ArrayList<Festival2>();
     Context context;
 
+    interface OnCategoryClickListener{
+        void onCategoryClick(View view, int position);
+    }
+    OnCategoryClickListener mListener = null;
+    public void setOnCategoryClickListener(OnCategoryClickListener listener) {
+        this.mListener = listener;
+    }
+
     public RecyclerAdapter2(Context context) {
         this.context = context;
     }
@@ -56,7 +64,7 @@ public class RecyclerAdapter2 extends RecyclerView.Adapter<RecyclerAdapter2.View
         return items.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView mainText;
         ImageView searchPageImage;
 
@@ -66,10 +74,21 @@ public class RecyclerAdapter2 extends RecyclerView.Adapter<RecyclerAdapter2.View
             mainText = itemView.findViewById(R.id.mainText);
             searchPageImage = itemView.findViewById(R.id.searchPageImage);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if(position != RecyclerView.NO_POSITION) {
+                        if(mListener != null) {
+                            mListener.onCategoryClick(v, position);
+                        }
+                    }
+                }
+            });
         }
 
         public void setItem(Festival2 item) {
-            mainText.setText(item.getName());
+            //mainText.setText(item.getName());
             searchPageImage.setImageResource(item.getImage());
         }
 

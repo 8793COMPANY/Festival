@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -59,13 +60,33 @@ public class SearchFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerAdapter2 = new RecyclerAdapter2(getActivity());
 
-        recyclerAdapter2.addItem(new Festival2("꽃", R.drawable.search_image3));
-        recyclerAdapter2.addItem(new Festival2("불꽃", R.drawable.search_image2));
-        recyclerAdapter2.addItem(new Festival2("먹거리", R.drawable.search_image1));
-        recyclerAdapter2.addItem(new Festival2("꽃", R.drawable.search_image3));
-        recyclerAdapter2.addItem(new Festival2("불꽃", R.drawable.search_image2));
+        recyclerAdapter2.addItem(new Festival2("꽃", R.drawable.search_flower));
+        recyclerAdapter2.addItem(new Festival2("불꽃", R.drawable.search_fireworks));
+        recyclerAdapter2.addItem(new Festival2("전통문화", R.drawable.search_traditional));
+        recyclerAdapter2.addItem(new Festival2("음악", R.drawable.search_music));
+        recyclerAdapter2.addItem(new Festival2("맥주", R.drawable.search_beer));
+        recyclerAdapter2.addItem(new Festival2("단풍", R.drawable.search_maple));
+        recyclerAdapter2.addItem(new Festival2("문화", R.drawable.search_culture));
 
         recyclerView.setAdapter(recyclerAdapter2);
+
+        recyclerAdapter2.setOnCategoryClickListener(new RecyclerAdapter2.OnCategoryClickListener() {
+            @Override
+            public void onCategoryClick(View view, int position) {
+                Festival2 item = recyclerAdapter2.getItem(position);
+
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                CategoryFragment categoryFragment = new CategoryFragment();
+
+                Bundle bundle = new Bundle();
+                bundle.putString("카테고리", bundle.getString(item.name));
+
+                categoryFragment.setArguments(bundle);
+                transaction.replace(R.id.containers, categoryFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
 
         myPageAdapter2 = new ListAdapter2(getActivity(),1);
 
@@ -186,6 +207,8 @@ public class SearchFragment extends Fragment {
 
         if(festivalInfoList3.isEmpty()) {
             testText.setVisibility((View.VISIBLE));
+        } else {
+            testText.setVisibility((View.GONE));
         }
         //리스트 저장
         festivalInfoAdapter.setFestivalInfoList(festivalInfoList3);

@@ -16,11 +16,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.naver.maps.geometry.LatLng;
+import com.naver.maps.map.CameraAnimation;
 import com.naver.maps.map.CameraPosition;
+import com.naver.maps.map.CameraUpdate;
 import com.naver.maps.map.MapView;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.overlay.Marker;
+import com.naver.maps.map.overlay.Overlay;
 import com.naver.maps.map.overlay.OverlayImage;
 
 import java.io.BufferedReader;
@@ -187,6 +190,17 @@ public class FestivalInfoFragment extends Fragment implements OnMapReadyCallback
 
         //Marker
         setMarker(marker, latitude, longitude, R.drawable.ic_baseline_place_24);
+
+        marker.setOnClickListener(new Overlay.OnClickListener() {
+            @Override
+            public boolean onClick(@NonNull Overlay overlay) {
+                CameraUpdate cameraUpdate = CameraUpdate.scrollAndZoomTo(new LatLng(latitude, longitude),18).animate(CameraAnimation.Fly, 1000);
+
+                naverMap.moveCamera(cameraUpdate);
+
+                return false;
+            }
+        });
 
         naverMap.setCameraPosition(cameraPosition);
     }

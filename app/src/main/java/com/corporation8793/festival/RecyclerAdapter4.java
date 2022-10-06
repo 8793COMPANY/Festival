@@ -21,9 +21,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class RecyclerAdapter4 extends RecyclerView.Adapter<RecyclerAdapter4.ViewHolder> {
+public class RecyclerAdapter4 extends RecyclerView.Adapter<RecyclerAdapter4.ViewHolder> implements OnItemClickListener2 {
     ArrayList<Booth> items = new ArrayList<Booth>();
     Context context;
+    OnItemClickListener2 listener;
+
+    interface OnItemClickListener{
+        void onScanClick(View view, int position);
+    }
+    private OnItemClickListener mListener = null;
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.mListener = listener;
+    }
 
     public RecyclerAdapter4(Context context) {
         this.context = context;
@@ -37,7 +46,7 @@ public class RecyclerAdapter4 extends RecyclerView.Adapter<RecyclerAdapter4.View
 
         itemView.getLayoutParams().height = 400;
 
-        return new RecyclerAdapter4.ViewHolder(itemView);
+        return new RecyclerAdapter4.ViewHolder(itemView, this);
     }
 
     @Override
@@ -65,11 +74,21 @@ public class RecyclerAdapter4 extends RecyclerView.Adapter<RecyclerAdapter4.View
         return items.size();
     }
 
+    public void setOnItemClicklistener(OnItemClickListener2 listener) {
+        this.listener = listener;
+    }
+
+    public void onItemClick(ViewHolder holder, View view, int position) {
+        if(listener != null) {
+            listener.onItemClick(holder, view, position);
+        }
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView boothName, boothTime, boothPoint, saveResult;
         Button cameraButton;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, final OnItemClickListener2 listener) {
             super(itemView);
 
             boothName = itemView.findViewById(R.id.boothName);
@@ -81,7 +100,23 @@ public class RecyclerAdapter4 extends RecyclerView.Adapter<RecyclerAdapter4.View
             cameraButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    capture();
+                    //capture();
+                    int position = getAdapterPosition();
+                    if(position != RecyclerView.NO_POSITION) {
+                        if(mListener != null) {
+                            mListener.onScanClick(v, position);
+                        }
+                    }
+                }
+            });
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if(listener != null) {
+                        listener.onItemClick(ViewHolder.this, v, position);
+                    }
                 }
             });
 
@@ -96,9 +131,10 @@ public class RecyclerAdapter4 extends RecyclerView.Adapter<RecyclerAdapter4.View
 
         public void capture(){
             //Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            ((Activity)context).startActivityForResult(intent,101);
-
+            //Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            //((Activity)context).startActivityForResult(intent,101);
+            Intent intent = new Intent(context, ScanQrActivity.class);
+            context.startActivity(intent);
         }
     }
 }

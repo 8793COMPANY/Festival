@@ -13,9 +13,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListPopupWindow;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -64,6 +66,17 @@ public class MainFragment extends Fragment {
         choiceMonth_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.month_array, R.layout.spinner_item);
         choiceMonth_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         choiceMonth.setAdapter(choiceMonth_adapter);
+
+        //스피너 드롭다운 높이 지정
+        try {
+            Field popup = Spinner.class.getDeclaredField("mPopup");
+            popup.setAccessible(true);
+
+            ListPopupWindow window = (ListPopupWindow) popup.get(choiceMonth);
+            window.setHeight(100);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         choiceMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
