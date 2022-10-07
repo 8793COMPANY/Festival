@@ -1,25 +1,20 @@
 package com.corporation8793.festival;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.hardware.Camera;
-import android.os.Build;
-import android.provider.MediaStore;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RecyclerAdapter4 extends RecyclerView.Adapter<RecyclerAdapter4.ViewHolder> implements OnItemClickListener2 {
     ArrayList<Booth> items = new ArrayList<Booth>();
@@ -34,8 +29,9 @@ public class RecyclerAdapter4 extends RecyclerView.Adapter<RecyclerAdapter4.View
         this.mListener = listener;
     }
 
-    public RecyclerAdapter4(Context context) {
+    public RecyclerAdapter4(Context context/*, ArrayList<Booth> list*/) {
         this.context = context;
+        //this.items = list;
     }
 
     @NonNull
@@ -53,6 +49,26 @@ public class RecyclerAdapter4 extends RecyclerView.Adapter<RecyclerAdapter4.View
     public void onBindViewHolder(@NonNull RecyclerAdapter4.ViewHolder holder, int position) {
         Booth item = items.get(position);
         holder.setItem(item);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerAdapter4.ViewHolder holder, int position, @NonNull List<Object> payloads) {
+        if(payloads.isEmpty()) {
+            super.onBindViewHolder(holder, position, payloads);
+        } else {
+            for(Object payload : payloads) {
+                if (payload instanceof String) {
+                    String type = (String) payload;
+                    if (TextUtils.equals(type, "payload")) {
+                        //Toast.makeText(context, "실행되었습니다.", Toast.LENGTH_SHORT).show();
+                        //saveResult.setText(item.getSaveResult());
+                        holder.saveResult.setText("적립완료");
+                        BoothReservationFragment boothReservationFragment = new BoothReservationFragment();
+                        boothReservationFragment.getPoint("", 0);
+                    }
+                }
+            }
+        }
     }
 
     public void addItem(Booth item) {

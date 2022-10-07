@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -21,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 public class SearchFragment extends Fragment {
 
@@ -56,6 +58,8 @@ public class SearchFragment extends Fragment {
         recyclerView5.setVisibility((View.GONE));
         testText.setVisibility((View.GONE));
 
+        loadBasic();
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerAdapter2 = new RecyclerAdapter2(getActivity());
@@ -79,7 +83,9 @@ public class SearchFragment extends Fragment {
                 CategoryFragment categoryFragment = new CategoryFragment();
 
                 Bundle bundle = new Bundle();
-                bundle.putString("카테고리", bundle.getString(item.name));
+                bundle.putString("카테고리", item.name);
+
+                //Toast.makeText(getActivity(), item.name, Toast.LENGTH_SHORT).show();
 
                 categoryFragment.setArguments(bundle);
                 transaction.replace(R.id.containers, categoryFragment);
@@ -90,12 +96,30 @@ public class SearchFragment extends Fragment {
 
         myPageAdapter2 = new ListAdapter2(getActivity(),1);
 
+        loadRankList();
+        /*
         myPageAdapter2.addItem(new MyList2("1", "맥주축제"));
         myPageAdapter2.addItem(new MyList2("2", "보령머드축제"));
         myPageAdapter2.addItem(new MyList2("3", "조치원복숭아축제"));
         myPageAdapter2.addItem(new MyList2("4", "태백 해바라기축제"));
+        myPageAdapter2.addItem(new MyList2("5", "맥주축제"));
+        myPageAdapter2.addItem(new MyList2("6", "보령머드축제"));
+        myPageAdapter2.addItem(new MyList2("7", "조치원복숭아축제"));
+        myPageAdapter2.addItem(new MyList2("8", "태백 해바라기축제"));
+        myPageAdapter2.addItem(new MyList2("9", "조치원복숭아축제"));
+        myPageAdapter2.addItem(new MyList2("10", "태백 해바라기축제"));*/
 
         listView.setAdapter(myPageAdapter2);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MyList2 item = myPageAdapter2.getItem(position);
+
+                clickRankList(item.subText);
+            }
+        });
+
 
         Bundle bundle = getArguments();
         int uid = bundle.getInt("메인예약구별");
@@ -178,12 +202,11 @@ public class SearchFragment extends Fragment {
         */
     }
 
-    private void loadUserList(String s1) {
+    private void loadBasic() {
         AppDatabase2 db  = AppDatabase2.getDBInstance(this.getActivity());
 
         festivalInfoList = db.festivalInfoDao().getAllFestivalInfo();
         festivalInfoList2.clear();
-        festivalInfoList3.clear();
 
         long now = System.currentTimeMillis();
         Date date = new Date(now);
@@ -197,6 +220,10 @@ public class SearchFragment extends Fragment {
                 festivalInfoList2.add(festivalInfoList.get(i));
             }
         }
+    }
+
+    private void loadUserList(String s1) {
+        festivalInfoList3.clear();
 
         for(int i=0; i < festivalInfoList2.size(); i++) {
             if(festivalInfoList2.get(i).festivalName.contains(s1) || festivalInfoList2.get(i).festivalLocation.contains(s1)
@@ -212,6 +239,50 @@ public class SearchFragment extends Fragment {
         }
         //리스트 저장
         festivalInfoAdapter.setFestivalInfoList(festivalInfoList3);
+    }
+
+    private void loadRankList() {
+        String [] festivalNames = new String[festivalInfoList2.size()];
+        int [] choiceNames = new int[10];
+
+        for(int i=0; i < festivalInfoList2.size(); i++) {
+            festivalNames[i] = festivalInfoList2.get(i).festivalName;
+        }
+
+        Random random = new Random();
+
+        for(int i=0; i < choiceNames.length; i++) {
+            choiceNames[i] = random.nextInt(festivalNames.length);
+            myPageAdapter2.addItem(new MyList2(String.valueOf(i + 1), festivalNames[choiceNames[i]]));
+        }
+    }
+
+    private void clickRankList(String s) {
+        FragmentTransaction transaction = ((MainActivity)context).getSupportFragmentManager().beginTransaction();
+        FestivalInfoFragment festivalInfoFragment = new FestivalInfoFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("이동", "메인");
+
+        for(int i=0; i < festivalInfoList2.size(); i++) {
+            if(festivalInfoList2.get(i).festivalName.contains(s)) {
+                bundle.putString("이름", festivalInfoList2.get(i).festivalName);
+                bundle.putString("기간", festivalInfoList2.get(i).festivalStart + "~" + festivalInfoList2.get(i).festivalEnd);
+                bundle.putString("내용", festivalInfoList2.get(i).festivalCo);
+                bundle.putString("주관", festivalInfoList2.get(i).festivalMnnst);
+                bundle.putString("주최", festivalInfoList2.get(i).festivalAuspcInstt);
+                bundle.putString("위치", festivalInfoList2.get(i).festivalLocation);
+                bundle.putString("도로명", festivalInfoList2.get(i).festivalRdnmadr);
+                bundle.putString("지번", festivalInfoList2.get(i).festivalLnmadr);
+                bundle.putString("위도", festivalInfoList2.get(i).festivalLatitude);
+                bundle.putString("경도", festivalInfoList2.get(i).festivalLongitude);
+            }
+        }
+
+        festivalInfoFragment.setArguments(bundle);
+        transaction.replace(R.id.containers,festivalInfoFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     /*

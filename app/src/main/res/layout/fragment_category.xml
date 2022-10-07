@@ -16,15 +16,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/pretendard_semi_bold"
-            android:textColor="#ffffff"
+            android:textColor="#ad9bff"
             android:text="카테고리이름"
             android:textSize="28dp"
-            app:layout_constraintHorizontal_bias="0.056"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintVertical_bias="0.076"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/left_guide"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/festivalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_semi_bold"
+            android:textColor="#ffffff"
+            android:text=" 축제"
+            android:textSize="28dp"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintVertical_bias="0.076"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/categoryText"
+            app:layout_constraintRight_toRightOf="parent"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -33,8 +48,16 @@
             android:layout_margin="20dp"
             app:layout_constraintVertical_bias="0"
             app:layout_constraintTop_toBottomOf="@+id/categoryText"
+            app:layout_constraintStart_toStartOf="@+id/left_guide"
             app:layout_constraintBottom_toBottomOf="parent">
         </androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/left_guide"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintGuide_percent="0.05"
+            android:orientation="vertical"></androidx.constraintlayout.widget.Guideline>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

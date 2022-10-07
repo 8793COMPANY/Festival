@@ -1,6 +1,8 @@
 package com.corporation8793.festival;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +67,11 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
                 reservationList.remove(position);
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position, reservationList.size());
+
+                SharedPreferences booth = context.getSharedPreferences("booth", Activity.MODE_PRIVATE);
+                SharedPreferences.Editor boothEdit = booth.edit();
+                boothEdit.clear();
+                boothEdit.commit();
             }
         });
     }

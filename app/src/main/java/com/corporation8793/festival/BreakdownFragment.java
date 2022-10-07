@@ -1,6 +1,8 @@
 package com.corporation8793.festival;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -71,6 +73,14 @@ public class BreakdownFragment extends Fragment {
         reservationAdapter.setOnItemClickListener(new OnItemClickListener3() {
             @Override
             public void onItemClick(ReservationAdapter.ViewHolder holder, View view, int position) {
+                Reservation item = reservationAdapter.getItem(position);
+
+                SharedPreferences booth = context.getSharedPreferences("booth", Activity.MODE_PRIVATE);
+                SharedPreferences.Editor boothEdit = booth.edit();
+
+                boothEdit.putString("rFestival", item.rFestival);
+                boothEdit.commit();
+
                 //Reservation item = reservationAdapter.getItem(position);
                 FragmentTransaction transaction = ((MainActivity)context).getSupportFragmentManager().beginTransaction();
                 BoothReservationFragment boothReservationFragment = new BoothReservationFragment();
