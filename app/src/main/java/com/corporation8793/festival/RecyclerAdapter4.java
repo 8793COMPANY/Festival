@@ -1,7 +1,9 @@
 package com.corporation8793.festival;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,9 +64,9 @@ public class RecyclerAdapter4 extends RecyclerView.Adapter<RecyclerAdapter4.View
                     if (TextUtils.equals(type, "payload")) {
                         //Toast.makeText(context, "실행되었습니다.", Toast.LENGTH_SHORT).show();
                         //saveResult.setText(item.getSaveResult());
+                        items.get(position).saveResult = "적립완료";
                         holder.saveResult.setText("적립완료");
-                        BoothReservationFragment boothReservationFragment = new BoothReservationFragment();
-                        boothReservationFragment.getPoint("", 0);
+                        //Toast.makeText(context, items.get(position).saveResult, Toast.LENGTH_SHORT).show();
                     }
                 }
             }

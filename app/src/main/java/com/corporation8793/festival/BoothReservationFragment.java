@@ -19,8 +19,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 public class BoothReservationFragment extends Fragment {
 
     RecyclerView recyclerView;
@@ -28,12 +26,13 @@ public class BoothReservationFragment extends Fragment {
     TextView pointNumText;
     ImageView arrow_left;
     Button productButton;
-    Context context;
+    //Context context;
 
     static String point = "";
     static int changePosition;
     static String changePoint;
     static int totalPoint = 0;
+    static String result = "";
 
     //ArrayList<Booth> list = new ArrayList<Booth>();
 
@@ -47,13 +46,32 @@ public class BoothReservationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //Toast.makeText(getActivity(), "BoothReservationFragment onCreateView 호출", Toast.LENGTH_SHORT).show();
-        // Inflate the layout for this fragment
+        //  Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_booth_reservation, container, false);
 
         pointNumText = view.findViewById(R.id.pointNumText);
         arrow_left = view.findViewById(R.id.arrow_left);
         recyclerView = view.findViewById(R.id.recyclerView4);
         productButton = view.findViewById(R.id.productButton);
+
+        Bundle bundle = getArguments();
+        int fRId = bundle.getInt("축제개별저장", 0);
+
+        SharedPreferences booth = getActivity().getSharedPreferences(String.valueOf(fRId), Activity.MODE_PRIVATE);
+        SharedPreferences.Editor boothEdit = booth.edit();
+
+        String fName = booth.getString("rFestival",null);
+        String total = booth.getString("total", null);
+        String rBooth1 = booth.getString("rBooth1", null);
+        String rBooth2 = booth.getString("rBooth2", null);
+        String rBooth3 = booth.getString("rBooth3", null);
+        String rBooth4 = booth.getString("rBooth4", null);
+        String rBooth5 = booth.getString("rBooth5", null);
+        String rBooth6 = booth.getString("rBooth6", null);
+        String rBooth7 = booth.getString("rBooth7", null);
+        String rBooth8 = booth.getString("rBooth8", null);
+        String rBooth9 = booth.getString("rBooth9", null);
+        String rBooth10 = booth.getString("rBooth10", null);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
@@ -72,10 +90,38 @@ public class BoothReservationFragment extends Fragment {
 
         recyclerView.setAdapter(recyclerAdapter4);
 
-        SharedPreferences booth = context.getSharedPreferences("booth", Activity.MODE_PRIVATE);
-        SharedPreferences.Editor boothEdit = booth.edit();
+        if(total != null) {
+            pointNumText.setText(total);
+            recyclerAdapter4.getItem(0).saveResult = rBooth1;
+            recyclerAdapter4.getItem(1).saveResult = rBooth2;
+            recyclerAdapter4.getItem(2).saveResult = rBooth3;
+            recyclerAdapter4.getItem(3).saveResult = rBooth4;
+            recyclerAdapter4.getItem(4).saveResult = rBooth5;
+            recyclerAdapter4.getItem(5).saveResult = rBooth6;
+            recyclerAdapter4.getItem(6).saveResult = rBooth7;
+            recyclerAdapter4.getItem(7).saveResult = rBooth8;
+            recyclerAdapter4.getItem(8).saveResult = rBooth9;
+            recyclerAdapter4.getItem(9).saveResult = rBooth10;
 
-        boothEdit.commit();
+            //Toast.makeText(getActivity(), "저장내용 존재", Toast.LENGTH_SHORT).show();
+        } else {
+            //부스 포인트 적립 결과 초기저장
+            boothEdit.putString("total", pointNumText.getText().toString());
+            boothEdit.putString("rBooth1", recyclerAdapter4.getItem(0).saveResult);
+            boothEdit.putString("rBooth2", recyclerAdapter4.getItem(1).saveResult);
+            boothEdit.putString("rBooth3", recyclerAdapter4.getItem(2).saveResult);
+            boothEdit.putString("rBooth4", recyclerAdapter4.getItem(3).saveResult);
+            boothEdit.putString("rBooth5", recyclerAdapter4.getItem(4).saveResult);
+            boothEdit.putString("rBooth6", recyclerAdapter4.getItem(5).saveResult);
+            boothEdit.putString("rBooth7", recyclerAdapter4.getItem(6).saveResult);
+            boothEdit.putString("rBooth8", recyclerAdapter4.getItem(7).saveResult);
+            boothEdit.putString("rBooth9", recyclerAdapter4.getItem(8).saveResult);
+            boothEdit.putString("rBooth10", recyclerAdapter4.getItem(9).saveResult);
+            boothEdit.commit();
+
+            //Toast.makeText(getActivity(), "초기내용", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(), recyclerAdapter4.getItem(0).saveResult, Toast.LENGTH_SHORT).show();
+        }
 
         recyclerAdapter4.setOnItemClickListener(new RecyclerAdapter4.OnItemClickListener() {
             @Override
@@ -119,9 +165,10 @@ public class BoothReservationFragment extends Fragment {
         return view;
     }
 
-    public void getPoint(String s, int i) {
+    public void getPoint(String s, int i, String r) {
         point = s;
         changePosition = i;
+        result = r;
     }
 
     @Override
@@ -136,11 +183,46 @@ public class BoothReservationFragment extends Fragment {
             Toast.makeText(getActivity(), point, Toast.LENGTH_SHORT).show();
             if(point.equals(changePoint)) {
                 //Toast.makeText(getActivity(), "부스 포인트가 같습니다.", Toast.LENGTH_SHORT).show();
+                Bundle bundle = getArguments();
+                int fRId = bundle.getInt("축제개별저장", 0);
+
                 recyclerAdapter4.notifyItemChanged(changePosition, "payload");
-                totalPoint = totalPoint + Integer.valueOf(point);
+                Toast.makeText(getActivity(), recyclerAdapter4.getItem(changePosition).saveResult, Toast.LENGTH_SHORT).show();
+
+                SharedPreferences pref = getActivity().getSharedPreferences("sumFirst : " + String.valueOf(fRId), Activity.MODE_PRIVATE);
+                boolean first = pref.getBoolean("sumFirst : " + String.valueOf(fRId), false);
+                if(first==false){
+                    Log.d("첫계산인가요?", "네");
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putBoolean("sumFirst : " + String.valueOf(fRId), true);
+                    editor.commit();
+                    //최초 계산시
+                    totalPoint = Integer.valueOf(point);
+                }else{
+                    Log.d("첫계산인가요?", "아니요");
+                    totalPoint = Integer.valueOf(pointNumText.getText().toString()) + Integer.valueOf(point);
+                }
+
+                //totalPoint = totalPoint + Integer.valueOf(point);
                 pointNumText.setText(String.valueOf(totalPoint));
+                point = "";
+
+                //부스 포인트 적립 결과 재저장?
+                SharedPreferences booth = getActivity().getSharedPreferences(String.valueOf(fRId), Activity.MODE_PRIVATE);
+                SharedPreferences.Editor boothEdit = booth.edit();
+
+                boothEdit.putString("total", String.valueOf(totalPoint));
+                /*
+                for(int i=0; i < 10; i++) {
+                    boothEdit.putString("rBooth" + String.valueOf(i+1), recyclerAdapter4.getItem(i).saveResult);
+                    recyclerAdapter4.getItem(i).saveResult = booth.getString("rBooth" + String.valueOf(i+1), null);
+                }*/
+
+                boothEdit.commit();
+                //boothEdit.putString("rBooth1", recyclerAdapter4.getItem(0).saveResult);
             } else {
                 Toast.makeText(getActivity(), "부스 포인트가 다릅니다.", Toast.LENGTH_SHORT).show();
+                point = "";
             }
         }
     }

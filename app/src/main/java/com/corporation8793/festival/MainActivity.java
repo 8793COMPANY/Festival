@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationBarView;
@@ -72,6 +73,15 @@ public class MainActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.containers, mainFragment).commit();
                         return true;
                     case R.id.search:
+                        if(searchFragment.recyclerView5 != null) {
+                            if(searchFragment.recyclerView5.getVisibility() == View.VISIBLE) {
+                                searchFragment.recyclerView5.setVisibility(View.GONE);
+                                if(searchFragment.testText.getVisibility() == View.VISIBLE) {
+                                    searchFragment.testText.setVisibility(View.GONE);
+                                }
+                                searchFragment.rectangle13.setText(null);
+                            }
+                        }
                         searchFragment.setArguments(bundle);
                         getSupportFragmentManager().beginTransaction().replace(R.id.containers, searchFragment).commit();
                         return true;

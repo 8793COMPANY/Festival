@@ -45,7 +45,7 @@ public class ScanQrActivity extends AppCompatActivity {
                 Intent intent = getIntent();
                 //Toast.makeText(getApplicationContext(), intent.getStringExtra("포인트"), Toast.LENGTH_SHORT).show();
                 BoothReservationFragment boothReservationFragment = new BoothReservationFragment();
-                boothReservationFragment.getPoint(result.getContents(), intent.getIntExtra("위치", 0));
+                boothReservationFragment.getPoint(result.getContents(), intent.getIntExtra("위치", 0), "적립완료");
                 finish();
             }
         } else {

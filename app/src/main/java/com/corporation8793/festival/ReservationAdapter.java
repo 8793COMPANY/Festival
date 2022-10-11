@@ -68,7 +68,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position, reservationList.size());
 
-                SharedPreferences booth = context.getSharedPreferences("booth", Activity.MODE_PRIVATE);
+                SharedPreferences booth = context.getSharedPreferences(String.valueOf(reservation.rid), Activity.MODE_PRIVATE);
                 SharedPreferences.Editor boothEdit = booth.edit();
                 boothEdit.clear();
                 boothEdit.commit();

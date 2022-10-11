@@ -75,15 +75,20 @@ public class BreakdownFragment extends Fragment {
             public void onItemClick(ReservationAdapter.ViewHolder holder, View view, int position) {
                 Reservation item = reservationAdapter.getItem(position);
 
-                SharedPreferences booth = context.getSharedPreferences("booth", Activity.MODE_PRIVATE);
+                SharedPreferences booth = context.getSharedPreferences(String.valueOf(item.rid), Activity.MODE_PRIVATE);
                 SharedPreferences.Editor boothEdit = booth.edit();
 
+                boothEdit.putInt("rId", item.rid);
                 boothEdit.putString("rFestival", item.rFestival);
                 boothEdit.commit();
 
-                //Reservation item = reservationAdapter.getItem(position);
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("축제이름비교", item.rFestival);
+                bundle1.putInt("축제개별저장", item.rid);
+
                 FragmentTransaction transaction = ((MainActivity)context).getSupportFragmentManager().beginTransaction();
                 BoothReservationFragment boothReservationFragment = new BoothReservationFragment();
+                boothReservationFragment.setArguments(bundle1);
                 transaction.replace(R.id.containers,boothReservationFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();

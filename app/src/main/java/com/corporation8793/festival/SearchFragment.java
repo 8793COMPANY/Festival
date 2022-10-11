@@ -56,6 +56,7 @@ public class SearchFragment extends Fragment {
         testText = view.findViewById(R.id.testText);
 
         recyclerView5.setVisibility((View.GONE));
+
         testText.setVisibility((View.GONE));
 
         loadBasic();
