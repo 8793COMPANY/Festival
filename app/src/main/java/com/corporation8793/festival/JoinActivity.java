@@ -153,6 +153,7 @@ public class JoinActivity extends AppCompatActivity {
                             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                             //Intent intent = new Intent(getApplicationContext(), UserInformationActivity.class);
                             startActivity(intent);
+                            finish();
                         }
                     }
                 }
@@ -288,7 +289,10 @@ public class JoinActivity extends AppCompatActivity {
         arrow_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                //onBackPressed();
+                Intent intent = new Intent(JoinActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 

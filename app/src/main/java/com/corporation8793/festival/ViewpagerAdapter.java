@@ -13,7 +13,6 @@ public class ViewpagerAdapter extends FragmentStateAdapter {
 
     final List<Fragment> mFragmentList = new ArrayList<>();
 
-
     public ViewpagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
     }

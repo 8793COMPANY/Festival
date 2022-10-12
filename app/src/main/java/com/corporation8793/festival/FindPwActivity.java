@@ -72,6 +72,7 @@ public class FindPwActivity extends AppCompatActivity {
                         intent.putExtra("비밀번호버튼", "로그인");
                         intent.putExtra("비밀번호", pw);
                         startActivity(intent);
+                        finish();
                     }
                 }
                 /*
@@ -87,9 +88,9 @@ public class FindPwActivity extends AppCompatActivity {
         arrow_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
-                //Intent intent = new Intent(getApplicationContext(), FindActivity.class);
-                //startActivity(intent);
+                //onBackPressed();
+                Intent intent = new Intent(getApplicationContext(), FindActivity.class);
+                startActivity(intent);
             }
         });
     }

@@ -49,7 +49,7 @@ public class CategoryFragment extends Fragment {
         festivalInfoAdapter = new FestivalInfoAdapter(getActivity(), 1, 1);
         recyclerView.setAdapter(festivalInfoAdapter);
 
-        db  = AppDatabase2.getDBInstance(this.getActivity());
+        db = AppDatabase2.getDBInstance(this.getActivity());
         loadCategoryList(category);
 
         return view;

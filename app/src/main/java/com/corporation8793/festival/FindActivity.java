@@ -26,9 +26,9 @@ public class FindActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find);
 
-        createFragment();
-        createViewpager();
-        settingTabLayout();
+        viewPager = findViewById(R.id.viewPager);
+        tabLayout = findViewById(R.id.tabs);
+        textView = findViewById(R.id.textView);
 
         arrow_left = findViewById(R.id.arrow_left);
         arrow_left.setOnClickListener(new View.OnClickListener() {
@@ -36,6 +36,33 @@ public class FindActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
+                finish();
+            }
+        });
+
+        createFragment();
+        createViewpager();
+        settingTabLayout();
+
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+
+                switch (position) {
+                    case 0:
+                    {
+                        tabLayout.getTabAt(position).select();
+                        textView.setText("아이디 찾기");
+                        break;
+                    }
+                    case 1:
+                    {
+                        tabLayout.getTabAt(position).select();
+                        textView.setText("비밀번호 찾기");
+                        break;
+                    }
+                }
             }
         });
 
@@ -57,7 +84,7 @@ public class FindActivity extends AppCompatActivity {
         viewpagerAdapter.addFragment(secondFragment);
 
         viewPager.setAdapter(viewpagerAdapter);
-        viewPager.setUserInputEnabled(false);//터치 스크롤 막음
+        viewPager.setUserInputEnabled(true);//터치 스크롤 막음
     }
 
     //tablayout - viewpager 연결
@@ -93,5 +120,4 @@ public class FindActivity extends AppCompatActivity {
             }
         });
     }
-
 }

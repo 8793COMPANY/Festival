@@ -59,6 +59,7 @@ public class FirstFragment extends Fragment {
                         intent.putExtra("아이디버튼", "로그인");
                         intent.putExtra("아이디", id);
                         startActivity(intent);
+                        getActivity().finish();
                     }
                 }
                 /*

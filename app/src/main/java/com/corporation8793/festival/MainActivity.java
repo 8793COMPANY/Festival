@@ -35,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     List<FestivalInfo> festivalInfoList;
     AppDatabase2 db;
 
+    long finishTime = 2000;
+    long pressTime = 0;
+
     //String key = "asO9jixtVSQd1RMbVCUr%2F1yFhPuiL5H9VXW1qGHbnb8TXnIWvVQ4MP0qS0pi4gf2EplaNECQC6ucPukAlFhnyA%3D%3D";
     //String festivalName, festivalStart, festivalEnd, festivalCo, festivalLocation, festivalMnnst, festivalAuspcInstt;
 
@@ -125,6 +128,25 @@ public class MainActivity extends AppCompatActivity {
             }
         }).start();*/
     }
+
+    /*
+    @Override
+    public void onBackPressed() {
+        long tempTime = System.currentTimeMillis();
+        long intervalTime = tempTime - pressTime;
+
+        if (0 <= intervalTime && finishTime >= intervalTime)
+        {
+            moveTaskToBack(true);
+            finish();
+            android.os.Process.killProcess(android.os.Process.myPid());
+        }
+        else
+        {
+            pressTime = tempTime;
+            Toast.makeText(getApplicationContext(), "한번더 누르시면 앱이 종료됩니다", Toast.LENGTH_SHORT).show();
+        }
+    }*/
 
     public void fragmentChange(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();

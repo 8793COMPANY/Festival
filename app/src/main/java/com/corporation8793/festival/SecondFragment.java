@@ -55,6 +55,7 @@ public class SecondFragment extends Fragment {
                         Intent intent = new Intent(getActivity(), FindPwActivity.class);
                         intent.putExtra("비밀번호찾기아이디", id);
                         startActivity(intent);
+                        getActivity().finish();
                     }
                 }
                 /*

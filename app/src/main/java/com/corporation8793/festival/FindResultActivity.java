@@ -46,9 +46,11 @@ public class FindResultActivity extends AppCompatActivity {
                 if(intent.hasExtra("아이디제목")) {
                     Intent intent = new Intent(getApplicationContext(), FindActivity.class);
                     startActivity(intent);
+                    finish();
                 }else if(intent.hasExtra("비밀번호제목")) {
                     Intent intent = new Intent(getApplicationContext(), FindPwActivity.class);
                     startActivity(intent);
+                    finish();
                 }else { }
             }
         });

@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListPopupWindow;
+import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -52,7 +53,7 @@ public class MainFragment extends Fragment {
         context = container.getContext();
 
         recyclerView = view.findViewById(R.id.recyclerView);
-        choiceMonth = view.findViewById(R.id.choiceMonth);
+        choiceMonth = (Spinner) view.findViewById(R.id.choiceMonth);
         choiceArea = view.findViewById(R.id.choiceArea);
         searchButton = view.findViewById(R.id.searchButton);
 
@@ -63,20 +64,21 @@ public class MainFragment extends Fragment {
         //축제 조회
         loadUserList();
 
-        choiceMonth_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.month_array, R.layout.spinner_item);
-        choiceMonth_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
-        choiceMonth.setAdapter(choiceMonth_adapter);
-
-        //스피너 드롭다운 높이 지정
+        //스피너 드롭다운 높이 지정 >> 안됨...
         try {
             Field popup = Spinner.class.getDeclaredField("mPopup");
             popup.setAccessible(true);
 
-            ListPopupWindow window = (ListPopupWindow) popup.get(choiceMonth);
-            window.setHeight(100);
-        } catch (Exception e) {
+            android.widget.ListPopupWindow window = (android.widget.ListPopupWindow) popup.get(choiceMonth);
+            window.setHeight(10);
+        } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
+
+        choiceMonth_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.month_array, R.layout.spinner_item);
+        choiceMonth_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        choiceMonth.setAdapter(choiceMonth_adapter);
+
 
         choiceMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -224,5 +226,4 @@ public class MainFragment extends Fragment {
         //리스트 저장
         festivalInfoAdapter.setFestivalInfoList(festivalInfoList4);
     }
-
 }

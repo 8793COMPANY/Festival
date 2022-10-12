@@ -149,8 +149,7 @@ public class FestivalInfoFragment extends Fragment implements OnMapReadyCallback
                     ((MainActivity)getActivity()).fragmentChange(MainFragment.newInstance());
                 } else {
                     ((MainActivity)getActivity()).fragmentChange(EventFragment.newInstance());
-                }
-                 */
+                }*/
             }
         });
 

@@ -53,6 +53,7 @@ public class PwCheckActivity extends AppCompatActivity {
                 intent.putExtra("수정페이지연락처", phoneNumber);
                 intent.putExtra("수정페이지지역인덱스", area);
                 startActivity(intent);
+                finish();
             }
         });
 

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +67,8 @@ public class RecyclerAdapter4 extends RecyclerView.Adapter<RecyclerAdapter4.View
                         //saveResult.setText(item.getSaveResult());
                         items.get(position).saveResult = "적립완료";
                         holder.saveResult.setText("적립완료");
-                        //Toast.makeText(context, items.get(position).saveResult, Toast.LENGTH_SHORT).show();
+                        Log.e("changeCheck", items.get(position).saveResult + "adapter");
+                        //Toast.makeText(context, items.get(position).saveResult + "adapter", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
