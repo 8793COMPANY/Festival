@@ -21,7 +21,7 @@ public class MyPageFragment extends Fragment {
     TextView logoutText;
     //ListAdapter myPageAdapter;
     //ListView listView;
-    ImageView list1Image2;
+    ImageView list1Image2, listView1, list2Image2, listView2, listView3;
     Button dataModify;
     Switch list3Switch;
     String userId, userPw;
@@ -35,7 +35,7 @@ public class MyPageFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_page, container, false);
-
+        // 로그아웃 처리
         logoutText = view.findViewById(R.id.logoutText);
         logoutText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +50,7 @@ public class MyPageFragment extends Fragment {
                 getActivity().finish();
             }
         });
-
+        // 예약내역이동1
         list1Image2 = view.findViewById(R.id.list1Image2);
         list1Image2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +71,53 @@ public class MyPageFragment extends Fragment {
                 transaction.commit();
             }
         });
+        // 예약내역이동1
+        listView1 = view.findViewById(R.id.listView1);
+        listView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                BreakdownFragment breakdownFragment = new BreakdownFragment();
 
+                Bundle bundle = new Bundle();
+                Bundle bundle1 = getArguments();
+
+                bundle.putString("예약내역", "추가안함");
+                bundle.putInt("알람사용자구분2", bundle1.getInt("메인예약구별"));
+
+                breakdownFragment.setArguments(bundle);
+                transaction.replace(R.id.containers,breakdownFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+        // 앱정보이동1
+        list2Image2 = view.findViewById(R.id.list2Image2);
+        list2Image2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                AppInfoFragment appInfoFragment = new AppInfoFragment();
+
+                transaction.replace(R.id.containers,appInfoFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+        // 앱정보이동1
+        listView2 = view.findViewById(R.id.listView2);
+        listView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                AppInfoFragment appInfoFragment = new AppInfoFragment();
+
+                transaction.replace(R.id.containers,appInfoFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+        // 회원정보수정버튼
         dataModify = view.findViewById(R.id.dataModify);
         dataModify.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,9 +139,9 @@ public class MyPageFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
+        // 자동로그인 처리
         list3Switch = view.findViewById(R.id.list3Switch);
-        //자동로그인 체크 처리
+        // 자동로그인 체크 처리
         SharedPreferences auto = getActivity().getSharedPreferences("autoLogin", Activity.MODE_PRIVATE);
         SharedPreferences.Editor autoLoginEdit = auto.edit();
         String check = auto.getString("check", null);

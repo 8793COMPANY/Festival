@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2e2c36"
+    tools:context=".AppInfoFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/backgroundImage"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#393648"
+            app:layout_constraintHeight_percent="0.120"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <TextView
+            android:id="@+id/appInfoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_semi_bold"
+            android:textColor="#ffffff"
+            android:text="앱 정보"
+            android:textSize="22dp"
+            app:layout_constraintVertical_bias="0.059"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/arrow_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_resize_left"
+            app:layout_constraintHorizontal_bias="0.065"
+            app:layout_constraintVertical_bias="0.059"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/versionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_regular"
+            android:textSize="14dp"
+            android:textColor="#ffffff"
+            android:text="안드로이드 버전"
+            app:layout_constraintVertical_bias="0.4"
+            app:layout_constraintTop_toBottomOf="@+id/backgroundImage"
+            app:layout_constraintBottom_toTopOf="@+id/lineImage"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <TextView
+            android:id="@+id/versionText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_regular"
+            android:textSize="14dp"
+            android:textColor="#ffffff"
+            android:text="버전"
+            app:layout_constraintVertical_bias="0.15"
+            app:layout_constraintTop_toBottomOf="@+id/versionText"
+            app:layout_constraintBottom_toTopOf="@+id/lineImage"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <ImageView
+            android:id="@+id/lineImage"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#434343"
+            app:layout_constraintVertical_bias="0.132"
+            app:layout_constraintTop_toBottomOf="@+id/backgroundImage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

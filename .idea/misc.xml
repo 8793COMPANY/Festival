@@ -14,6 +14,7 @@
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/custom_button2.xml" value="0.194" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/custom_button3.xml" value="0.343" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/custom_button_camera.xml" value="0.343" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/custom_button_camera_off.xml" value="0.343" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/custom_button_corner.xml" value="0.343" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/custom_checkbox.xml" value="0.18" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/custom_dialog.xml" value="0.343" />
@@ -34,11 +35,16 @@
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/mypage_resize_image2.xml" value="0.343" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/rounded_corner.xml" value="0.343" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/rounded_corner2.xml" value="0.343" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/rounded_corner3.xml" value="0.1955" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/search_resize_off.xml" value="0.1965" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/search_resize_on.xml" value="0.1955" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/search_resize_puple.xml" value="0.343" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/search_resize_purple.xml" value="0.343" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/search_resize_white.xml" value="0.3275" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/search_resize_white2.xml" value="0.1965" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/shape_circle.xml" value="0.343" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/shape_rectangle.xml" value="0.22" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/shape_rectangle2.xml" value="0.343" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/shape_rectangle_puple.xml" value="0.316" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/tab_selector.xml" value="0.316" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/tab_underline.xml" value="0.316" />
@@ -50,10 +56,12 @@
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/activity_product.xml" value="0.30055579307396324" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/activity_pw_change.xml" value="0.30055579307396324" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/activity_pw_check.xml" value="0.30055579307396324" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/activity_scan_qr.xml" value="0.30055579307396324" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/activity_update.xml" value="0.30055579307396324" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/activity_user_information.xml" value="0.30055579307396324" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/fragment_app_info.xml" value="0.30055579307396324" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/fragment_booth_reservation.xml" value="0.30055579307396324" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/fragment_breakdown.xml" value="0.30055579307396324" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/fragment_category.xml" value="0.30055579307396324" />

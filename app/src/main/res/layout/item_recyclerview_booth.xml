@@ -6,6 +6,11 @@
     android:background="@drawable/rounded_corner2"
     android:layout_marginBottom="20dp">
 
+    <ImageView
+        android:id="@+id/boothImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <TextView
         android:id="@+id/boothName"
         android:layout_width="wrap_content"

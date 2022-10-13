@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -46,7 +47,13 @@ public class ScanQrActivity extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(), intent.getStringExtra("포인트"), Toast.LENGTH_SHORT).show();
                 BoothReservationFragment boothReservationFragment = new BoothReservationFragment();
                 boothReservationFragment.getPoint(result.getContents(), intent.getIntExtra("위치", 0), "적립완료");
-                finish();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        finish();
+                    }
+                },500);
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);

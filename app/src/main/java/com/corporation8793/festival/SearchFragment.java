@@ -8,6 +8,9 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -129,6 +132,47 @@ public class SearchFragment extends Fragment {
         festivalInfoAdapter = new FestivalInfoAdapter(context, 3, uid);
         recyclerView5.setAdapter(festivalInfoAdapter);
 
+        rectangle13.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //입력 전
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //입력 중
+                search.setImageResource(R.drawable.search_resize_purple);
+                if(rectangle13.getText().toString().equals("")) {
+                    search.setImageResource(R.drawable.search_resize_white2);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //입력 완료
+            }
+        });
+
+        rectangle13.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                switch (keyCode) {
+                    case KeyEvent.KEYCODE_ENTER:
+                    {
+                        if(rectangle13.getText().toString().equals("")) {
+                            Toast.makeText(context, "검색어를 입력해주세요", Toast.LENGTH_SHORT).show();
+                        } else {
+                            recyclerView5.setVisibility((View.VISIBLE));
+                            loadUserList(rectangle13.getText().toString());
+                            search.setImageResource(R.drawable.search_resize_white2);
+                        }
+                        break;
+                    }
+                }
+                return false;
+            }
+        });
+
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,6 +181,7 @@ public class SearchFragment extends Fragment {
                 } else {
                     recyclerView5.setVisibility((View.VISIBLE));
                     loadUserList(rectangle13.getText().toString());
+                    search.setImageResource(R.drawable.search_resize_white2);
                 }
             }
         });

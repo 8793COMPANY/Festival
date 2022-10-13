@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -62,6 +63,12 @@ public class BoothReservationFragment extends Fragment {
 
         String fName = booth.getString("rFestival",null);
         String total = booth.getString("total", null);
+        /*
+        // 적립 포인트 결과
+        String [] rBooth = new String[10];
+        for(int i=0; i < 10; i++) {
+            rBooth[i] = booth.getString("rBooth" + String.valueOf(i), null);
+        }*/
         String rBooth1 = booth.getString("rBooth1", null);
         String rBooth2 = booth.getString("rBooth2", null);
         String rBooth3 = booth.getString("rBooth3", null);
@@ -92,6 +99,11 @@ public class BoothReservationFragment extends Fragment {
 
         if(total != null) {
             pointNumText.setText(total);
+            /*
+            for(int i=0; i < 10; i++) {
+                // 적립 포인트 결과
+                recyclerAdapter4.getItem(i).saveResult = rBooth[i];
+            }*/
             recyclerAdapter4.getItem(0).saveResult = rBooth1;
             recyclerAdapter4.getItem(1).saveResult = rBooth2;
             recyclerAdapter4.getItem(2).saveResult = rBooth3;
@@ -102,11 +114,14 @@ public class BoothReservationFragment extends Fragment {
             recyclerAdapter4.getItem(7).saveResult = rBooth8;
             recyclerAdapter4.getItem(8).saveResult = rBooth9;
             recyclerAdapter4.getItem(9).saveResult = rBooth10;
-
             //Toast.makeText(getActivity(), "저장내용 존재", Toast.LENGTH_SHORT).show();
         } else {
             //부스 포인트 적립 결과 초기저장
             boothEdit.putString("total", pointNumText.getText().toString());
+            /*
+            for(int i=0; i < 10; i++) {
+                boothEdit.putString("rBooth" + String.valueOf(i), recyclerAdapter4.getItem(i).saveResult);
+            }*/
             boothEdit.putString("rBooth1", recyclerAdapter4.getItem(0).saveResult);
             boothEdit.putString("rBooth2", recyclerAdapter4.getItem(1).saveResult);
             boothEdit.putString("rBooth3", recyclerAdapter4.getItem(2).saveResult);
@@ -118,7 +133,6 @@ public class BoothReservationFragment extends Fragment {
             boothEdit.putString("rBooth9", recyclerAdapter4.getItem(8).saveResult);
             boothEdit.putString("rBooth10", recyclerAdapter4.getItem(9).saveResult);
             boothEdit.commit();
-
             //Toast.makeText(getActivity(), "초기내용", Toast.LENGTH_SHORT).show();
             //Toast.makeText(getActivity(), recyclerAdapter4.getItem(0).saveResult, Toast.LENGTH_SHORT).show();
         }
@@ -184,6 +198,7 @@ public class BoothReservationFragment extends Fragment {
 
         //changePosition의 부스포인트가 point랑 같을때 saveResult 변경
         if(!point.equals("")) {
+
             //Toast.makeText(getActivity(), point, Toast.LENGTH_SHORT).show();
             if(point.equals(changePoint)) {
                 //Toast.makeText(getActivity(), "부스 포인트가 같습니다.", Toast.LENGTH_SHORT).show();
@@ -226,10 +241,10 @@ public class BoothReservationFragment extends Fragment {
                         recyclerAdapter4.getItem(i).saveResult = booth.getString("rBooth" + String.valueOf(i+1), null);
                         Log.e("check1", "rBooth" + String.valueOf(i+1));
                         Log.e("check2", booth.getString("rBooth" + String.valueOf(i+1), null));
-                        recyclerView.setAdapter(recyclerAdapter4);
+                        recyclerAdapter4.notifyItemChanged(changePosition, "payload");
+                        //recyclerView.setAdapter(recyclerAdapter4);
                     }
                 }
-                //boothEdit.putString("rBooth1", recyclerAdapter4.getItem(0).saveResult);
                 //boothEdit.commit();
             } else {
                 Toast.makeText(getActivity(), "부스 포인트가 다릅니다.", Toast.LENGTH_SHORT).show();
@@ -249,22 +264,4 @@ public class BoothReservationFragment extends Fragment {
         super.onStop();
         Log.d(TAG, "onStop : 호출됨");
     }
-    /*
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        Log.d(TAG, "onStop : 호출됨");
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG, "onStop : 호출됨");
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        Log.d(TAG, "onStop : 호출됨");
-    }*/
 }

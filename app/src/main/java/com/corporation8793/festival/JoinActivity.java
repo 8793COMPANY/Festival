@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class JoinActivity extends AppCompatActivity {
 
@@ -125,10 +127,16 @@ public class JoinActivity extends AppCompatActivity {
 
                     int position = rectangle9_adapter.getPosition(sPwQuestion);
 
+                    //Pattern pattern = Pattern.compile("^[a-zA-X0-9]@[a-zA-Z0-9].[a-zA-Z0-9]");
+                    Pattern pattern = android.util.Patterns.EMAIL_ADDRESS;
+                    Matcher matcher = pattern.matcher((rectangle11).getText().toString());
+
                     if(!sPw.equals(sPwCheck)) {
                         Toast.makeText(getApplicationContext(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
                     } else if(sName.equals("")||sId.equals("")||sPw.equals("")||sPwCheck.equals("")||sPwAnswer.equals("")||sEmail.equals("")||sPhoneNumber.equals("")) {
                         Toast.makeText(getApplicationContext(), "회원정보가 부족합니다 모두 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    } else if(!matcher.matches()) {
+                        Toast.makeText(getApplicationContext(), "이메일 형식이 올바르지 않습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
                     } else {
                         //중복확인
                         userList = db.userDao().getAllUser();

@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +54,10 @@ public class RecyclerAdapter4 extends RecyclerView.Adapter<RecyclerAdapter4.View
     public void onBindViewHolder(@NonNull RecyclerAdapter4.ViewHolder holder, int position) {
         Booth item = items.get(position);
         holder.setItem(item);
+
+        if(item.getSaveResult().equals("적립완료")) {
+            holder.setOff(item);
+        }
     }
 
     @Override
@@ -67,8 +73,15 @@ public class RecyclerAdapter4 extends RecyclerView.Adapter<RecyclerAdapter4.View
                         //saveResult.setText(item.getSaveResult());
                         items.get(position).saveResult = "적립완료";
                         holder.saveResult.setText("적립완료");
-                        Log.e("changeCheck", items.get(position).saveResult + "adapter");
+                        //Log.e("changeCheck", items.get(position).saveResult + "adapter");
                         //Toast.makeText(context, items.get(position).saveResult + "adapter", Toast.LENGTH_SHORT).show();
+                        holder.boothImage.setImageResource(R.drawable.rounded_corner3);
+                        holder.cameraButton.setText("이용 완료");
+                        holder.cameraButton.setBackgroundResource(R.drawable.custom_button_camera_off);
+                        holder.boothName.setTextColor(Color.parseColor("#cccccc"));
+                        holder.boothTime.setTextColor(Color.parseColor("#cccccc"));
+                        holder.boothPoint.setTextColor(Color.parseColor("#cccccc"));
+                        holder.saveResult.setTextColor(Color.parseColor("#cccccc"));
                     }
                 }
             }
@@ -107,6 +120,7 @@ public class RecyclerAdapter4 extends RecyclerView.Adapter<RecyclerAdapter4.View
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView boothName, boothTime, boothPoint, saveResult;
         Button cameraButton;
+        ImageView boothImage;
 
         public ViewHolder(@NonNull View itemView, final OnItemClickListener2 listener) {
             super(itemView);
@@ -116,6 +130,9 @@ public class RecyclerAdapter4 extends RecyclerView.Adapter<RecyclerAdapter4.View
             boothPoint = itemView.findViewById(R.id.boothPoint);
             saveResult = itemView.findViewById(R.id.saveResult);
             cameraButton = itemView.findViewById(R.id.cameraButton);
+            boothImage = itemView.findViewById(R.id.boothImage);
+
+
 
             cameraButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -149,12 +166,23 @@ public class RecyclerAdapter4 extends RecyclerView.Adapter<RecyclerAdapter4.View
             saveResult.setText(item.getSaveResult());
         }
 
-        public void capture(){
-            //Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-            //Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            //((Activity)context).startActivityForResult(intent,101);
-            Intent intent = new Intent(context, ScanQrActivity.class);
-            context.startActivity(intent);
+        public void setOff(Booth item) {
+            boothImage.setImageResource(R.drawable.rounded_corner3);
+            cameraButton.setText("이용 완료");
+            cameraButton.setBackgroundResource(R.drawable.custom_button_camera_off);
+            boothName.setTextColor(Color.parseColor("#cccccc"));
+            boothTime.setTextColor(Color.parseColor("#cccccc"));
+            boothPoint.setTextColor(Color.parseColor("#cccccc"));
+            saveResult.setTextColor(Color.parseColor("#cccccc"));
+                        /*
+            holder.boothImage.setImageResource(R.drawable.rounded_corner3);
+            holder.cameraButton.setText("이용 완료");
+            holder.cameraButton.setBackgroundResource(R.drawable.custom_button_camera_off);
+            holder.boothName.setTextColor(Color.parseColor("#cccccc"));
+            holder.boothTime.setTextColor(Color.parseColor("#cccccc"));
+            holder.boothPoint.setTextColor(Color.parseColor("#cccccc"));
+            holder.saveResult.setTextColor(Color.parseColor("#cccccc"));
+            festivalImage.setBackgroundResource(item.getImage());*/
         }
     }
 }

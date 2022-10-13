@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#2e2c36"
+    tools:context=".PwChangeActivity">
+
+    <ImageView
+        android:id="@+id/arrow_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arrow_resize_left"
+        android:layout_marginTop="33dp"
+        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendard_medium"
+        android:textColor="#ffffff"
+        android:text="비밀번호 변경"
+        android:textSize="18dp"
+        android:letterSpacing="-0.03"
+        android:layout_marginTop="35dp"
+        app:layout_constraintVertical_bias="0.047"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <EditText
+        android:id="@+id/newPwInput"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/shape_rectangle2"
+        android:fontFamily="@font/pretendard_medium"
+        android:inputType="textNoSuggestions|textPassword"
+        android:maxLength="20"
+        android:textColor="#ffffff"
+        android:hint="새 비밀번호 입력"
+        android:textColorHint="#9a9a9a"
+        android:textSize="15dp"
+        android:paddingLeft="20dp"
+        app:layout_constraintWidth_percent="0.89"
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintVertical_bias="0.046"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <EditText
+        android:id="@+id/newPwCheck"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/shape_rectangle2"
+        android:fontFamily="@font/pretendard_medium"
+        android:inputType="textNoSuggestions|textPassword"
+        android:maxLength="20"
+        android:textColor="#ffffff"
+        android:hint="비밀번호 확인"
+        android:textColorHint="#9a9a9a"
+        android:textSize="15dp"
+        android:paddingLeft="20dp"
+        app:layout_constraintWidth_percent="0.89"
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintVertical_bias="0.024"
+        app:layout_constraintTop_toBottomOf="@+id/newPwInput"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/errorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendard_regular"
+        android:textSize="14dp"
+        android:textColor="#ff8686"
+        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintVertical_bias="0.014"
+        app:layout_constraintTop_toBottomOf="@+id/newPwCheck"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/left_guide"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/changeOkButton"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/pretendard_medium"
+        android:text="변경 완료"
+        android:textColor="#ffffff"
+        android:textSize="17dp"
+        android:paddingBottom="4dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintVertical_bias="0.035"
+        app:layout_constraintWidth_percent="0.89"
+        app:layout_constraintTop_toBottomOf="@+id/errorText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/left_guide"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintGuide_percent="0.05"
+        android:orientation="vertical"></androidx.constraintlayout.widget.Guideline>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
