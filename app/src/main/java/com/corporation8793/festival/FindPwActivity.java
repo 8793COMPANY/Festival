@@ -71,6 +71,7 @@ public class FindPwActivity extends AppCompatActivity {
                         intent.putExtra("비밀번호상단", "비밀번호를 찾았습니다.");
                         intent.putExtra("비밀번호버튼", "로그인");
                         intent.putExtra("비밀번호", pw);
+                        intent.putExtra("아이디", id);
                         startActivity(intent);
                         finish();
                     }

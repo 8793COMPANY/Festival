@@ -45,7 +45,10 @@
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/shape_circle.xml" value="0.343" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/shape_rectangle.xml" value="0.22" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/shape_rectangle2.xml" value="0.343" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/shape_rectangle3.xml" value="0.343" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/shape_rectangle_puple.xml" value="0.316" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/shape_rectangle_puple2.xml" value="0.343" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/shape_rectangle_purple2_off.xml" value="0.343" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/tab_selector.xml" value="0.316" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/tab_underline.xml" value="0.316" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/activity_custom_dialog.xml" value="0.30055579307396324" />
@@ -71,6 +74,7 @@
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/fragment_first_result.xml" value="0.30055579307396324" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/fragment_main.xml" value="0.2" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/fragment_my_page.xml" value="0.30055579307396324" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/fragment_product.xml" value="0.30055579307396324" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/fragment_reservation.xml" value="0.28858486532706284" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/fragment_search.xml" value="0.2" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/fragment_second.xml" value="0.30055579307396324" />

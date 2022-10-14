@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/boothReservation"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2e2c36"
+    tools:context=".ProductFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/productText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_semi_bold"
+            android:textColor="#ffffff"
+            android:text="상품이용하기"
+            android:textSize="22dp"
+            app:layout_constraintVertical_bias="0.059"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/arrow_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_resize_left"
+            app:layout_constraintHorizontal_bias="0.065"
+            app:layout_constraintVertical_bias="0.059"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/pointText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:textColor="#ffffff"
+            android:text="적립포인트:"
+            android:textSize="15dp"
+            app:layout_constraintVertical_bias="0.046"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productText" />
+
+        <TextView
+            android:id="@+id/pointNumText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:textColor="#ac93ff"
+            android:text="0"
+            android:textSize="31.5dp"
+            app:layout_constraintVertical_bias="0.003"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pointText" />
+
+        <TextView
+            android:id="@+id/pointNumText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:textColor="#ac93ff"
+            android:text="p"
+            android:textSize="31.5dp"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintVertical_bias="0.003"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/pointNumText"
+            app:layout_constraintTop_toBottomOf="@+id/pointText" />
+
+        <TextView
+            android:id="@+id/product1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_rectangle_puple2"
+            android:fontFamily="@font/pretendard_regular"
+            android:gravity="center|left"
+            android:text="캐릭터 그립톡"
+            android:textColor="#ffffff"
+            android:textSize="18dp"
+            android:paddingLeft="20dp"
+            app:layout_constraintHeight_percent="0.090"
+            app:layout_constraintWidth_percent="0.89"
+            app:layout_constraintVertical_bias="0.050"
+            app:layout_constraintTop_toBottomOf="@+id/pointNumText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/product1Point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="1,000 P"
+            android:textColor="#ffffff"
+            android:textSize="19dp"
+            app:layout_constraintVertical_bias="0.080"
+            app:layout_constraintTop_toBottomOf="@+id/pointNumText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/right_guide"/>
+
+        <TextView
+            android:id="@+id/product2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_rectangle_puple2"
+            android:fontFamily="@font/pretendard_regular"
+            android:gravity="center|left"
+            android:text="축제 미니캔들"
+            android:textColor="#ffffff"
+            android:textSize="18dp"
+            android:paddingLeft="20dp"
+            app:layout_constraintHeight_percent="0.090"
+            app:layout_constraintWidth_percent="0.89"
+            app:layout_constraintVertical_bias="0.033"
+            app:layout_constraintTop_toBottomOf="@+id/product1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/product2Point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="500 P"
+            android:textColor="#ffffff"
+            android:textSize="19dp"
+            app:layout_constraintVertical_bias="0.069"
+            app:layout_constraintTop_toBottomOf="@+id/product1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/right_guide"/>
+
+        <TextView
+            android:id="@+id/product3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_rectangle_puple2"
+            android:fontFamily="@font/pretendard_regular"
+            android:gravity="center|left"
+            android:text="축제 머크컵"
+           android:textColor="#ffffff"
+            android:textSize="18dp"
+            android:paddingLeft="20dp"
+            app:layout_constraintHeight_percent="0.090"
+            app:layout_constraintWidth_percent="0.89"
+            app:layout_constraintVertical_bias="0.039"
+            app:layout_constraintTop_toBottomOf="@+id/product2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/product3Point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="1,000 P"
+            android:textColor="#ffffff"
+            android:textSize="19dp"
+            app:layout_constraintVertical_bias="0.081"
+            app:layout_constraintTop_toBottomOf="@+id/product2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/right_guide"/>
+
+        <TextView
+            android:id="@+id/product4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_rectangle_puple2"
+            android:fontFamily="@font/pretendard_regular"
+            android:gravity="center|left"
+            android:text="축제 엽서"
+            android:textColor="#ffffff"
+            android:textSize="18dp"
+            android:paddingLeft="20dp"
+            app:layout_constraintHeight_percent="0.090"
+            app:layout_constraintWidth_percent="0.89"
+            app:layout_constraintVertical_bias="0.048"
+            app:layout_constraintTop_toBottomOf="@+id/product3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/product4Point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="300 P"
+            android:textColor="#ffffff"
+            android:textSize="19dp"
+            app:layout_constraintVertical_bias="0.108"
+            app:layout_constraintTop_toBottomOf="@+id/product3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/right_guide"/>
+
+        <TextView
+            android:id="@+id/product5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_rectangle_purple2_off"
+            android:fontFamily="@font/pretendard_regular"
+            android:gravity="center|left"
+            android:text="캐릭터 키링"
+            android:textColor="#ffffff"
+            android:textSize="18dp"
+            android:paddingLeft="20dp"
+            app:layout_constraintHeight_percent="0.090"
+            app:layout_constraintWidth_percent="0.89"
+            app:layout_constraintVertical_bias="0.061"
+            app:layout_constraintTop_toBottomOf="@+id/product4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/product5Point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="1,500 P"
+            android:textColor="#a3a3a3"
+            android:textSize="19dp"
+            app:layout_constraintVertical_bias="0.136"
+            app:layout_constraintTop_toBottomOf="@+id/product4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/right_guide"/>
+
+        <TextView
+            android:id="@+id/soldOutText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_rectangle3"
+            android:fontFamily="@font/pretendard_medium"
+            android:gravity="center"
+            android:text="품절"
+            android:textColor="#cccccc"
+            android:textSize="13dp"
+            app:layout_constraintHeight_percent="0.027"
+            app:layout_constraintWidth_percent="0.106"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintVertical_bias="0.15"
+            app:layout_constraintTop_toBottomOf="@+id/product4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/right_guide2"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <TextView
+            android:id="@+id/product6"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_rectangle_puple2"
+            android:fontFamily="@font/pretendard_regular"
+            android:gravity="center|left"
+            android:text="축제 마그넷"
+            android:textColor="#ffffff"
+            android:textSize="18dp"
+            android:paddingLeft="20dp"
+            app:layout_constraintHeight_percent="0.090"
+            app:layout_constraintWidth_percent="0.89"
+            app:layout_constraintVertical_bias="0.084"
+            app:layout_constraintTop_toBottomOf="@+id/product5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/product6Point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="500 P"
+            android:textColor="#ffffff"
+            android:textSize="19dp"
+            app:layout_constraintVertical_bias="0.184"
+            app:layout_constraintTop_toBottomOf="@+id/product5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/right_guide"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/right_guide"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintGuide_percent="0.89"
+            android:orientation="vertical"></androidx.constraintlayout.widget.Guideline>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/right_guide2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintGuide_percent="0.35"
+            android:orientation="vertical"></androidx.constraintlayout.widget.Guideline>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

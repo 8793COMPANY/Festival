@@ -73,6 +73,10 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.main:
+                        if(mainFragment.choiceMonth != null) {
+                            mainFragment.choiceMonth.setSelection(0);
+                            mainFragment.choiceArea.setSelection(0);
+                        }
                         getSupportFragmentManager().beginTransaction().replace(R.id.containers, mainFragment).commit();
                         return true;
                     case R.id.search:

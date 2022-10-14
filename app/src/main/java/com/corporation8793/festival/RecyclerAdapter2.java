@@ -34,7 +34,7 @@ public class RecyclerAdapter2 extends RecyclerView.Adapter<RecyclerAdapter2.View
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View itemView = inflater.inflate(R.layout.item_recyclerview_search, parent, false);
 
-        itemView.getLayoutParams().width = 480;
+        itemView.getLayoutParams().width = 450;
 
         return new RecyclerAdapter2.ViewHolder(itemView);
     }

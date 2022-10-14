@@ -53,6 +53,7 @@ public class EventFragment extends Fragment {
         choiceMonth2 = view.findViewById(R.id.choiceMonth2);
         choiceArea2 = view.findViewById(R.id.choiceArea2);
         searchButton2 = view.findViewById(R.id.searchButton2);
+        searchButton2.setBackgroundResource(R.drawable.search_resize_off);
 
         Bundle bundle = getArguments();
         int uid = bundle.getInt("메인예약구별");
@@ -68,11 +69,12 @@ public class EventFragment extends Fragment {
         choiceMonth_adapter2.setDropDownViewResource(R.layout.spinner_dropdown_item);
         choiceMonth2.setAdapter(choiceMonth_adapter2);
 
+        choiceMonth2.setSelection(0, false);
         choiceMonth2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                searchButton2.setBackgroundResource(R.drawable.search_resize_on);
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -82,16 +84,18 @@ public class EventFragment extends Fragment {
         choiceArea_adapter2.setDropDownViewResource(R.layout.spinner_dropdown_item);
         choiceArea2.setAdapter(choiceArea_adapter2);
 
+        choiceArea2.setSelection(0, false);
         choiceArea2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                searchButton2.setBackgroundResource(R.drawable.search_resize_on);
+
                 if(choiceArea2.getSelectedItem().toString().equals("경북/대구")) {
                     choiceAreaText = "경상북도/대구광역시";
                 } else if(choiceArea2.getSelectedItem().toString().equals("경남/부산")) {
                     choiceAreaText = "경상남도/부산";
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -100,23 +104,51 @@ public class EventFragment extends Fragment {
         searchButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(choiceArea2.getSelectedItem().toString().equals("강원도") || choiceArea2.getSelectedItem().toString().equals("제주도")) {
-                    String[] splitMonth = choiceMonth2.getSelectedItem().toString().split("월");
+                searchButton2.setBackgroundResource(R.drawable.search_resize_off);
 
-                    if(splitMonth[0].equals("10") || splitMonth[0].equals("11") || splitMonth[0].equals("12")) {
-                        loadUserList2(splitMonth[0], choiceArea2.getSelectedItem().toString());
+                if(choiceArea2.getSelectedItem().toString().equals("강원도") || choiceArea2.getSelectedItem().toString().equals("제주도")) {
+                    if(choiceMonth2.getSelectedItem().toString().equals("전체")) {
+                        loadUserList6(choiceArea2.getSelectedItem().toString(), "");
                     } else {
-                        loadUserList2("0" + splitMonth[0], choiceArea2.getSelectedItem().toString());
+                        String[] splitMonth = choiceMonth2.getSelectedItem().toString().split("월");
+
+                        if(splitMonth[0].equals("10") || splitMonth[0].equals("11") || splitMonth[0].equals("12")) {
+                            loadUserList2(splitMonth[0], choiceArea2.getSelectedItem().toString());
+                        } else {
+                            loadUserList2("0" + splitMonth[0], choiceArea2.getSelectedItem().toString());
+                        }
                     }
                 } else if(choiceArea2.getSelectedItem().toString().equals("경북/대구") || choiceArea2.getSelectedItem().toString().equals("경남/부산")) {
+                    if(choiceMonth2.getSelectedItem().toString().equals("전체")) {
+                        String[] splitArea = choiceAreaText.toString().split("/");
+
+                        loadUserList6(splitArea[0], splitArea[1]);
+                    } else {
+                        String[] splitMonth = choiceMonth2.getSelectedItem().toString().split("월");
+                        String[] splitArea = choiceAreaText.toString().split("/");
+
+                        if(splitMonth[0].equals("10") || splitMonth[0].equals("11") || splitMonth[0].equals("12")) {
+                            loadUserList3(splitMonth[0], splitArea[0], splitArea[1]);
+                        } else {
+                            loadUserList3("0" + splitMonth[0], splitArea[0], splitArea[1]);
+                        }
+                    }
+                } else if(choiceArea2.getSelectedItem().toString().equals("전국") && !choiceMonth2.getSelectedItem().toString().equals("전체")) {
                     String[] splitMonth = choiceMonth2.getSelectedItem().toString().split("월");
-                    String[] splitArea = choiceAreaText.toString().split("/");
 
                     if(splitMonth[0].equals("10") || splitMonth[0].equals("11") || splitMonth[0].equals("12")) {
-                        loadUserList3(splitMonth[0], splitArea[0], splitArea[1]);
+                        loadUserList5(splitMonth[0]);
                     } else {
-                        loadUserList3("0" + splitMonth[0], splitArea[0], splitArea[1]);
+                        loadUserList5("0" + splitMonth[0]);
                     }
+
+                } else if(!choiceArea2.getSelectedItem().toString().equals("전국") && choiceMonth2.getSelectedItem().toString().equals("전체")) {
+                    String[] splitArea = choiceArea2.getSelectedItem().toString().split("/");
+
+                    loadUserList6(splitArea[0], splitArea[1]);
+
+                } else if(choiceArea2.getSelectedItem().toString().equals("전국") && choiceMonth2.getSelectedItem().toString().equals("전체")) {
+                    loadUserList();
                 } else {
                     String[] splitMonth = choiceMonth2.getSelectedItem().toString().split("월");
                     String[] splitArea = choiceArea2.getSelectedItem().toString().split("/");
@@ -196,5 +228,50 @@ public class EventFragment extends Fragment {
         }
         //리스트 저장
         festivalInfoAdapter.setFestivalInfoList(festivalInfoList4);
+    }
+    //지역은 전국이고 날짜는 전체가 아닌경우
+    private void loadUserList5(String s1) {
+        festivalInfoList3.clear();
+
+        for(int i=0; i < festivalInfoList2.size(); i++) {
+            String[] splitMonth = festivalInfoList2.get(i).festivalStart.toString().split("-");
+
+            if(splitMonth[1].equals(s1)) {
+                festivalInfoList3.add(festivalInfoList2.get(i));
+            }
+        }
+
+        if(festivalInfoList3.isEmpty()) {
+            Toast.makeText(getActivity(), "축제가 없습니다", Toast.LENGTH_SHORT).show();
+        }
+        //리스트 저장
+        festivalInfoAdapter.setFestivalInfoList(festivalInfoList3);
+    }
+    //지역은 전국이아니고 날짜가 전체인 경우
+    private void loadUserList6(String s1, String s2) {
+        festivalInfoList3.clear();
+
+        if(s2.equals("")) {     //강원도와 전라도인 경우
+            for(int i=0; i < festivalInfoList2.size(); i++) {
+                if(festivalInfoList2.get(i).festivalLocation.contains(s1) || festivalInfoList2.get(i).festivalRdnmadr.contains(s1) ||
+                        festivalInfoList2.get(i).festivalLnmadr.contains(s1))  {
+                    festivalInfoList3.add(festivalInfoList2.get(i));
+                }
+            }
+        } else {    //그 외의 경우
+            for(int i=0; i < festivalInfoList2.size(); i++) {
+                if(festivalInfoList2.get(i).festivalLocation.contains(s1) || festivalInfoList2.get(i).festivalLocation.contains(s2)
+                        || festivalInfoList2.get(i).festivalRdnmadr.contains(s1) || festivalInfoList2.get(i).festivalRdnmadr.contains(s2)
+                        || festivalInfoList2.get(i).festivalLnmadr.contains(s1) || festivalInfoList2.get(i).festivalLnmadr.contains(s2))  {
+                    festivalInfoList3.add(festivalInfoList2.get(i));
+                }
+            }
+        }
+
+        if(festivalInfoList3.isEmpty()) {
+            Toast.makeText(getActivity(), "축제가 없습니다", Toast.LENGTH_SHORT).show();
+        }
+        //리스트 저장
+        festivalInfoAdapter.setFestivalInfoList(festivalInfoList3);
     }
 }

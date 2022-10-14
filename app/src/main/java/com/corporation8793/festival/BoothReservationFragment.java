@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -175,8 +176,18 @@ public class BoothReservationFragment extends Fragment {
         productButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ProductActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(getActivity(), ProductActivity.class);
+                //startActivity(intent);
+                FragmentTransaction transaction = ((MainActivity)getActivity()).getSupportFragmentManager().beginTransaction();
+                ProductFragment productFragment = new ProductFragment();
+
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("적립포인트", total);
+
+                productFragment.setArguments(bundle1);
+                transaction.replace(R.id.containers,productFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 
