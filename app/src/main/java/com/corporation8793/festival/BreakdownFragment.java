@@ -78,7 +78,6 @@ public class BreakdownFragment extends Fragment {
                 SharedPreferences booth = context.getSharedPreferences(String.valueOf(item.rid), Activity.MODE_PRIVATE);
                 SharedPreferences.Editor boothEdit = booth.edit();
 
-                boothEdit.putInt("rId", item.rid);
                 boothEdit.putString("rFestival", item.rFestival);
                 boothEdit.commit();
 

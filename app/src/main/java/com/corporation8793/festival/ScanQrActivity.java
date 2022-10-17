@@ -1,12 +1,10 @@
 package com.corporation8793.festival;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -16,7 +14,7 @@ public class ScanQrActivity extends AppCompatActivity {
 
     private IntentIntegrator qrScan;
 
-    private static final String TAG = "ScanQrActivity";
+    //private static final String TAG = "ScanQrActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +28,7 @@ public class ScanQrActivity extends AppCompatActivity {
         //new IntentIntegrator(this).initiateScan();
         qrScan = new IntentIntegrator(this);
         qrScan.setOrientationLocked(true);
-        qrScan.setPrompt("QR코드를 사각형 안에 비춰주세요.");
+        qrScan.setPrompt("QR 코드를 사각형 안에 비춰주세요.");
         qrScan.initiateScan();
     }
 

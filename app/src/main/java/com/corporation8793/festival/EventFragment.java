@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,6 +34,11 @@ public class EventFragment extends Fragment {
     Context context;
     ImageView searchButton2;
     String choiceAreaText;
+
+    DotsIndicator dots_indicator;
+    ViewPager2 view_pager;
+    ImageSliderAdapter imageSliderAdapter;
+    int [] images = new int[] {R.drawable.event_image1, R.drawable.event_image2, R.drawable.event_image1};
 
     List<FestivalInfo> festivalInfoList = new ArrayList<>();
     List<FestivalInfo> festivalInfoList2 = new ArrayList<>();
@@ -54,6 +62,14 @@ public class EventFragment extends Fragment {
         choiceArea2 = view.findViewById(R.id.choiceArea2);
         searchButton2 = view.findViewById(R.id.searchButton2);
         searchButton2.setBackgroundResource(R.drawable.search_resize_off);
+
+        dots_indicator = view.findViewById(R.id.dots_indicator);
+        view_pager = view.findViewById(R.id.view_pager);
+        imageSliderAdapter = new ImageSliderAdapter(context, images);
+
+        //view_pager.setOffscreenPageLimit(1);
+        view_pager.setAdapter(imageSliderAdapter);
+        dots_indicator.attachTo(view_pager);
 
         Bundle bundle = getArguments();
         int uid = bundle.getInt("메인예약구별");

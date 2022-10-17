@@ -26,7 +26,7 @@ public class RecyclerAdapter4 extends RecyclerView.Adapter<RecyclerAdapter4.View
     Context context;
     OnItemClickListener2 listener;
 
-    interface OnItemClickListener{
+    interface OnItemClickListener {
         void onScanClick(View view, int position);
     }
     private OnItemClickListener mListener = null;

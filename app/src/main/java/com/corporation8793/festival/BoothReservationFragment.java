@@ -35,6 +35,7 @@ public class BoothReservationFragment extends Fragment {
     static String changePoint;
     static int totalPoint = 0;
     static String result = "";
+    static String updatePoint = "";
 
     //ArrayList<Booth> list = new ArrayList<Booth>();
 
@@ -59,6 +60,7 @@ public class BoothReservationFragment extends Fragment {
         Bundle bundle = getArguments();
         int fRId = bundle.getInt("축제개별저장", 0);
 
+        //부스 이용 내역 갱신용
         SharedPreferences booth = getActivity().getSharedPreferences(String.valueOf(fRId), Activity.MODE_PRIVATE);
         SharedPreferences.Editor boothEdit = booth.edit();
 
@@ -182,7 +184,7 @@ public class BoothReservationFragment extends Fragment {
                 ProductFragment productFragment = new ProductFragment();
 
                 Bundle bundle1 = new Bundle();
-                bundle1.putString("적립포인트", total);
+                bundle1.putString("적립포인트", pointNumText.getText().toString());
 
                 productFragment.setArguments(bundle1);
                 transaction.replace(R.id.containers,productFragment);
@@ -200,25 +202,29 @@ public class BoothReservationFragment extends Fragment {
         result = r;
     }
 
+    public void setPoint(String s) {
+        updatePoint = s;
+    }
+
     @Override
     public void onResume() {
         super.onResume();
         Log.d(TAG, "onResume : 호출됨");
         Log.e("point", point);
         Log.e("position", String.valueOf(changePosition));
+        Log.e("updatePoint", updatePoint);
+
+        Bundle bundle = getArguments();
+        int fRId = bundle.getInt("축제개별저장", 0);
 
         //changePosition의 부스포인트가 point랑 같을때 saveResult 변경
         if(!point.equals("")) {
-
             //Toast.makeText(getActivity(), point, Toast.LENGTH_SHORT).show();
             if(point.equals(changePoint)) {
                 //Toast.makeText(getActivity(), "부스 포인트가 같습니다.", Toast.LENGTH_SHORT).show();
-                Bundle bundle = getArguments();
-                int fRId = bundle.getInt("축제개별저장", 0);
 
                 //recyclerAdapter4.notifyItemChanged(changePosition, "payload");
                 //Log.e("changeCheck", recyclerAdapter4.getItem(changePosition).saveResult);
-
                 SharedPreferences pref = getActivity().getSharedPreferences("sumFirst : " + String.valueOf(fRId), Activity.MODE_PRIVATE);
                 boolean first = pref.getBoolean("sumFirst : " + String.valueOf(fRId), false);
                 if(first==false){
@@ -232,6 +238,9 @@ public class BoothReservationFragment extends Fragment {
                     Log.d("첫계산인가요?", "아니요");
                     totalPoint = Integer.valueOf(pointNumText.getText().toString()) + Integer.valueOf(point);
                 }
+
+                SharedPreferences product = getActivity().getSharedPreferences("productPoint : " + String.valueOf(fRId), Activity.MODE_PRIVATE);
+                SharedPreferences.Editor productEdit = product.edit();
 
                 //totalPoint = totalPoint + Integer.valueOf(point);
                 pointNumText.setText(String.valueOf(totalPoint));
@@ -256,11 +265,22 @@ public class BoothReservationFragment extends Fragment {
                         //recyclerView.setAdapter(recyclerAdapter4);
                     }
                 }
-                //boothEdit.commit();
             } else {
                 Toast.makeText(getActivity(), "부스 포인트가 다릅니다.", Toast.LENGTH_SHORT).show();
                 point = "";
             }
+        }
+
+        if(!updatePoint.equals("")) {
+            pointNumText.setText(updatePoint);
+
+            SharedPreferences booth = getActivity().getSharedPreferences(String.valueOf(fRId), Activity.MODE_PRIVATE);
+            SharedPreferences.Editor boothEdit = booth.edit();
+
+            boothEdit.putString("total", updatePoint);
+            boothEdit.commit();
+
+            updatePoint = "";
         }
     }
 

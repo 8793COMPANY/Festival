@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2e2c36"
+    tools:context=".ScanQrActivity2">
+
+    <TextView
+        android:id="@+id/notificationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendard_medium"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/applyButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/pretendard_semi_bold"
+        android:letterSpacing="0.05"
+        android:text="확인"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        android:paddingBottom="5dp"
+        app:layout_constraintWidth_percent="0.89"
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintVertical_bias="0.067"
+        app:layout_constraintTop_toBottomOf="@+id/notificationText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cancelButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/pretendard_semi_bold"
+        android:letterSpacing="0.05"
+        android:text="취소"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        android:paddingBottom="5dp"
+        app:layout_constraintWidth_percent="0.89"
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintVertical_bias="0.067"
+        app:layout_constraintTop_toBottomOf="@+id/applyButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
