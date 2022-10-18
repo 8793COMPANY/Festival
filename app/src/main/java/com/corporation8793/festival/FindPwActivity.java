@@ -92,7 +92,14 @@ public class FindPwActivity extends AppCompatActivity {
                 //onBackPressed();
                 Intent intent = new Intent(getApplicationContext(), FindActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
+    }
+
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), FindActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

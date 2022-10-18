@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -16,12 +17,14 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +45,9 @@ public class LoginActivity extends AppCompatActivity {
 
     CheckBox checkButton;
 
+    ProgressBar progressBar;
+    ProgressDialog progressDialog;
+
     long finishTime = 2000;
     long pressTime = 0;
 
@@ -60,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
         findText = findViewById(R.id.findText);
         userPageButton = findViewById(R.id.userPageButton);
         checkButton = findViewById(R.id.checkButton);
+        progressBar = findViewById(R.id.progressBar);
 
         animation = AnimationUtils.loadAnimation(this, R.anim.blink_animation);
 
@@ -81,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
             editText1.setText(userId);
             editText2.setText(userPw);
             checkButton.setChecked(true);
-
+            /*
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -100,7 +107,36 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
-            }, 1000);
+            }, 1000);*/
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        progressBar.setVisibility(View.VISIBLE);
+                        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    progressBar.setVisibility(View.INVISIBLE);
+
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.putExtra("로그인페이지아이디", userId);
+                    intent.putExtra("로그인페이지비밀번호", userPw);
+                    intent.putExtra("로그인페이지예약구별", userUid);
+                    intent.putExtra("로그인페이지이름", userName);
+                    intent.putExtra("로그인페이지질문", userPwQ);
+                    intent.putExtra("로그인페이지질문인덱스", userPwQIndex);
+                    intent.putExtra("로그인페이지답변", userPwA);
+                    intent.putExtra("로그인페이지이메일", userEmail);
+                    intent.putExtra("로그인페이지연락처", userPhone);
+                    intent.putExtra("로그인페이지지역", userArea);
+                    intent.putExtra("로그인페이지지역인덱스", userAreaIndex);
+                    startActivity(intent);
+                    finish();
+                }
+            }).start();
         }
 
         userPageButton.setOnClickListener(new View.OnClickListener() {
@@ -262,7 +298,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    /*
+
     @Override
     public void onBackPressed() {
         long tempTime = System.currentTimeMillis();
@@ -277,7 +313,7 @@ public class LoginActivity extends AppCompatActivity {
             pressTime = tempTime;
             Toast.makeText(getApplicationContext(), "한번더 누르시면 앱이 종료됩니다", Toast.LENGTH_SHORT).show();
         }
-    }*/
+    }
 
     /*
     private void loginUser(String e1, String e2) {

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements OnBackPressedListener {
 
     RecyclerView recyclerView;
     //RecyclerAdapter recyclerAdapter;
@@ -39,6 +39,10 @@ public class MainFragment extends Fragment {
     List<FestivalInfo> festivalInfoList2 = new ArrayList<>();
     List<FestivalInfo> festivalInfoList3 = new ArrayList<>();
     List<FestivalInfo> festivalInfoList4 = new ArrayList<>();
+
+    MainActivity activity;
+    long finishTime = 2000;
+    long pressTime = 0;
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -61,6 +65,8 @@ public class MainFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         festivalInfoAdapter = new FestivalInfoAdapter(context, 1, 1);
         recyclerView.setAdapter(festivalInfoAdapter);
+
+        activity = (MainActivity) getActivity();
 
         //축제 조회
         loadUserList();
@@ -178,6 +184,29 @@ public class MainFragment extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onBackPressed() {
+        long tempTime = System.currentTimeMillis();
+        long intervalTime = tempTime - pressTime;
+
+        if (0 <= intervalTime && finishTime >= intervalTime)
+        {
+            getActivity().finish();
+        }
+        else
+        {
+            pressTime = tempTime;
+            Toast.makeText(getActivity(), "한번더 누르시면 앱이 종료됩니다", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /*
+    @Override
+    public void onResume() {
+        super.onResume();
+        activity.setOnBackPressedListener(this);
+    }*/
 
     private void loadUserList() {
         AppDatabase2 db  = AppDatabase2.getDBInstance(this.getActivity());

@@ -93,6 +93,11 @@ public class MainActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.containers, searchFragment).commit();
                         return true;
                     case R.id.event:
+                        if(eventFragment.choiceMonth2 != null) {
+                            eventFragment.choiceMonth2.setSelection(0);
+                            eventFragment.choiceArea2.setSelection(0);
+                        }
+
                         eventFragment.setArguments(bundle);
                         getSupportFragmentManager().beginTransaction().replace(R.id.containers, eventFragment).commit();
                         return true;
@@ -133,24 +138,30 @@ public class MainActivity extends AppCompatActivity {
         }).start();*/
     }
 
-    /*
     @Override
     public void onBackPressed() {
-        long tempTime = System.currentTimeMillis();
-        long intervalTime = tempTime - pressTime;
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.containers);
 
-        if (0 <= intervalTime && finishTime >= intervalTime)
-        {
-            moveTaskToBack(true);
-            finish();
-            android.os.Process.killProcess(android.os.Process.myPid());
+        if(fragment instanceof MainFragment || fragment instanceof SearchFragment ||
+        fragment instanceof EventFragment || fragment instanceof MyPageFragment) {
+            long tempTime = System.currentTimeMillis();
+            long intervalTime = tempTime - pressTime;
+
+            if (0 <= intervalTime && finishTime >= intervalTime)
+            {
+                moveTaskToBack(true);
+                finish();
+                android.os.Process.killProcess(android.os.Process.myPid());
+            }
+            else
+            {
+                pressTime = tempTime;
+                Toast.makeText(getApplicationContext(), "한번더 누르시면 앱이 종료됩니다", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            getSupportFragmentManager().popBackStack();
         }
-        else
-        {
-            pressTime = tempTime;
-            Toast.makeText(getApplicationContext(), "한번더 누르시면 앱이 종료됩니다", Toast.LENGTH_SHORT).show();
-        }
-    }*/
+    }
 
     public void fragmentChange(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -223,6 +234,22 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+    /*
+    @Override
+    public void onBackPressed() {
+        long tempTime = System.currentTimeMillis();
+        long intervalTime = tempTime - pressTime;
+
+        if (0 <= intervalTime && finishTime >= intervalTime)
+        {
+            finish();
+        }
+        else
+        {
+            pressTime = tempTime;
+            Toast.makeText(getApplicationContext(), "한번더 누르시면 앱이 종료됩니다", Toast.LENGTH_SHORT).show();
+        }
+    }*/
 /*
     private void insertFestivalInfo(String name, String start, String end, String co, String location, String mnnst, String auspcInstt) {
 

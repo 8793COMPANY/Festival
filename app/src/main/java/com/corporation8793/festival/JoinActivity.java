@@ -8,9 +8,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -26,12 +28,13 @@ import java.util.regex.Pattern;
 public class JoinActivity extends AppCompatActivity {
 
     TextView textView, pwChangeText, pwCheckInputText;
-    ImageView arrow_left;
+    ImageView arrow_left, checkButtonImage;
     Button joinButton;
     RadioButton button[] = new RadioButton[7];
     int [] ridButton = {R.id.radioButton1, R.id.radioButton2, R.id.radioButton3, R.id.radioButton4,
             R.id.radioButton5, R.id.radioButton6, R.id.radioButton7};
     int i, j, index;
+    CheckBox checkButton2;
     // rectangle9 비밀번호 질문
     Spinner rectangle9;
     ArrayAdapter<CharSequence> rectangle9_adapter;
@@ -44,6 +47,9 @@ public class JoinActivity extends AppCompatActivity {
     AppDatabase db;
     List<User> userList = new ArrayList<>();
     String id, email, id2, email2;
+
+    //비밀번호 변경시 수정하기 위함
+    static String changePw = "";
 
     /**
      * rectangle5 이름
@@ -72,10 +78,21 @@ public class JoinActivity extends AppCompatActivity {
         rectangle11 = findViewById(R.id.rectangle11);
         rectangle12 = findViewById(R.id.rectangle12);
         joinButton = findViewById(R.id.joinButton);
+        checkButtonImage = findViewById(R.id.checkButtonImage);
+        checkButton2 = findViewById(R.id.checkButton2);
 
         rectangle9_adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.question_text, R.layout.spinner_item2);
         rectangle9_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item2);
         rectangle9.setAdapter(rectangle9_adapter);
+
+        // 웹뷰(URL)
+        checkButtonImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), WebViewActivity.class);
+                startActivity(intent);
+            }
+        });
 
         for(i=0; i<7; i++) {
             button[i] = findViewById(ridButton[i]);
@@ -137,6 +154,8 @@ public class JoinActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "회원정보가 부족합니다 모두 입력해주세요.", Toast.LENGTH_SHORT).show();
                     } else if(!matcher.matches()) {
                         Toast.makeText(getApplicationContext(), "이메일 형식이 올바르지 않습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    } else if(!checkButton2.isChecked()) {
+                        Toast.makeText(getApplicationContext(), "개인정보처리방침을 확인해주세요.", Toast.LENGTH_SHORT).show();
                     } else {
                         //중복확인
                         userList = db.userDao().getAllUser();
@@ -171,16 +190,10 @@ public class JoinActivity extends AppCompatActivity {
             textView.setText(intent.getStringExtra("수정페이지제목"));
 
             pwChangeText.setVisibility(View.VISIBLE);
-            pwChangeText.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //Intent intent = new Intent(JoinActivity.this, PwCheckActivity.class);
-                    //startActivity(intent);
-                }
-            });
-
             pwCheckInputText.setVisibility(View.GONE);
             rectangle8.setVisibility(View.GONE);
+            //비밀번호 수정 불가하게 하기 > 버튼으로만 수정할 수 있도록
+            rectangle7.setEnabled(false);
 
             String name = intent.getStringExtra("수정페이지이름");
             String id = intent.getStringExtra("수정페이지아이디");
@@ -193,6 +206,15 @@ public class JoinActivity extends AppCompatActivity {
             int area = intent.getIntExtra("수정페이지지역인덱스", 0);
             int uid = intent.getIntExtra("수정페이지사용자구분", 0);
 
+            pwChangeText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getApplicationContext(), PwChangeActivity.class);
+                    intent.putExtra("찾기아이디", id);
+                    startActivity(intent);
+                }
+            });
+
             rectangle5.setText(name);
             rectangle6.setText(id);
             rectangle7.setText(pw);
@@ -200,6 +222,7 @@ public class JoinActivity extends AppCompatActivity {
             rectangle10.setText(pwAnswer);
             rectangle11.setText(email);
             rectangle12.setText(phoneNumber);
+            checkButton2.setChecked(true);
 
             for(i=0; i<7; i++) {
                 if(area == i) {
@@ -249,6 +272,8 @@ public class JoinActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "아이디가 중복됩니다. 다른 아이디를 사용해주세요.", Toast.LENGTH_SHORT).show();
                         } else if(userEmail.equals(email2)) {
                             Toast.makeText(getApplicationContext(), "이미 등록된 이메일입니다. 다른 이메일을 사용해주세요.", Toast.LENGTH_SHORT).show();
+                        } else if(!checkButton2.isChecked()) {
+                            Toast.makeText(getApplicationContext(), "개인정보처리방침을 확인해주세요.", Toast.LENGTH_SHORT).show();
                         } else {
                             //정보 업데이트
                             User user = new User();
@@ -297,13 +322,15 @@ public class JoinActivity extends AppCompatActivity {
         arrow_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //onBackPressed();
-                Intent intent = new Intent(JoinActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
+                if(intent.hasExtra("회원가입페이지이동")) {
+                    Intent intent2 = new Intent(JoinActivity.this, LoginActivity.class);
+                    startActivity(intent2);
+                    finish();
+                } else {
+                    finish();
+                }
             }
         });
-
         /*
         arrayList = new ArrayList<>();
         arrayList.add("기억에 남는 추억의 장소는?");
@@ -317,6 +344,33 @@ public class JoinActivity extends AppCompatActivity {
         //rectangle9_adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.question_text, R.layout.spinner_item2);
         //rectangle9_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item2);
         //rectangle9.setAdapter(rectangle9_adapter);
+    }
+
+    public void getChangePw(String s) {
+        changePw = s;
+    }
+
+    public void onResume() {
+        super.onResume();
+        Log.e("회원가입페이지", "onResume : 호출됨");
+
+        if(!changePw.equals("")) {
+            rectangle7.setText(changePw);
+
+            changePw = "";
+        }
+    }
+
+    public void onBackPressed() {
+        Intent intent = getIntent();
+
+        if(intent.hasExtra("회원가입페이지이동")) {
+            Intent intent2 = new Intent(JoinActivity.this, LoginActivity.class);
+            startActivity(intent2);
+            finish();
+        } else {
+            finish();
+        }
     }
 
     private void insertUser(String name, String id, String pw, String pwQuestion, int position, String pwAnswer, String email, String phoneNumber, String area, int index) {

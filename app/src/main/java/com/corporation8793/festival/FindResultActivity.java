@@ -49,15 +49,9 @@ public class FindResultActivity extends AppCompatActivity {
         arrow_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(intent.hasExtra("아이디제목")) {
-                    Intent intent = new Intent(getApplicationContext(), FindActivity.class);
-                    startActivity(intent);
-                    finish();
-                }else if(intent.hasExtra("비밀번호제목")) {
-                    Intent intent = new Intent(getApplicationContext(), FindPwActivity.class);
-                    startActivity(intent);
-                    finish();
-                }else { }
+                Intent intent = new Intent(getApplicationContext(), FindActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -65,6 +59,7 @@ public class FindResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PwChangeActivity.class);
+                intent.putExtra("페이지이름", "찾기페이지");
                 intent.putExtra("찾기아이디", id);
                 Log.e("가져온 id", id);
                 startActivity(intent);
@@ -81,5 +76,11 @@ public class FindResultActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), FindActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

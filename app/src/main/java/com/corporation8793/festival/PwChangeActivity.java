@@ -99,16 +99,46 @@ public class PwChangeActivity extends AppCompatActivity {
 
                                 db.userDao().updateUser(user);
 
-                                Toast.makeText(getApplicationContext(), "수정이 완료되었습니다.\n다시 로그인해주세요.", Toast.LENGTH_SHORT).show();
+                                Intent intent1 = getIntent();
 
-                                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                                startActivity(intent);
-                                finish();
+                                if(intent1.hasExtra("페이지이름")) {
+                                    Toast.makeText(getApplicationContext(), "수정이 완료되었습니다.\n다시 로그인해주세요.", Toast.LENGTH_SHORT).show();
+
+                                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    JoinActivity joinActivity = new JoinActivity();
+                                    joinActivity.getChangePw(newPw);
+
+                                    finish();
+                                }
                             }
                         }
                     }
                 }
             }
         });
+
+        arrow_left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = getIntent();
+
+                if(intent1.hasExtra("페이지이름")) {
+                    Intent intent = new Intent(getApplicationContext(), FindActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    finish();
+                }
+            }
+        });
+    }
+
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), FindActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
