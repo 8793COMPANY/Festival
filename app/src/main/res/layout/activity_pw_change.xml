@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:background="#2e2c36"
-    tools:context=".PwChangeActivity">
+    tools:context=".activity.PwChangeActivity">
 
     <ImageView
         android:id="@+id/arrow_left"
