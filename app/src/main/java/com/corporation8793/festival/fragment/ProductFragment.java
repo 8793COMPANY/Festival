@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.corporation8793.festival.mclass.Product;
 import com.corporation8793.festival.R;
-import com.corporation8793.festival.activity.ScanQrActivity2;
+import com.corporation8793.festival.activity.ProductScanQrActivity;
 import com.corporation8793.festival.adapter.RecyclerAdapter5;
 
 public class ProductFragment extends Fragment {
@@ -72,7 +72,7 @@ public class ProductFragment extends Fragment {
                 String[] splitPoint = item.productPoint.split("P");
                 checkPoint = splitPoint[0];
 
-                Intent intent = new Intent(getActivity(), ScanQrActivity2.class);
+                Intent intent = new Intent(getActivity(), ProductScanQrActivity.class);
                 intent.putExtra("포인트", checkPoint);
                 intent.putExtra("적립포인트", pointNumText.getText().toString());
 

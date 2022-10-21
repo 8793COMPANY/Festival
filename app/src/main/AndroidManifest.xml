@@ -24,13 +24,13 @@
             android:name=".activity.WebViewActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.ScanQrActivity2"
+            android:name=".activity.ProductScanQrActivity"
             android:exported="false" />
         <activity
             android:name=".activity.PwChangeActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.ScanQrActivity"
+            android:name=".activity.BoothScanQrActivity"
             android:exported="false" />
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
@@ -42,10 +42,10 @@
             android:value="6rhjpfnap7" />
 
         <activity
-            android:name=".activity.UpdateActivity"
+            android:name=".activity.UserUpdateActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.UserInformationActivity"
+            android:name=".activity.UserInfoActivity"
             android:exported="false"
             android:launchMode="singleTask" />
         <activity

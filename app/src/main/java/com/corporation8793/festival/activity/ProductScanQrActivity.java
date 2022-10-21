@@ -14,7 +14,7 @@ import com.corporation8793.festival.R;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-public class ScanQrActivity2 extends AppCompatActivity {
+public class ProductScanQrActivity extends AppCompatActivity {
 
     private IntentIntegrator qrScan;
 
@@ -24,7 +24,7 @@ public class ScanQrActivity2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scan_qr2);
+        setContentView(R.layout.activity_product_scan_qr);
 
         notificationText = findViewById(R.id.notificationText);
         applyButton = findViewById(R.id.applyButton);

@@ -23,7 +23,7 @@ import com.corporation8793.festival.mclass.Booth;
 import com.corporation8793.festival.activity.MainActivity;
 import com.corporation8793.festival.R;
 import com.corporation8793.festival.adapter.RecyclerAdapter4;
-import com.corporation8793.festival.activity.ScanQrActivity;
+import com.corporation8793.festival.activity.BoothScanQrActivity;
 import com.corporation8793.festival.listener.OnItemClickListener2;
 
 public class BoothReservationFragment extends Fragment {
@@ -145,7 +145,7 @@ public class BoothReservationFragment extends Fragment {
                 if(item.saveResult.equals("적립완료")) {
                     Toast.makeText(getActivity(), "이미 적립된 포인트입니다.", Toast.LENGTH_SHORT).show();
                 } else {
-                    Intent intent = new Intent(getActivity(), ScanQrActivity.class);
+                    Intent intent = new Intent(getActivity(), BoothScanQrActivity.class);
                     intent.putExtra("포인트", item.boothPoint);
                     intent.putExtra("위치", position);
 

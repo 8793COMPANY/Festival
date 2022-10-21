@@ -13,7 +13,7 @@ import com.corporation8793.festival.room.AppDatabase;
 import com.corporation8793.festival.R;
 import com.corporation8793.festival.room.User;
 
-public class UpdateActivity extends AppCompatActivity {
+public class UserUpdateActivity extends AppCompatActivity {
 
     TextView nameText, idText, pwQuestionText, pwAnswerText, emailText, phoneNumText, areaText;
     EditText updatePw;
@@ -23,7 +23,7 @@ public class UpdateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update);
+        setContentView(R.layout.activity_user_update);
 
         nameText = findViewById(R.id.nameText);
         idText = findViewById(R.id.idText);
@@ -78,11 +78,11 @@ public class UpdateActivity extends AppCompatActivity {
                 user.userPhoneNumber = userPhoneNumber;
                 user.userArea = userArea;
 
-                AppDatabase db = AppDatabase.getDBInstance(UpdateActivity.this);
+                AppDatabase db = AppDatabase.getDBInstance(UserUpdateActivity.this);
 
                 db.userDao().updateUser(user);
 
-                Intent intent  = new Intent(UpdateActivity.this, LoginActivity.class);
+                Intent intent  = new Intent(UserUpdateActivity.this, LoginActivity.class);
                 startActivity(intent);
 
                 finish();
@@ -95,11 +95,11 @@ public class UpdateActivity extends AppCompatActivity {
                 User user = new User();
                 user.uid = uid;
 
-                AppDatabase db = AppDatabase.getDBInstance(UpdateActivity.this);
+                AppDatabase db = AppDatabase.getDBInstance(UserUpdateActivity.this);
 
                 db.userDao().deleteUser(user);
 
-                Intent intent  = new Intent(UpdateActivity.this, LoginActivity.class);
+                Intent intent  = new Intent(UserUpdateActivity.this, LoginActivity.class);
                 startActivity(intent);
 
                 finish();

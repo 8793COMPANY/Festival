@@ -20,7 +20,7 @@ import com.corporation8793.festival.adapter.UserAdapter;
 
 import java.util.List;
 
-public class UserInformationActivity extends AppCompatActivity {
+public class UserInfoActivity extends AppCompatActivity {
 
     UserAdapter adapter;
     ImageView arrow_left;
@@ -29,7 +29,7 @@ public class UserInformationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_information);
+        setContentView(R.layout.activity_user_info);
 
         arrow_left = findViewById(R.id.arrow_left);
         arrow_left.setOnClickListener(new View.OnClickListener() {

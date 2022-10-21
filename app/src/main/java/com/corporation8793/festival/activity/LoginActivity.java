@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -124,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
         userPageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), UserInformationActivity.class);
+                Intent intent = new Intent(getApplicationContext(), UserInfoActivity.class);
                 startActivity(intent);
                 finish();
             }

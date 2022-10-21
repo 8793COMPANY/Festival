@@ -12,14 +12,14 @@ import com.corporation8793.festival.R;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-public class ScanQrActivity extends AppCompatActivity {
+public class BoothScanQrActivity extends AppCompatActivity {
 
     private IntentIntegrator qrScan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scan_qr);
+        setContentView(R.layout.activity_booth_scan_qr);
 
         qrScan = new IntentIntegrator(this);
         qrScan.setOrientationLocked(true);

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.corporation8793.festival.R;
 import com.corporation8793.festival.room.User;
-import com.corporation8793.festival.activity.UpdateActivity;
+import com.corporation8793.festival.activity.UserUpdateActivity;
 
 import java.util.List;
 
@@ -50,7 +50,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, UpdateActivity.class);
+                Intent intent = new Intent(context, UserUpdateActivity.class);
                 intent.putExtra("uid", userList.get(mPosition).uid);
                 intent.putExtra("userName", userList.get(mPosition).userName);
                 intent.putExtra("userId", userList.get(mPosition).userId);
