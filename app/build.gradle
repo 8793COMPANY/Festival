@@ -28,7 +28,6 @@ android {
 }
 
 dependencies {
-
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -56,4 +55,8 @@ dependencies {
 
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
+    // 안드로이드 Jetpack navigation 사용
+    implementation "androidx.navigation:navigation-fragment:2.5.2"
+    implementation "androidx.navigation:navigation-ui:2.5.2"
 }
