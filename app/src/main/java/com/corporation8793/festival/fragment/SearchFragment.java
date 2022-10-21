@@ -24,10 +24,10 @@ import android.widget.Toast;
 import com.corporation8793.festival.activity.MainActivity;
 import com.corporation8793.festival.R;
 import com.corporation8793.festival.adapter.FestivalInfoAdapter;
-import com.corporation8793.festival.adapter.ListAdapter2;
-import com.corporation8793.festival.adapter.RecyclerAdapter2;
-import com.corporation8793.festival.mclass.Festival2;
-import com.corporation8793.festival.mclass.MyList2;
+import com.corporation8793.festival.adapter.RankListAdapter;
+import com.corporation8793.festival.adapter.FestivalCategoryAdapter;
+import com.corporation8793.festival.mclass.Festival;
+import com.corporation8793.festival.mclass.RankList;
 import com.corporation8793.festival.room.AppDatabase2;
 import com.corporation8793.festival.room.FestivalInfo;
 
@@ -39,12 +39,12 @@ import java.util.Random;
 
 public class SearchFragment extends Fragment {
 
-    public RecyclerView recyclerView, recyclerView5;
-    RecyclerAdapter2 recyclerAdapter2;
+    public RecyclerView recyclerView2, recyclerView5;
+    FestivalCategoryAdapter festivalCategoryAdapter;
     FestivalInfoAdapter festivalInfoAdapter;
     Context context;
     ListView listView;
-    ListAdapter2 myPageAdapter2;
+    RankListAdapter rankListAdapter;
     public EditText rectangle13;
     ImageView search;
     public TextView testText;
@@ -60,7 +60,7 @@ public class SearchFragment extends Fragment {
 
         context = container.getContext();
 
-        recyclerView = view.findViewById(R.id.recyclerView2);
+        recyclerView2 = view.findViewById(R.id.recyclerView2);
         recyclerView5 = view.findViewById(R.id.recyclerView5);
         listView = view.findViewById(R.id.listView);
         rectangle13 = view.findViewById(R.id.rectangle13);
@@ -74,23 +74,23 @@ public class SearchFragment extends Fragment {
         loadBasic();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerAdapter2 = new RecyclerAdapter2(getActivity());
+        recyclerView2.setLayoutManager(layoutManager);
+        festivalCategoryAdapter = new FestivalCategoryAdapter(getActivity());
 
-        recyclerAdapter2.addItem(new Festival2("꽃", R.drawable.search_flower));
-        recyclerAdapter2.addItem(new Festival2("불꽃", R.drawable.search_fireworks));
-        recyclerAdapter2.addItem(new Festival2("전통문화", R.drawable.search_traditional));
-        recyclerAdapter2.addItem(new Festival2("음악", R.drawable.search_music));
-        recyclerAdapter2.addItem(new Festival2("맥주", R.drawable.search_beer));
-        recyclerAdapter2.addItem(new Festival2("단풍", R.drawable.search_maple));
-        recyclerAdapter2.addItem(new Festival2("문화", R.drawable.search_culture));
+        festivalCategoryAdapter.addItem(new Festival("꽃", R.drawable.search_flower));
+        festivalCategoryAdapter.addItem(new Festival("불꽃", R.drawable.search_fireworks));
+        festivalCategoryAdapter.addItem(new Festival("전통문화", R.drawable.search_traditional));
+        festivalCategoryAdapter.addItem(new Festival("음악", R.drawable.search_music));
+        festivalCategoryAdapter.addItem(new Festival("맥주", R.drawable.search_beer));
+        festivalCategoryAdapter.addItem(new Festival("단풍", R.drawable.search_maple));
+        festivalCategoryAdapter.addItem(new Festival("문화", R.drawable.search_culture));
 
-        recyclerView.setAdapter(recyclerAdapter2);
+        recyclerView2.setAdapter(festivalCategoryAdapter);
 
-        recyclerAdapter2.setOnCategoryClickListener(new RecyclerAdapter2.OnCategoryClickListener() {
+        festivalCategoryAdapter.setOnCategoryClickListener(new FestivalCategoryAdapter.OnCategoryClickListener() {
             @Override
             public void onCategoryClick(View view, int position) {
-                Festival2 item = recyclerAdapter2.getItem(position);
+                Festival item = festivalCategoryAdapter.getItem(position);
 
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 CategoryFragment categoryFragment = new CategoryFragment();
@@ -105,16 +105,16 @@ public class SearchFragment extends Fragment {
             }
         });
 
-        myPageAdapter2 = new ListAdapter2(getActivity(),1);
+        rankListAdapter = new RankListAdapter(getActivity());
 
         loadRankList();
 
-        listView.setAdapter(myPageAdapter2);
+        listView.setAdapter(rankListAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                MyList2 item = myPageAdapter2.getItem(position);
+                RankList item = rankListAdapter.getItem(position);
 
                 clickRankList(item.subText);
             }
@@ -133,7 +133,6 @@ public class SearchFragment extends Fragment {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 //입력 전
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 //입력 중
@@ -142,7 +141,6 @@ public class SearchFragment extends Fragment {
                     search.setImageResource(R.drawable.search_resize_white2);
                 }
             }
-
             @Override
             public void afterTextChanged(Editable s) {
                 //입력 완료
@@ -236,7 +234,7 @@ public class SearchFragment extends Fragment {
 
         for(int i=0; i < choiceNames.length; i++) {
             choiceNames[i] = random.nextInt(festivalNames.length);
-            myPageAdapter2.addItem(new MyList2(String.valueOf(i + 1), festivalNames[choiceNames[i]]));
+            rankListAdapter.addItem(new RankList(String.valueOf(i + 1), festivalNames[choiceNames[i]]));
         }
     }
 

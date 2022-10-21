@@ -1,18 +1,14 @@
 package com.corporation8793.festival.mclass;
 
 public class Festival {
-    String period, name;
+    public String name;
     int image;
 
-    public Festival(String period, String name, int image) {
+    public Festival(String name, int image) {
         this.name = name;
-        this.period = period;
         this.image = image;
     }
 
-    public String getPeriod() {
-        return period;
-    }
     public String getName() {
         return name;
     }
@@ -20,9 +16,6 @@ public class Festival {
         return image;
     }
 
-    public void setPeriod(String period) {
-        this.period = period;
-    }
     public void setName(String name) {
         this.name = name;
     }

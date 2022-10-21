@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.corporation8793.festival.mclass.Product;
 import com.corporation8793.festival.R;
 import com.corporation8793.festival.activity.ProductScanQrActivity;
-import com.corporation8793.festival.adapter.RecyclerAdapter5;
+import com.corporation8793.festival.adapter.FestivalProductAdapter;
 
 public class ProductFragment extends Fragment {
 
@@ -26,7 +26,7 @@ public class ProductFragment extends Fragment {
     TextView pointNumText;
 
     RecyclerView recyclerView;
-    RecyclerAdapter5 recyclerAdapter5;
+    FestivalProductAdapter festivalProductAdapter;
 
     static String point = "";
     static String checkPoint;
@@ -53,21 +53,21 @@ public class ProductFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerAdapter5 = new RecyclerAdapter5(getActivity());
+        festivalProductAdapter = new FestivalProductAdapter(getActivity());
 
-        recyclerAdapter5.addItem(new Product("캐릭터 그립톡", "1000P"));
-        recyclerAdapter5.addItem(new Product("축제 미니캔들", "500P"));
-        recyclerAdapter5.addItem(new Product("축제 머그컵", "1000P"));
-        recyclerAdapter5.addItem(new Product("축제 엽서", "300P"));
-        recyclerAdapter5.addItem(new Product("캐릭터 키링", "1500P"));
-        recyclerAdapter5.addItem(new Product("축제 마그넷", "500P"));
+        festivalProductAdapter.addItem(new Product("캐릭터 그립톡", "1000P"));
+        festivalProductAdapter.addItem(new Product("축제 미니캔들", "500P"));
+        festivalProductAdapter.addItem(new Product("축제 머그컵", "1000P"));
+        festivalProductAdapter.addItem(new Product("축제 엽서", "300P"));
+        festivalProductAdapter.addItem(new Product("캐릭터 키링", "1500P"));
+        festivalProductAdapter.addItem(new Product("축제 마그넷", "500P"));
 
-        recyclerView.setAdapter(recyclerAdapter5);
+        recyclerView.setAdapter(festivalProductAdapter);
 
-        recyclerAdapter5.setOnItemClickListener(new RecyclerAdapter5.OnItemClickListener() {
+        festivalProductAdapter.setOnItemClickListener(new FestivalProductAdapter.OnItemClickListener() {
             @Override
             public void onScanClick(View view, int position) {
-                Product item = recyclerAdapter5.getItem(position);
+                Product item = festivalProductAdapter.getItem(position);
 
                 String[] splitPoint = item.productPoint.split("P");
                 checkPoint = splitPoint[0];

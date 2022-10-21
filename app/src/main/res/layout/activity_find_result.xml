@@ -68,7 +68,7 @@
         android:id="@+id/pwChangeButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/shape_rectangle_puple"
+        android:background="@drawable/shape_rectangle_purple"
         android:fontFamily="@font/pretendard_medium"
         android:text="비밀번호 변경"
         android:textColor="#8e76ff"

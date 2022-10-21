@@ -14,7 +14,7 @@ import com.corporation8793.festival.R;
 
 import java.util.ArrayList;
 
-public class RecyclerAdapter5 extends RecyclerView.Adapter<RecyclerAdapter5.ViewHolder> {
+public class FestivalProductAdapter extends RecyclerView.Adapter<FestivalProductAdapter.ViewHolder> {
     ArrayList<Product> items = new ArrayList<Product>();
     Context context;
 
@@ -26,7 +26,7 @@ public class RecyclerAdapter5 extends RecyclerView.Adapter<RecyclerAdapter5.View
         this.mListener = listener;
     }
 
-    public RecyclerAdapter5(Context context) {
+    public FestivalProductAdapter(Context context) {
         this.context = context;
     }
 
@@ -38,7 +38,7 @@ public class RecyclerAdapter5 extends RecyclerView.Adapter<RecyclerAdapter5.View
 
         itemView.getLayoutParams().height = 200;
 
-        return new RecyclerAdapter5.ViewHolder(itemView);
+        return new FestivalProductAdapter.ViewHolder(itemView);
     }
 
     @Override

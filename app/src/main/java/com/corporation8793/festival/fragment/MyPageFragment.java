@@ -28,10 +28,6 @@ public class MyPageFragment extends Fragment {
     Switch list3Switch;
     String userId, userPw;
 
-    public static MyPageFragment newInstance() {
-        return new MyPageFragment();
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,13 +47,13 @@ public class MyPageFragment extends Fragment {
                 getActivity().finish();
             }
         });
-        // 예약내역이동1
+        // 예약내역이동1 >> 조건문으로 버튼 기능이 같을때로 찾아보기
         list1Image2 = view.findViewById(R.id.list1Image2);
         list1Image2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                BreakdownFragment breakdownFragment = new BreakdownFragment();
+                ReservationDetailFragment breakdownFragment = new ReservationDetailFragment();
 
                 Bundle bundle = new Bundle();
                 Bundle bundle1 = getArguments();
@@ -77,7 +73,7 @@ public class MyPageFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                BreakdownFragment breakdownFragment = new BreakdownFragment();
+                ReservationDetailFragment breakdownFragment = new ReservationDetailFragment();
 
                 Bundle bundle = new Bundle();
                 Bundle bundle1 = getArguments();
@@ -159,13 +155,13 @@ public class MyPageFragment extends Fragment {
                     SharedPreferences auto = getActivity().getSharedPreferences("autoLogin", Activity.MODE_PRIVATE);
                     SharedPreferences.Editor autoLoginEdit = auto.edit();
                     //로그인시 자동로그인 체크를 했을때
-                    //로그인시 자동로그인 체크를 안했을때
                     autoLoginEdit.putString("userId", bundle.getString("메인아이디"));
                     autoLoginEdit.putString("userPw", bundle.getString("메인비밀번호"));
                     //마이페이지의 스위치버튼 체크
                     autoLoginEdit.putString("check", "on");
                     autoLoginEdit.commit();
                 } else {
+                    //로그인시 자동로그인 체크를 안했을때
                     userId = auto.getString("userId", null);
                     userPw = auto.getString("userPw", null);
                     autoLoginEdit.clear();

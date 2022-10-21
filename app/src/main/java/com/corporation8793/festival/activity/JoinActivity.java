@@ -79,8 +79,8 @@ public class JoinActivity extends AppCompatActivity {
         checkButtonImage = findViewById(R.id.checkButtonImage);
         checkButton2 = findViewById(R.id.checkButton2);
 
-        rectangle9_adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.question_text, R.layout.spinner_item2);
-        rectangle9_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item2);
+        rectangle9_adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.question_text, R.layout.item_spinner_question);
+        rectangle9_adapter.setDropDownViewResource(R.layout.item_spinner_dropdown_question);
         rectangle9.setAdapter(rectangle9_adapter);
 
         // 웹뷰(URL)

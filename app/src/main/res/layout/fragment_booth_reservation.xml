@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#2e2c36"
-    tools:context=".fragment.BreakdownFragment">
+    tools:context=".fragment.ReservationDetailFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

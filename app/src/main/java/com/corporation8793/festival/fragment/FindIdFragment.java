@@ -20,7 +20,7 @@ import com.corporation8793.festival.activity.FindResultActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FirstFragment extends Fragment {
+public class FindIdFragment extends Fragment {
 
     Button idButton;
     EditText editText;
@@ -31,7 +31,7 @@ public class FirstFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_first, container, false);
+        View view = inflater.inflate(R.layout.fragment_find_id, container, false);
 
         editText = view.findViewById(R.id.rectangle3);
         idButton = view.findViewById(R.id.idButton);

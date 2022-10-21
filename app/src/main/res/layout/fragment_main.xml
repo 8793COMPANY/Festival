@@ -35,7 +35,6 @@
             android:fontFamily="@font/pretendard_regular"
             android:overlapAnchor="false"
             android:popupBackground="@drawable/custom_spinner_dropdown"
-            android:scrollbarTrackHorizontal="@drawable/custom_scroll_track"
             android:spinnerMode="dropdown"
             android:textColor="#ffffff"
             android:textSize="14.5dp"

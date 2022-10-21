@@ -9,9 +9,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.corporation8793.festival.fragment.FirstFragment;
+import com.corporation8793.festival.fragment.FindIdFragment;
 import com.corporation8793.festival.R;
-import com.corporation8793.festival.fragment.SecondFragment;
+import com.corporation8793.festival.fragment.FindPwFragment;
 import com.corporation8793.festival.adapter.ViewpagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
@@ -20,8 +20,8 @@ public class FindActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager2 viewPager;
     ViewpagerAdapter viewpagerAdapter;
-    FirstFragment firstFragment;
-    SecondFragment secondFragment;
+    FindIdFragment findIdFragment;
+    FindPwFragment findPwFragment;
     TextView textView;
     ImageView arrow_left;
 
@@ -75,8 +75,8 @@ public class FindActivity extends AppCompatActivity {
     //fragment 생성
     public void createFragment()
     {
-        firstFragment = new FirstFragment();
-        secondFragment = new SecondFragment();
+        findIdFragment = new FindIdFragment();
+        findPwFragment = new FindPwFragment();
     }
 
     //viewpager 및 어댑터 생성
@@ -84,8 +84,8 @@ public class FindActivity extends AppCompatActivity {
     {
         viewPager = findViewById(R.id.viewPager);
         viewpagerAdapter = new ViewpagerAdapter(getSupportFragmentManager(), getLifecycle());
-        viewpagerAdapter.addFragment(firstFragment);
-        viewpagerAdapter.addFragment(secondFragment);
+        viewpagerAdapter.addFragment(findIdFragment);
+        viewpagerAdapter.addFragment(findPwFragment);
 
         viewPager.setAdapter(viewpagerAdapter);
         viewPager.setUserInputEnabled(true);//터치 스크롤

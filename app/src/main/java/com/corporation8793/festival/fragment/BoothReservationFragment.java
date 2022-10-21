@@ -22,14 +22,13 @@ import android.widget.Toast;
 import com.corporation8793.festival.mclass.Booth;
 import com.corporation8793.festival.activity.MainActivity;
 import com.corporation8793.festival.R;
-import com.corporation8793.festival.adapter.RecyclerAdapter4;
+import com.corporation8793.festival.adapter.FestivalBoothAdapter;
 import com.corporation8793.festival.activity.BoothScanQrActivity;
-import com.corporation8793.festival.listener.OnItemClickListener2;
 
 public class BoothReservationFragment extends Fragment {
 
     RecyclerView recyclerView;
-    RecyclerAdapter4 recyclerAdapter4;
+    FestivalBoothAdapter festivalBoothAdapter;
     TextView pointNumText;
     ImageView arrow_left;
     Button productButton;
@@ -42,10 +41,6 @@ public class BoothReservationFragment extends Fragment {
     static String updatePoint = "";
 
     private static final String TAG = "BoothReservationFragment";
-
-    public static BoothReservationFragment newInstance() {
-        return new BoothReservationFragment();
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,12 +61,8 @@ public class BoothReservationFragment extends Fragment {
 
         String fName = booth.getString("rFestival",null);
         String total = booth.getString("total", null);
-        /*
+
         // 적립 포인트 결과
-        String [] rBooth = new String[10];
-        for(int i=0; i < 10; i++) {
-            rBooth[i] = booth.getString("rBooth" + String.valueOf(i), null);
-        }*/
         String rBooth1 = booth.getString("rBooth1", null);
         String rBooth2 = booth.getString("rBooth2", null);
         String rBooth3 = booth.getString("rBooth3", null);
@@ -85,62 +76,55 @@ public class BoothReservationFragment extends Fragment {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerAdapter4 = new RecyclerAdapter4(getActivity());
+        festivalBoothAdapter = new FestivalBoothAdapter(getActivity());
 
-        recyclerAdapter4.addItem(new Booth("비누만들기 부스", "운영시간: 12:00~18:00", "100p", "적립가능"));
-        recyclerAdapter4.addItem(new Booth("그림그리기 부스", "운영시간: 12:00~18:00", "200p", "적립가능"));
-        recyclerAdapter4.addItem(new Booth("머그컵 부스", "운영시간: 12:00~18:00", "300p", "적립가능"));
-        recyclerAdapter4.addItem(new Booth("비누만들기 부스", "운영시간: 12:00~18:00", "400p", "적립가능"));
-        recyclerAdapter4.addItem(new Booth("과녁맞추기 부스", "운영시간: 12:00~18:00", "500p", "적립가능"));
-        recyclerAdapter4.addItem(new Booth("퍼스널컬러 부스", "운영시간: 12:00~18:00", "600p", "적립가능"));
-        recyclerAdapter4.addItem(new Booth("아두이노 부스", "운영시간: 12:00~18:00", "700p", "적립가능"));
-        recyclerAdapter4.addItem(new Booth("향초만들기 부스", "운영시간: 12:00~18:00", "800p", "적립가능"));
-        recyclerAdapter4.addItem(new Booth("보드게임 부스", "운영시간: 12:00~18:00", "900p", "적립가능"));
-        recyclerAdapter4.addItem(new Booth("종이접기 부스", "운영시간: 12:00~18:00", "1000p", "적립가능"));
+        festivalBoothAdapter.addItem(new Booth("비누만들기 부스", "운영시간: 12:00~18:00", "100p", "적립가능"));
+        festivalBoothAdapter.addItem(new Booth("그림그리기 부스", "운영시간: 12:00~18:00", "200p", "적립가능"));
+        festivalBoothAdapter.addItem(new Booth("머그컵 부스", "운영시간: 12:00~18:00", "300p", "적립가능"));
+        festivalBoothAdapter.addItem(new Booth("비누만들기 부스", "운영시간: 12:00~18:00", "400p", "적립가능"));
+        festivalBoothAdapter.addItem(new Booth("과녁맞추기 부스", "운영시간: 12:00~18:00", "500p", "적립가능"));
+        festivalBoothAdapter.addItem(new Booth("퍼스널컬러 부스", "운영시간: 12:00~18:00", "600p", "적립가능"));
+        festivalBoothAdapter.addItem(new Booth("아두이노 부스", "운영시간: 12:00~18:00", "700p", "적립가능"));
+        festivalBoothAdapter.addItem(new Booth("향초만들기 부스", "운영시간: 12:00~18:00", "800p", "적립가능"));
+        festivalBoothAdapter.addItem(new Booth("보드게임 부스", "운영시간: 12:00~18:00", "900p", "적립가능"));
+        festivalBoothAdapter.addItem(new Booth("종이접기 부스", "운영시간: 12:00~18:00", "1000p", "적립가능"));
 
-        recyclerView.setAdapter(recyclerAdapter4);
+        recyclerView.setAdapter(festivalBoothAdapter);
 
         if(total != null) {
             pointNumText.setText(total);
-            /*
-            for(int i=0; i < 10; i++) {
-                // 적립 포인트 결과
-                recyclerAdapter4.getItem(i).saveResult = rBooth[i];
-            }*/
-            recyclerAdapter4.getItem(0).saveResult = rBooth1;
-            recyclerAdapter4.getItem(1).saveResult = rBooth2;
-            recyclerAdapter4.getItem(2).saveResult = rBooth3;
-            recyclerAdapter4.getItem(3).saveResult = rBooth4;
-            recyclerAdapter4.getItem(4).saveResult = rBooth5;
-            recyclerAdapter4.getItem(5).saveResult = rBooth6;
-            recyclerAdapter4.getItem(6).saveResult = rBooth7;
-            recyclerAdapter4.getItem(7).saveResult = rBooth8;
-            recyclerAdapter4.getItem(8).saveResult = rBooth9;
-            recyclerAdapter4.getItem(9).saveResult = rBooth10;
+
+            festivalBoothAdapter.getItem(0).saveResult = rBooth1;
+            festivalBoothAdapter.getItem(1).saveResult = rBooth2;
+            festivalBoothAdapter.getItem(2).saveResult = rBooth3;
+            festivalBoothAdapter.getItem(3).saveResult = rBooth4;
+            festivalBoothAdapter.getItem(4).saveResult = rBooth5;
+            festivalBoothAdapter.getItem(5).saveResult = rBooth6;
+            festivalBoothAdapter.getItem(6).saveResult = rBooth7;
+            festivalBoothAdapter.getItem(7).saveResult = rBooth8;
+            festivalBoothAdapter.getItem(8).saveResult = rBooth9;
+            festivalBoothAdapter.getItem(9).saveResult = rBooth10;
         } else {
             //부스 포인트 적립 결과 초기저장
             boothEdit.putString("total", pointNumText.getText().toString());
-            /*
-            for(int i=0; i < 10; i++) {
-                boothEdit.putString("rBooth" + String.valueOf(i), recyclerAdapter4.getItem(i).saveResult);
-            }*/
-            boothEdit.putString("rBooth1", recyclerAdapter4.getItem(0).saveResult);
-            boothEdit.putString("rBooth2", recyclerAdapter4.getItem(1).saveResult);
-            boothEdit.putString("rBooth3", recyclerAdapter4.getItem(2).saveResult);
-            boothEdit.putString("rBooth4", recyclerAdapter4.getItem(3).saveResult);
-            boothEdit.putString("rBooth5", recyclerAdapter4.getItem(4).saveResult);
-            boothEdit.putString("rBooth6", recyclerAdapter4.getItem(5).saveResult);
-            boothEdit.putString("rBooth7", recyclerAdapter4.getItem(6).saveResult);
-            boothEdit.putString("rBooth8", recyclerAdapter4.getItem(7).saveResult);
-            boothEdit.putString("rBooth9", recyclerAdapter4.getItem(8).saveResult);
-            boothEdit.putString("rBooth10", recyclerAdapter4.getItem(9).saveResult);
+
+            boothEdit.putString("rBooth1", festivalBoothAdapter.getItem(0).saveResult);
+            boothEdit.putString("rBooth2", festivalBoothAdapter.getItem(1).saveResult);
+            boothEdit.putString("rBooth3", festivalBoothAdapter.getItem(2).saveResult);
+            boothEdit.putString("rBooth4", festivalBoothAdapter.getItem(3).saveResult);
+            boothEdit.putString("rBooth5", festivalBoothAdapter.getItem(4).saveResult);
+            boothEdit.putString("rBooth6", festivalBoothAdapter.getItem(5).saveResult);
+            boothEdit.putString("rBooth7", festivalBoothAdapter.getItem(6).saveResult);
+            boothEdit.putString("rBooth8", festivalBoothAdapter.getItem(7).saveResult);
+            boothEdit.putString("rBooth9", festivalBoothAdapter.getItem(8).saveResult);
+            boothEdit.putString("rBooth10", festivalBoothAdapter.getItem(9).saveResult);
             boothEdit.commit();
         }
 
-        recyclerAdapter4.setOnItemClickListener(new RecyclerAdapter4.OnItemClickListener() {
+        festivalBoothAdapter.setOnItemClickListener(new FestivalBoothAdapter.OnItemClickListener() {
             @Override
             public void onScanClick(View view, int position) {
-                Booth item = recyclerAdapter4.getItem(position);
+                Booth item = festivalBoothAdapter.getItem(position);
 
                 if(item.saveResult.equals("적립완료")) {
                     Toast.makeText(getActivity(), "이미 적립된 포인트입니다.", Toast.LENGTH_SHORT).show();
@@ -154,12 +138,6 @@ public class BoothReservationFragment extends Fragment {
 
                     getActivity().startActivity(intent);
                 }
-            }
-        });
-
-        recyclerAdapter4.setOnItemClicklistener(new OnItemClickListener2() {
-            @Override
-            public void onItemClick(RecyclerAdapter4.ViewHolder holder, View view, int position) {
             }
         });
 
@@ -227,9 +205,6 @@ public class BoothReservationFragment extends Fragment {
                     totalPoint = Integer.valueOf(pointNumText.getText().toString()) + Integer.valueOf(point);
                 }
 
-                SharedPreferences product = getActivity().getSharedPreferences("productPoint : " + String.valueOf(fRId), Activity.MODE_PRIVATE);
-                SharedPreferences.Editor productEdit = product.edit();
-
                 pointNumText.setText(String.valueOf(totalPoint));
                 point = "";
 
@@ -243,10 +218,13 @@ public class BoothReservationFragment extends Fragment {
                     if(changePosition == i) {
                         boothEdit.putString("rBooth" + String.valueOf(i+1), "적립완료");
                         boothEdit.commit();
-                        recyclerAdapter4.getItem(i).saveResult = booth.getString("rBooth" + String.valueOf(i+1), null);
+
+                        festivalBoothAdapter.getItem(i).saveResult = booth.getString("rBooth" + String.valueOf(i+1), null);
+
                         Log.e("check1", "rBooth" + String.valueOf(i+1));
                         Log.e("check2", booth.getString("rBooth" + String.valueOf(i+1), null));
-                        recyclerAdapter4.notifyItemChanged(changePosition, "payload");
+
+                        festivalBoothAdapter.notifyItemChanged(changePosition, "payload");
                     }
                 }
             } else {
@@ -266,17 +244,5 @@ public class BoothReservationFragment extends Fragment {
 
             updatePoint = "";
         }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.d(TAG, "onPause : 호출됨");
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        Log.d(TAG, "onStop : 호출됨");
     }
 }

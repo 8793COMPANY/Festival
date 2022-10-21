@@ -51,7 +51,7 @@ dependencies {
     // QR 코드 스캔
     implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
 
-    // 인디케이터
+    // 인디케이터(이미지 슬라이드)
     implementation("com.tbuonomo:dotsindicator:4.3")
 
     implementation 'com.github.bumptech.glide:glide:4.9.0'

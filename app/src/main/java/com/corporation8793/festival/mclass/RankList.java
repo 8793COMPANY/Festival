@@ -1,10 +1,10 @@
 package com.corporation8793.festival.mclass;
 
-public class MyList2 {
+public class RankList {
     String mainText;
     public String subText;
 
-    public MyList2(String mainText, String subText) {
+    public RankList(String mainText, String subText) {
         this.mainText = mainText;
         this.subText = subText;
     }

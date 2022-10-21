@@ -16,20 +16,17 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.corporation8793.festival.activity.MainActivity;
 import com.corporation8793.festival.R;
 import com.corporation8793.festival.adapter.FestivalInfoAdapter;
-import com.corporation8793.festival.listener.OnBackPressedListener;
 import com.corporation8793.festival.room.AppDatabase2;
 import com.corporation8793.festival.room.FestivalInfo;
 
-import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MainFragment extends Fragment implements OnBackPressedListener {
+public class MainFragment extends Fragment {
 
     RecyclerView recyclerView;
     FestivalInfoAdapter festivalInfoAdapter;
@@ -39,20 +36,10 @@ public class MainFragment extends Fragment implements OnBackPressedListener {
     ImageView searchButton;
     String choiceAreaText;
 
-    private boolean isFirstSelected = true;
-
     List<FestivalInfo> festivalInfoList = new ArrayList<>();
     List<FestivalInfo> festivalInfoList2 = new ArrayList<>();
     List<FestivalInfo> festivalInfoList3 = new ArrayList<>();
     List<FestivalInfo> festivalInfoList4 = new ArrayList<>();
-
-    MainActivity activity;
-    long finishTime = 2000;
-    long pressTime = 0;
-
-    public static MainFragment newInstance() {
-        return new MainFragment();
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,24 +58,11 @@ public class MainFragment extends Fragment implements OnBackPressedListener {
         festivalInfoAdapter = new FestivalInfoAdapter(context, 1, 1);
         recyclerView.setAdapter(festivalInfoAdapter);
 
-        activity = (MainActivity) getActivity();
-
         //축제 조회
         loadUserList();
 
-        //스피너 드롭다운 높이 지정 >> 안됨...
-        try {
-            Field popup = Spinner.class.getDeclaredField("mPopup");
-            popup.setAccessible(true);
-
-            android.widget.ListPopupWindow window = (android.widget.ListPopupWindow) popup.get(choiceMonth);
-            window.setHeight(10);
-        } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        choiceMonth_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.month_array, R.layout.spinner_item);
-        choiceMonth_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        choiceMonth_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.month_array, R.layout.item_spinner_main);
+        choiceMonth_adapter.setDropDownViewResource(R.layout.item_spinner_dropdown_main);
         choiceMonth.setAdapter(choiceMonth_adapter);
 
         choiceMonth.setSelection(0, false);
@@ -102,8 +76,8 @@ public class MainFragment extends Fragment implements OnBackPressedListener {
             }
         });
 
-        choiceArea_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.area_array, R.layout.spinner_item);
-        choiceArea_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        choiceArea_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.area_array, R.layout.item_spinner_main);
+        choiceArea_adapter.setDropDownViewResource(R.layout.item_spinner_dropdown_main);
         choiceArea.setAdapter(choiceArea_adapter);
 
         choiceArea.setSelection(0, false);
@@ -187,22 +161,6 @@ public class MainFragment extends Fragment implements OnBackPressedListener {
         return view;
     }
 
-    @Override
-    public void onBackPressed() {
-        long tempTime = System.currentTimeMillis();
-        long intervalTime = tempTime - pressTime;
-
-        if (0 <= intervalTime && finishTime >= intervalTime)
-        {
-            getActivity().finish();
-        }
-        else
-        {
-            pressTime = tempTime;
-            Toast.makeText(getActivity(), "한번더 누르시면 앱이 종료됩니다", Toast.LENGTH_SHORT).show();
-        }
-    }
-
     private void loadUserList() {
         AppDatabase2 db  = AppDatabase2.getDBInstance(this.getActivity());
 
@@ -221,7 +179,6 @@ public class MainFragment extends Fragment implements OnBackPressedListener {
                 festivalInfoList2.add(festivalInfoList.get(i));
             }
         }
-
         //리스트 저장
         festivalInfoAdapter.setFestivalInfoList(festivalInfoList2);
     }

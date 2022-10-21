@@ -15,15 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.corporation8793.festival.mclass.Booth;
 import com.corporation8793.festival.R;
-import com.corporation8793.festival.listener.OnItemClickListener2;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerAdapter4 extends RecyclerView.Adapter<RecyclerAdapter4.ViewHolder> implements OnItemClickListener2 {
+public class FestivalBoothAdapter extends RecyclerView.Adapter<FestivalBoothAdapter.ViewHolder> {
     ArrayList<Booth> items = new ArrayList<Booth>();
     Context context;
-    OnItemClickListener2 listener;
 
     public interface OnItemClickListener {
         void onScanClick(View view, int position);
@@ -33,33 +31,33 @@ public class RecyclerAdapter4 extends RecyclerView.Adapter<RecyclerAdapter4.View
         this.mListener = listener;
     }
 
-    public RecyclerAdapter4(Context context) {
+    public FestivalBoothAdapter(Context context) {
         this.context = context;
     }
 
     @NonNull
     @Override
-    public RecyclerAdapter4.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FestivalBoothAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View itemView = inflater.inflate(R.layout.item_recyclerview_booth, parent, false);
 
         itemView.getLayoutParams().height = 400;
 
-        return new RecyclerAdapter4.ViewHolder(itemView, this);
+        return new FestivalBoothAdapter.ViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerAdapter4.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FestivalBoothAdapter.ViewHolder holder, int position) {
         Booth item = items.get(position);
         holder.setItem(item);
 
         if(item.getSaveResult().equals("적립완료")) {
-            holder.setOff(item);
+            holder.setOff();
         }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerAdapter4.ViewHolder holder, int position, @NonNull List<Object> payloads) {
+    public void onBindViewHolder(@NonNull FestivalBoothAdapter.ViewHolder holder, int position, @NonNull List<Object> payloads) {
         if(payloads.isEmpty()) {
             super.onBindViewHolder(holder, position, payloads);
         } else {
@@ -102,22 +100,12 @@ public class RecyclerAdapter4 extends RecyclerView.Adapter<RecyclerAdapter4.View
         return items.size();
     }
 
-    public void setOnItemClicklistener(OnItemClickListener2 listener) {
-        this.listener = listener;
-    }
-
-    public void onItemClick(ViewHolder holder, View view, int position) {
-        if(listener != null) {
-            listener.onItemClick(holder, view, position);
-        }
-    }
-
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView boothName, boothTime, boothPoint, saveResult;
         Button cameraButton;
         ImageView boothImage;
 
-        public ViewHolder(@NonNull View itemView, final OnItemClickListener2 listener) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             boothName = itemView.findViewById(R.id.boothName);
@@ -139,16 +127,6 @@ public class RecyclerAdapter4 extends RecyclerView.Adapter<RecyclerAdapter4.View
                 }
             });
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    if(listener != null) {
-                        listener.onItemClick(ViewHolder.this, v, position);
-                    }
-                }
-            });
-
         }
 
         public void setItem(Booth item) {
@@ -158,7 +136,7 @@ public class RecyclerAdapter4 extends RecyclerView.Adapter<RecyclerAdapter4.View
             saveResult.setText(item.getSaveResult());
         }
 
-        public void setOff(Booth item) {
+        public void setOff() {
             boothImage.setImageResource(R.drawable.rounded_corner3);
             cameraButton.setText("이용 완료");
             cameraButton.setBackgroundResource(R.drawable.custom_button_camera_off);

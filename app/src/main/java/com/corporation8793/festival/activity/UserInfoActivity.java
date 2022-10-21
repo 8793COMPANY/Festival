@@ -44,7 +44,6 @@ public class UserInfoActivity extends AppCompatActivity {
         recyclerView5.setLayoutManager(new LinearLayoutManager(this));
         adapter = new UserAdapter(getApplicationContext());
         recyclerView5.setAdapter(adapter);
-
         //사용자 조회
         loadUserList();
     }
@@ -73,7 +72,6 @@ public class UserInfoActivity extends AppCompatActivity {
         AppDatabase db  = AppDatabase.getDBInstance(this.getApplicationContext());
 
         List<User> userList = db.userDao().getAllUser();
-
         //리스트 저장
         adapter.setUserList(userList);
     }

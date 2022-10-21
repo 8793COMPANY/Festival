@@ -20,7 +20,7 @@ import com.corporation8793.festival.activity.FindPwActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SecondFragment extends Fragment {
+public class FindPwFragment extends Fragment {
 
     Button pwButton;
     EditText editText;
@@ -31,7 +31,7 @@ public class SecondFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_second, container, false);
+        View view = inflater.inflate(R.layout.fragment_find_pw, container, false);
 
         editText = view.findViewById(R.id.rectangle4);
         pwButton = view.findViewById(R.id.pwButton);

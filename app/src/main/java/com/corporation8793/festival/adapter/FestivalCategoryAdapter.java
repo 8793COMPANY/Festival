@@ -10,13 +10,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.corporation8793.festival.mclass.Festival2;
+import com.corporation8793.festival.mclass.Festival;
 import com.corporation8793.festival.R;
 
 import java.util.ArrayList;
 
-public class RecyclerAdapter2 extends RecyclerView.Adapter<RecyclerAdapter2.ViewHolder> {
-    ArrayList<Festival2> items = new ArrayList<Festival2>();
+public class FestivalCategoryAdapter extends RecyclerView.Adapter<FestivalCategoryAdapter.ViewHolder> {
+    ArrayList<Festival> items = new ArrayList<Festival>();
     Context context;
 
     public interface OnCategoryClickListener{
@@ -27,38 +27,38 @@ public class RecyclerAdapter2 extends RecyclerView.Adapter<RecyclerAdapter2.View
         this.mListener = listener;
     }
 
-    public RecyclerAdapter2(Context context) {
+    public FestivalCategoryAdapter(Context context) {
         this.context = context;
     }
 
     @NonNull
     @Override
-    public RecyclerAdapter2.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FestivalCategoryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View itemView = inflater.inflate(R.layout.item_recyclerview_search, parent, false);
 
         itemView.getLayoutParams().width = 450;
 
-        return new RecyclerAdapter2.ViewHolder(itemView);
+        return new FestivalCategoryAdapter.ViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerAdapter2.ViewHolder holder, int position) {
-        Festival2 item = items.get(position);
+    public void onBindViewHolder(@NonNull FestivalCategoryAdapter.ViewHolder holder, int position) {
+        Festival item = items.get(position);
         holder.setItem(item);
     }
 
-    public void addItem(Festival2 item) {
+    public void addItem(Festival item) {
         items.add(item);
     }
 
-    public void setItems(ArrayList<Festival2> items) {
+    public void setItems(ArrayList<Festival> items) {
         this.items = items;
     }
-    public Festival2 getItem(int position) {
+    public Festival getItem(int position) {
         return items.get(position);
     }
-    public void setItem(int position, Festival2 item) {
+    public void setItem(int position, Festival item) {
         items.set(position, item);
     }
 
@@ -90,7 +90,7 @@ public class RecyclerAdapter2 extends RecyclerView.Adapter<RecyclerAdapter2.View
             });
         }
 
-        public void setItem(Festival2 item) {
+        public void setItem(Festival item) {
             searchPageImage.setImageResource(item.getImage());
         }
 

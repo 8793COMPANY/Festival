@@ -23,15 +23,10 @@ import com.corporation8793.festival.dialog.CustomDialog;
 import com.corporation8793.festival.R;
 import com.corporation8793.festival.room.Reservation;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ReservationFragment extends Fragment {
-
-    public static ReservationFragment newInstance() {
-        return new ReservationFragment();
-    }
 
     Spinner yearSpinner, monthSpinner, dateSpinner, personnelSpinner;
     ArrayAdapter<CharSequence> yearSpinner_adapter, monthSpinner_adapter, dateSpinner_adapter, personnelSpinner_adapter;
@@ -53,20 +48,20 @@ public class ReservationFragment extends Fragment {
         reservationButton2 = view.findViewById(R.id.reservationButton2);
         arrow_left = view.findViewById(R.id.arrow_left);
 
-        yearSpinner_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.year, R.layout.spinner_item3);
-        yearSpinner_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item3);
+        yearSpinner_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.year, R.layout.item_spinner_reservation);
+        yearSpinner_adapter.setDropDownViewResource(R.layout.item_spinner_dropdown_reservation);
         yearSpinner.setAdapter(yearSpinner_adapter);
 
-        monthSpinner_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.month, R.layout.spinner_item3);
-        monthSpinner_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item3);
+        monthSpinner_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.month, R.layout.item_spinner_reservation);
+        monthSpinner_adapter.setDropDownViewResource(R.layout.item_spinner_dropdown_reservation);
         monthSpinner.setAdapter(monthSpinner_adapter);
 
-        dateSpinner_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.date, R.layout.spinner_item3);
-        dateSpinner_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item3);
+        dateSpinner_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.date, R.layout.item_spinner_reservation);
+        dateSpinner_adapter.setDropDownViewResource(R.layout.item_spinner_dropdown_reservation);
         dateSpinner.setAdapter(dateSpinner_adapter);
 
-        personnelSpinner_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.personnel, R.layout.spinner_item3);
-        personnelSpinner_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item3);
+        personnelSpinner_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.personnel, R.layout.item_spinner_reservation);
+        personnelSpinner_adapter.setDropDownViewResource(R.layout.item_spinner_dropdown_reservation);
         personnelSpinner.setAdapter(personnelSpinner_adapter);
 
         reservationButton2.setOnClickListener(new View.OnClickListener() {
@@ -90,21 +85,8 @@ public class ReservationFragment extends Fragment {
                 Date date = new Date(now);
 
                 SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
-                Date day1, day2, day3;
-                String date1, date2, date3, getTime;
+                String getTime = simpleDate.format(date);
 
-                try {
-                    day1 = simpleDate.parse(total);
-                    day2 = simpleDate.parse(splitPeriod[0]);
-                    day3 = simpleDate.parse(splitPeriod[1]);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-                getTime = simpleDate.format(date);
-
-                //int compare1 = day1.compareTo(day2);
-                //int compare2 = day1.compareTo(day3);
                 int compare1 = total.compareTo(getTime);
                 int compare2 = total.compareTo(splitPeriod[1]);
 
@@ -121,7 +103,7 @@ public class ReservationFragment extends Fragment {
 
                         WindowManager.LayoutParams params = new WindowManager.LayoutParams();
                         params.width = size.x * 640/720;
-                        params.height = size.y * 440/1329;
+                        params.height = size.y * 554/1329;
                         customDialog.getWindow().setAttributes(params);
                         customDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                     } else {
@@ -154,5 +136,4 @@ public class ReservationFragment extends Fragment {
         AppDatabase db = AppDatabase.getDBInstance(getActivity());
         db.reservationDao().insertReservation(reservation);
     }
-
 }

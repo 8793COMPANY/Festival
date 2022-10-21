@@ -49,10 +49,6 @@ public class EventFragment extends Fragment {
     List<FestivalInfo> festivalInfoList3 = new ArrayList<>();
     List<FestivalInfo> festivalInfoList4 = new ArrayList<>();
 
-    public static EventFragment newInstance() {
-        return new EventFragment();
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -83,8 +79,8 @@ public class EventFragment extends Fragment {
         //축제 조회
         loadUserList();
 
-        choiceMonth_adapter2 = ArrayAdapter.createFromResource(getActivity(), R.array.month_array, R.layout.spinner_item);
-        choiceMonth_adapter2.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        choiceMonth_adapter2 = ArrayAdapter.createFromResource(getActivity(), R.array.month_array, R.layout.item_spinner_main);
+        choiceMonth_adapter2.setDropDownViewResource(R.layout.item_spinner_dropdown_main);
         choiceMonth2.setAdapter(choiceMonth_adapter2);
 
         choiceMonth2.setSelection(0, false);
@@ -98,8 +94,8 @@ public class EventFragment extends Fragment {
             }
         });
 
-        choiceArea_adapter2 = ArrayAdapter.createFromResource(getActivity(), R.array.area_array, R.layout.spinner_item);
-        choiceArea_adapter2.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        choiceArea_adapter2 = ArrayAdapter.createFromResource(getActivity(), R.array.area_array, R.layout.item_spinner_main);
+        choiceArea_adapter2.setDropDownViewResource(R.layout.item_spinner_dropdown_main);
         choiceArea2.setAdapter(choiceArea_adapter2);
 
         choiceArea2.setSelection(0, false);

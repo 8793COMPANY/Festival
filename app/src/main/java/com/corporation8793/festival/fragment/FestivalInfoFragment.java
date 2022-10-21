@@ -53,10 +53,6 @@ public class FestivalInfoFragment extends Fragment implements OnMapReadyCallback
 
     List<Reservation> reservationList = new ArrayList<Reservation>();
 
-    public static FestivalInfoFragment newInstance() {
-        return new FestivalInfoFragment();
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -265,54 +261,4 @@ public class FestivalInfoFragment extends Fragment implements OnMapReadyCallback
             e.printStackTrace();
         }
     }
-
-    @Override
-    public void onStart()
-    {
-        super.onStart();
-        mapView.onStart();
-    }
-
-    @Override
-    public void onResume()
-    {
-        super.onResume();
-        mapView.onResume();
-    }
-
-    @Override
-    public void onPause()
-    {
-        super.onPause();
-        mapView.onPause();
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState)
-    {
-        super.onSaveInstanceState(outState);
-        mapView.onSaveInstanceState(outState);
-    }
-
-    @Override
-    public void onStop()
-    {
-        super.onStop();
-        mapView.onStop();
-    }
-
-    @Override
-    public void onDestroyView()
-    {
-        super.onDestroyView();
-        mapView.onDestroy();
-    }
-
-    @Override
-    public void onLowMemory()
-    {
-        super.onLowMemory();
-        mapView.onLowMemory();
-    }
-
 }

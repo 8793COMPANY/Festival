@@ -40,8 +40,8 @@ public class FindPwActivity extends AppCompatActivity {
         arrow_left = findViewById(R.id.arrow_left);
         writeAnswer = findViewById(R.id.writeAnswer);
 
-        choiceQuestion_adapter = ArrayAdapter.createFromResource(this, R.array.question_text, R.layout.spinner_item3);
-        choiceQuestion_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item3);
+        choiceQuestion_adapter = ArrayAdapter.createFromResource(this, R.array.question_text, R.layout.item_spinner_reservation);
+        choiceQuestion_adapter.setDropDownViewResource(R.layout.item_spinner_dropdown_reservation);
         choiceQuestion.setAdapter(choiceQuestion_adapter);
 
         Intent findIntent = getIntent();

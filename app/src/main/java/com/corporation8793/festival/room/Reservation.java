@@ -4,11 +4,11 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity//(foreignKeys = @ForeignKey(entity = User.class, parentColumns = "uid", childColumns = "uid", onDelete = ForeignKey.CASCADE))
+@Entity
 public class Reservation {
     @PrimaryKey(autoGenerate = true)
     public int rid;
-    //외래키
+
     @ColumnInfo(name = "uid")
     public int uid;
     //사용자 아이디
@@ -23,7 +23,7 @@ public class Reservation {
     //예약 인원
     @ColumnInfo(name = "rNum")
     public String rNum;
-    //예약된 축제의 부스 > 이건 데이터가 현재 없음
+    //예약된 축제의 부스 > 현재 데이터 없음
 
     public int getRid() {
         return rid;
@@ -31,6 +31,14 @@ public class Reservation {
 
     public void setRid(int rid) {
         this.rid = rid;
+    }
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 
     public String getUserId() {

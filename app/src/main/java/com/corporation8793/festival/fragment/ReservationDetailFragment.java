@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import com.corporation8793.festival.room.AppDatabase;
 import com.corporation8793.festival.activity.MainActivity;
-import com.corporation8793.festival.listener.OnItemClickListener3;
+import com.corporation8793.festival.listener.OnItemClickListener;
 import com.corporation8793.festival.R;
 import com.corporation8793.festival.room.Reservation;
 import com.corporation8793.festival.adapter.ReservationAdapter;
@@ -28,9 +28,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class BreakdownFragment extends Fragment {
+public class ReservationDetailFragment extends Fragment {
 
-    RecyclerView recyclerView;
+    RecyclerView recyclerView3;
     ReservationAdapter reservationAdapter;
     Context context;
     ImageView arrow_left;
@@ -40,26 +40,22 @@ public class BreakdownFragment extends Fragment {
     List<Reservation> reservationList = new ArrayList<>();
     List<Reservation> reservationList2 = new ArrayList<>();
 
-    public static BreakdownFragment newInstance() {
-        return new BreakdownFragment();
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_breakdown, container, false);
+        View view = inflater.inflate(R.layout.fragment_reservation_detail, container, false);
 
         context = container.getContext();
 
         arrow_left = view.findViewById(R.id.arrow_left);
-        recyclerView = view.findViewById(R.id.recyclerView3);
+        recyclerView3 = view.findViewById(R.id.recyclerView3);
         testText = view.findViewById(R.id.testText);
 
         testText.setVisibility(View.GONE);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView3.setLayoutManager(new LinearLayoutManager(context));
         reservationAdapter = new ReservationAdapter(context);
-        recyclerView.setAdapter(reservationAdapter);
+        recyclerView3.setAdapter(reservationAdapter);
 
         Bundle bundle = getArguments();
 
@@ -75,7 +71,7 @@ public class BreakdownFragment extends Fragment {
             testText.setVisibility(View.VISIBLE);
         }
 
-        reservationAdapter.setOnItemClickListener(new OnItemClickListener3() {
+        reservationAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(ReservationAdapter.ViewHolder holder, View view, int position) {
                 Reservation item = reservationAdapter.getItem(position);

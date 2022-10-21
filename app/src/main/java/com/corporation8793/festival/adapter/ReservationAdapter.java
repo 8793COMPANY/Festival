@@ -14,20 +14,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.corporation8793.festival.room.AppDatabase;
-import com.corporation8793.festival.listener.OnItemClickListener3;
+import com.corporation8793.festival.listener.OnItemClickListener;
 import com.corporation8793.festival.R;
 import com.corporation8793.festival.room.Reservation;
 
 import java.util.List;
 
-public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.ViewHolder> implements OnItemClickListener3 {
+public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.ViewHolder> implements OnItemClickListener {
 
     List<Reservation> reservationList;
     Context context;
     ImageView rFestivalImage;
     int[] image;
 
-    OnItemClickListener3 listener;
+    OnItemClickListener listener;
     AppDatabase db;
 
     public ReservationAdapter(Context context) {
@@ -38,7 +38,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.item_recyclerview_mypage, parent, false);
+        View view = inflater.inflate(R.layout.item_recyclerview_reservation, parent, false);
 
         rFestivalImage = view.findViewById(R.id.rFestivalImage);
 
@@ -96,7 +96,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
         notifyDataSetChanged();
     }
 
-    public void setOnItemClickListener(OnItemClickListener3 listener) {
+    public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
@@ -119,7 +119,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
         Button rDeleteButton;
         ImageView rOffImage;
 
-        public ViewHolder(@NonNull View view, final OnItemClickListener3 listener) {
+        public ViewHolder(@NonNull View view, final OnItemClickListener listener) {
             super(view);
 
             rFestivalName = view.findViewById(R.id.rFestivalName);

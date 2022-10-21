@@ -5,21 +5,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.corporation8793.festival.mclass.MyList;
+import com.corporation8793.festival.mclass.RankList;
 import com.corporation8793.festival.R;
 
 import java.util.ArrayList;
 
-public class ListAdapter extends BaseAdapter {
-    ArrayList<MyList> items = new ArrayList<MyList>();
+public class RankListAdapter extends BaseAdapter {
+    ArrayList<RankList> items = new ArrayList<RankList>();
     Context context;
-    TextView listText;
-    ImageView listImage, listEvent;
 
-    public ListAdapter(Context context) {
+    public RankListAdapter(Context context) {
         this.context = context;
     }
 
@@ -29,7 +26,7 @@ public class ListAdapter extends BaseAdapter {
     }
 
     @Override
-    public MyList getItem(int position) {
+    public RankList getItem(int position) {
         return items.get(position);
     }
 
@@ -41,22 +38,22 @@ public class ListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.listview_item, parent, false);
+        View view = inflater.inflate(R.layout.item_listview_rank, parent, false);
 
+        TextView rankText, rankNameText;
 
-        listText = view.findViewById(R.id.listText);
-        listImage = view.findViewById(R.id.listImage);
-        listEvent = view.findViewById(R.id.listEvent);
+        rankText = view.findViewById(R.id.rankText);
+        rankNameText = view.findViewById(R.id.rankNameText);
 
-        MyList item = items.get(position);
-        listText.setText(item.getListName());
-        listImage.setImageResource(item.getImage1());
-        listEvent.setImageResource(item.getImage2());
+        RankList item = items.get(position);
+        rankText.setText(item.getMainText());
+        rankNameText.setText(item.getSubText());
 
         return view;
     }
 
-    public void addItem(MyList item)  {
+
+    public void addItem(RankList item) {
         items.add(item);
     }
 }
