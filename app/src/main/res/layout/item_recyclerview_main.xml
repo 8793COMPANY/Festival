@@ -20,7 +20,7 @@
         android:id="@+id/festivalMonthImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/festival_resize_month"
+        android:background="@drawable/festival_resize_month_pink"
         app:layout_constraintVertical_bias="0.587"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintTop_toTopOf="parent"

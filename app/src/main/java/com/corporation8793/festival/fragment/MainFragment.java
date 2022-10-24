@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -69,10 +70,20 @@ public class MainFragment extends Fragment {
         choiceMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                searchButton.setBackgroundResource(R.drawable.search_resize_on);
+                searchButton.setBackgroundResource(R.drawable.search_resize_on_pink);
+                choiceMonth.setBackgroundResource(R.drawable.custom_spinner3);
+
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        choiceMonth.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                choiceMonth.setBackgroundResource(R.drawable.custom_spinner4);
+                return false;
             }
         });
 
@@ -84,7 +95,7 @@ public class MainFragment extends Fragment {
         choiceArea.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                searchButton.setBackgroundResource(R.drawable.search_resize_on);
+                searchButton.setBackgroundResource(R.drawable.search_resize_on_pink);
 
                 if(choiceArea.getSelectedItem().toString().equals("경북/대구")) {
                     choiceAreaText = "경상북도/대구광역시";

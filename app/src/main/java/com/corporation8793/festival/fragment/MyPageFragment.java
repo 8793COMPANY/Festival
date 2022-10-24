@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -25,7 +26,8 @@ public class MyPageFragment extends Fragment {
     TextView logoutText;
     ImageView list1Image2, listView1, list2Image2, listView2, listView3;
     Button dataModify;
-    Switch list3Switch;
+    SwitchCompat list3Switch;
+    //Switch list3Switch;
     String userId, userPw;
 
     @Override

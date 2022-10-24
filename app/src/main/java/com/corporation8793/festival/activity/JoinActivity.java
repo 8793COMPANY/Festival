@@ -144,12 +144,19 @@ public class JoinActivity extends AppCompatActivity {
                     Pattern pattern = android.util.Patterns.EMAIL_ADDRESS;
                     Matcher matcher = pattern.matcher((rectangle11).getText().toString());
 
-                    if(!sPw.equals(sPwCheck)) {
+
+                    if(!Pattern.matches("^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z[0-9]]{8,15}$", sPw)) {
+                        Toast.makeText(getApplicationContext(), "비밀번호 형식이 올바르지 않습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    } else if(!Pattern.matches("^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z[0-9]]{6,12}$", sId)) {
+                        Toast.makeText(getApplicationContext(), "아이디 형식이 올바르지 않습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    } else if(!sPw.equals(sPwCheck)) {
                         Toast.makeText(getApplicationContext(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
                     } else if(sName.equals("")||sId.equals("")||sPw.equals("")||sPwCheck.equals("")||sPwAnswer.equals("")||sEmail.equals("")||sPhoneNumber.equals("")) {
                         Toast.makeText(getApplicationContext(), "회원정보가 부족합니다 모두 입력해주세요.", Toast.LENGTH_SHORT).show();
                     } else if(!matcher.matches()) {
                         Toast.makeText(getApplicationContext(), "이메일 형식이 올바르지 않습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    } else if(!Pattern.matches("^\\d{3}-\\d{3,4}-\\d{4}$", sPhoneNumber)) {
+                        Toast.makeText(getApplicationContext(), "연락처 형식이 올바르지 않습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
                     } else if(!checkButton2.isChecked()) {
                         Toast.makeText(getApplicationContext(), "개인정보처리방침을 확인해주세요.", Toast.LENGTH_SHORT).show();
                     } else {
@@ -242,7 +249,18 @@ public class JoinActivity extends AppCompatActivity {
                     String userArea = sArea;
                     int userAreaIndex = index;
 
-                    if(userName.equals("")||userId.equals("")||userPw.equals("")||userPwAnswer.equals("")||userEmail.equals("")||userPhoneNumber.equals("")) {
+
+                    Pattern pattern = android.util.Patterns.EMAIL_ADDRESS;
+                    Matcher matcher = pattern.matcher((rectangle11).getText().toString());
+
+
+                    if(!matcher.matches()) {
+                        Toast.makeText(getApplicationContext(), "이메일 형식이 올바르지 않습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    } else if(!Pattern.matches("^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z[0-9]]{6,12}$", userId)) {
+                        Toast.makeText(getApplicationContext(), "아이디 형식이 올바르지 않습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    } else if(!Pattern.matches("^\\d{3}-\\d{3,4}-\\d{4}$", userPhoneNumber)) {
+                        Toast.makeText(getApplicationContext(), "연락처 형식이 올바르지 않습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    } else if(userName.equals("")||userId.equals("")||userPw.equals("")||userPwAnswer.equals("")||userEmail.equals("")||userPhoneNumber.equals("")) {
                         Toast.makeText(getApplicationContext(), "회원정보가 부족합니다 모두 입력해주세요.", Toast.LENGTH_SHORT).show();
                     } else {
                         //중복확인(기존의 아이디와 이메일을 그대로 썼을때는 예외로 두어야 함)

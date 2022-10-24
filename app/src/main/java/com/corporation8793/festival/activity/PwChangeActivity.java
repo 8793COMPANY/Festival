@@ -20,6 +20,7 @@ import com.corporation8793.festival.room.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class PwChangeActivity extends AppCompatActivity {
 
@@ -70,48 +71,52 @@ public class PwChangeActivity extends AppCompatActivity {
                         errorText.setText("비밀번호가 일치하지 않습니다.");
                         errorText.startAnimation(animation);
                     } else {
-                        for (int i=0; i < userList.size(); i++) {
-                            if(userList.get(i).userId.equals(getId)) {
-                                uid = userList.get(i).uid;
-                                userId = userList.get(i).userId;
-                                userName = userList.get(i).userName;
-                                userPwQuestion = userList.get(i).userPwQuestion;
-                                pwQuestionIndex = userList.get(i).PwQuestionIndex;
-                                userPwAnswer = userList.get(i).userPwAnswer;
-                                userEmail = userList.get(i).userEmail;
-                                userPhoneNumber = userList.get(i).userPhoneNumber;
-                                userArea = userList.get(i).userArea;
-                                userAreaIndex = userList.get(i).userAreaIndex;
+                        if(!Pattern.matches("^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z[0-9]]{8,15}$", newPw)) {
+                            Toast.makeText(getApplicationContext(), "비밀번호 형식이 올바르지 않습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            for (int i=0; i < userList.size(); i++) {
+                                if(userList.get(i).userId.equals(getId)) {
+                                    uid = userList.get(i).uid;
+                                    userId = userList.get(i).userId;
+                                    userName = userList.get(i).userName;
+                                    userPwQuestion = userList.get(i).userPwQuestion;
+                                    pwQuestionIndex = userList.get(i).PwQuestionIndex;
+                                    userPwAnswer = userList.get(i).userPwAnswer;
+                                    userEmail = userList.get(i).userEmail;
+                                    userPhoneNumber = userList.get(i).userPhoneNumber;
+                                    userArea = userList.get(i).userArea;
+                                    userAreaIndex = userList.get(i).userAreaIndex;
 
-                                //정보 업데이트
-                                User user = new User();
-                                user.uid = uid;
-                                user.userName = userName;
-                                user.userId = userId;
-                                user.userPwQuestion = userPwQuestion;
-                                user.PwQuestionIndex = pwQuestionIndex;
-                                user.userPwAnswer = userPwAnswer;
-                                user.userPw = newPw;
-                                user.userEmail = userEmail;
-                                user.userPhoneNumber = userPhoneNumber;
-                                user.userArea = userArea;
-                                user.userAreaIndex = userAreaIndex;
+                                    //정보 업데이트
+                                    User user = new User();
+                                    user.uid = uid;
+                                    user.userName = userName;
+                                    user.userId = userId;
+                                    user.userPwQuestion = userPwQuestion;
+                                    user.PwQuestionIndex = pwQuestionIndex;
+                                    user.userPwAnswer = userPwAnswer;
+                                    user.userPw = newPw;
+                                    user.userEmail = userEmail;
+                                    user.userPhoneNumber = userPhoneNumber;
+                                    user.userArea = userArea;
+                                    user.userAreaIndex = userAreaIndex;
 
-                                db.userDao().updateUser(user);
+                                    db.userDao().updateUser(user);
 
-                                Intent intent1 = getIntent();
+                                    Intent intent1 = getIntent();
 
-                                if(intent1.hasExtra("페이지이름")) {
-                                    Toast.makeText(getApplicationContext(), "수정이 완료되었습니다.\n다시 로그인해주세요.", Toast.LENGTH_SHORT).show();
+                                    if(intent1.hasExtra("페이지이름")) {
+                                        Toast.makeText(getApplicationContext(), "수정이 완료되었습니다.\n다시 로그인해주세요.", Toast.LENGTH_SHORT).show();
 
-                                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    JoinActivity joinActivity = new JoinActivity();
-                                    joinActivity.getChangePw(newPw);
+                                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    } else {
+                                        JoinActivity joinActivity = new JoinActivity();
+                                        joinActivity.getChangePw(newPw);
 
-                                    finish();
+                                        finish();
+                                    }
                                 }
                             }
                         }

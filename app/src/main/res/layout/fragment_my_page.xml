@@ -250,11 +250,15 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"/>
 
-        <Switch
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/list3Switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintHorizontal_bias="0.933"
+            android:switchPadding="20dp"
+            android:thumb="@drawable/switch_thumb"
+            app:switchMinWidth="30dp"
+            app:track="@drawable/selector_switch"
+            app:layout_constraintHorizontal_bias="0.91"
             app:layout_constraintVertical_bias="0.368"
             app:layout_constraintTop_toBottomOf="@+id/backgroundImage"
             app:layout_constraintBottom_toBottomOf="parent"
