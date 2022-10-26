@@ -3,12 +3,14 @@ package com.corporation8793.festival.fragment;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.ListPopupWindow;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -24,6 +26,7 @@ import com.corporation8793.festival.room.AppDatabase2;
 import com.corporation8793.festival.room.FestivalInfo;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
+import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -87,10 +90,19 @@ public class EventFragment extends Fragment {
         choiceMonth2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                searchButton2.setBackgroundResource(R.drawable.search_resize_on);
+                searchButton2.setBackgroundResource(R.drawable.search_resize_on_pink);
+                choiceMonth2.setBackgroundResource(R.drawable.custom_spinner3);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        choiceMonth2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                //choiceMonth2.setBackgroundResource(R.drawable.custom_spinner4);
+                return false;
             }
         });
 
@@ -102,7 +114,8 @@ public class EventFragment extends Fragment {
         choiceArea2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                searchButton2.setBackgroundResource(R.drawable.search_resize_on);
+                searchButton2.setBackgroundResource(R.drawable.search_resize_on_pink);
+                choiceArea2.setBackgroundResource(R.drawable.custom_spinner3);
 
                 if(choiceArea2.getSelectedItem().toString().equals("경북/대구")) {
                     choiceAreaText = "경상북도/대구광역시";
@@ -112,6 +125,14 @@ public class EventFragment extends Fragment {
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        choiceArea2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                //choiceArea2.setBackgroundResource(R.drawable.custom_spinner4);
+                return false;
             }
         });
 

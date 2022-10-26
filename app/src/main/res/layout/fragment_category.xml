@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/pretendard_semi_bold"
-            android:textColor="#ad9bff"
+            android:textColor="#ff5b8f"
             android:text="카테고리이름"
             android:textSize="28dp"
             app:layout_constraintHorizontal_bias="0"

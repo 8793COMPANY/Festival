@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -68,13 +67,11 @@ public class FestivalCategoryAdapter extends RecyclerView.Adapter<FestivalCatego
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView mainText;
         ImageView searchPageImage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            mainText = itemView.findViewById(R.id.mainText);
             searchPageImage = itemView.findViewById(R.id.searchPageImage);
 
             itemView.setOnClickListener(new View.OnClickListener() {

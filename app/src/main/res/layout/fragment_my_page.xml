@@ -38,18 +38,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/arrow_left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/arrow_resize_left"
-            app:layout_constraintHorizontal_bias="0.065"
-            app:layout_constraintVertical_bias="0.059"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
-
-        <ImageView
             android:id="@+id/pictureImage"
             android:layout_width="85dp"
             android:layout_height="85dp"
@@ -97,7 +85,7 @@
             android:id="@+id/list1Image"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/festival_month_image"
+            android:background="@drawable/festival_month_image_pink"
             app:layout_constraintHorizontal_bias="0.063"
             app:layout_constraintVertical_bias="0.059"
             app:layout_constraintTop_toBottomOf="@+id/backgroundImage"
@@ -157,7 +145,7 @@
             android:id="@+id/list12Image"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/mypage_image1"
+            android:background="@drawable/mypage_image1_pink"
             app:layout_constraintHorizontal_bias="0.063"
             app:layout_constraintVertical_bias="0.216"
             app:layout_constraintTop_toBottomOf="@+id/backgroundImage"
@@ -217,7 +205,7 @@
             android:id="@+id/list13Image"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/mypage_image2"
+            android:background="@drawable/mypage_image2_pink"
             app:layout_constraintHorizontal_bias="0.063"
             app:layout_constraintVertical_bias="0.368"
             app:layout_constraintTop_toBottomOf="@+id/backgroundImage"

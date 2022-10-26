@@ -141,7 +141,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/pretendard_medium"
-            android:textColor="#a895ff"
+            android:textColor="#ff5b8f"
             android:text="비밀번호 변경"
             android:textSize="14dp"
             android:layout_marginTop="20dp"

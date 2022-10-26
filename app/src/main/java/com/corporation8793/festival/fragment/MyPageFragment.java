@@ -24,7 +24,7 @@ import com.corporation8793.festival.activity.LoginActivity;
 public class MyPageFragment extends Fragment {
 
     TextView logoutText;
-    ImageView list1Image2, listView1, list2Image2, listView2, listView3;
+    ImageView list1Image2, listView1, list2Image2, listView2;
     Button dataModify;
     SwitchCompat list3Switch;
     //Switch list3Switch;

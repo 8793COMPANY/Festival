@@ -4,6 +4,6 @@
     <item
         android:width="20dp"
         android:height="20dp"
-        android:drawable="@drawable/arrow_right" />
+        android:drawable="@drawable/arrow_right_pink" />
 
 </layer-list>

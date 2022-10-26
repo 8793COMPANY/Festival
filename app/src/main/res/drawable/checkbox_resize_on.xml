@@ -4,6 +4,6 @@
     <item
         android:width="15dp"
         android:height="15dp"
-        android:drawable="@drawable/checkbox_on" />
+        android:drawable="@drawable/checkbox_on_pink" />
 
 </layer-list>

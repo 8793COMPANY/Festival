@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -66,16 +67,27 @@ public class MainFragment extends Fragment {
         choiceMonth_adapter.setDropDownViewResource(R.layout.item_spinner_dropdown_main);
         choiceMonth.setAdapter(choiceMonth_adapter);
 
-        choiceMonth.setSelection(0, false);
         choiceMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 searchButton.setBackgroundResource(R.drawable.search_resize_on_pink);
                 choiceMonth.setBackgroundResource(R.drawable.custom_spinner3);
-
+                Log.e("touch", "on");
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+                Log.e("touch", "off");
+            }
+        });
+
+        choiceMonth.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus) {
+                    Log.e("touch", "spinner");
+                } else {
+                    Log.e("touch", "no spinner");
+                }
             }
         });
 
@@ -83,19 +95,25 @@ public class MainFragment extends Fragment {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 choiceMonth.setBackgroundResource(R.drawable.custom_spinner4);
+                choiceMonth.setFocusableInTouchMode(true);
+                choiceMonth.requestFocus();
                 return false;
             }
         });
+
+        /*if(!choiceMonth.isFocused()) {
+            choiceMonth.setBackgroundResource(R.drawable.custom_spinner3);
+        }*/
 
         choiceArea_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.area_array, R.layout.item_spinner_main);
         choiceArea_adapter.setDropDownViewResource(R.layout.item_spinner_dropdown_main);
         choiceArea.setAdapter(choiceArea_adapter);
 
-        choiceArea.setSelection(0, false);
         choiceArea.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 searchButton.setBackgroundResource(R.drawable.search_resize_on_pink);
+                choiceArea.setBackgroundResource(R.drawable.custom_spinner3);
 
                 if(choiceArea.getSelectedItem().toString().equals("경북/대구")) {
                     choiceAreaText = "경상북도/대구광역시";
@@ -107,6 +125,17 @@ public class MainFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+        /*choiceArea.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                choiceArea.setBackgroundResource(R.drawable.custom_spinner4);
+                Log.e("mainFocus choiceArea",choiceArea.isFocusable()+"");
+                choiceArea.setFocusableInTouchMode(true);
+                choiceArea.requestFocus();
+                return false;
+            }
+        });*/
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,9 +197,20 @@ public class MainFragment extends Fragment {
                 }
             }
         });
-
         return view;
     }
+
+    /*public void doSomething(String s) {
+        //Log.e("touch", "spinner");
+
+        if(s.equals("yes")) {
+            Log.e("touch", "spinner");
+        } else {
+            Log.e("touch", "no spinner");
+        }
+
+        //choiceMonth.setBackgroundResource(R.drawable.custom_spinner3);
+    }*/
 
     private void loadUserList() {
         AppDatabase2 db  = AppDatabase2.getDBInstance(this.getActivity());

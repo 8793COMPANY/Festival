@@ -23,6 +23,7 @@ import com.corporation8793.festival.dialog.CustomDialog;
 import com.corporation8793.festival.R;
 import com.corporation8793.festival.room.Reservation;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -85,32 +86,38 @@ public class ReservationFragment extends Fragment {
                 Date date = new Date(now);
 
                 SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
-                String getTime = simpleDate.format(date);
 
-                int compare1 = total.compareTo(getTime);
-                int compare2 = total.compareTo(splitPeriod[1]);
+                try {
+                    Date getTime = simpleDate.parse(total);
+                    Date getTime2 = simpleDate.parse(splitPeriod[1]);
 
-                if(compare1 >= 0 && compare2 <= 0) {
-                    if(!num.equals("0")) {
-                        insertReservation(name, total, num, uid);
+                    int compare1 = getTime.compareTo(date);
+                    int compare2 = getTime.compareTo(getTime2);
 
-                        customDialog = new CustomDialog(getActivity(), total, num, name, uid);
-                        customDialog.show();
+                    if(compare1 >= 0 && compare2 <= 0) {
+                        if(!num.equals("0")) {
+                            insertReservation(name, total, num, uid);
 
-                        Display display = getActivity().getWindowManager().getDefaultDisplay();
-                        Point size = new Point();
-                        display.getSize(size);
+                            customDialog = new CustomDialog(getActivity(), total, num, name, uid);
+                            customDialog.show();
 
-                        WindowManager.LayoutParams params = new WindowManager.LayoutParams();
-                        params.width = size.x * 640/720;
-                        params.height = size.y * 554/1329;
-                        customDialog.getWindow().setAttributes(params);
-                        customDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                            Display display = getActivity().getWindowManager().getDefaultDisplay();
+                            Point size = new Point();
+                            display.getSize(size);
+
+                            WindowManager.LayoutParams params = new WindowManager.LayoutParams();
+                            params.width = size.x * 640/720;
+                            params.height = size.y * 554/1329;
+                            customDialog.getWindow().setAttributes(params);
+                            customDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                        } else {
+                            Toast.makeText(getActivity(), "인원수를 선택해주세요.", Toast.LENGTH_SHORT).show();
+                        }
                     } else {
-                        Toast.makeText(getActivity(), "인원수를 선택해주세요.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "축제 기간이 맞지 않습니다.", Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Toast.makeText(getActivity(), "축제 기간이 맞지 않습니다.", Toast.LENGTH_SHORT).show();
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
             }
         });

@@ -155,7 +155,7 @@ public class LoginActivity extends AppCompatActivity {
         joinText.setMovementMethod(LinkMovementMethod.getInstance());
 
         // 글자 색상 변경
-        span.setSpan(new ForegroundColorSpan(Color.parseColor("#ad9cfd")), start, end, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+        span.setSpan(new ForegroundColorSpan(Color.parseColor("#ff5b8f")), start, end, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
 
         // 버튼 이미지 클릭시 회원가입 페이지로 이동
         arrow_right.setOnClickListener(new View.OnClickListener() {

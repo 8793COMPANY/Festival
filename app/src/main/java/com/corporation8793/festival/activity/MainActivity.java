@@ -15,7 +15,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.corporation8793.festival.R;
@@ -23,6 +25,7 @@ import com.corporation8793.festival.fragment.EventFragment;
 import com.corporation8793.festival.fragment.MainFragment;
 import com.corporation8793.festival.fragment.MyPageFragment;
 import com.corporation8793.festival.fragment.SearchFragment;
+import com.corporation8793.festival.mclass.NDSpinner;
 import com.corporation8793.festival.room.AppDatabase2;
 import com.corporation8793.festival.room.FestivalInfo;
 import com.google.android.material.navigation.NavigationBarView;
@@ -33,6 +36,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 public class
@@ -132,6 +136,23 @@ MainActivity extends AppCompatActivity {
             Log.d("Is first Time?", "not first");
         }
     }
+
+    /*@Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+
+        Log.e("mainFocus", getCurrentFocus()+"");
+
+        MainFragment mainFragment = new MainFragment();
+
+        View view = getCurrentFocus();
+        if(view instanceof NDSpinner) {
+            mainFragment.doSomething("yes");
+        } else {
+            mainFragment.doSomething("no");
+        }
+
+        return super.dispatchTouchEvent(event);
+    }*/
 
     @Override
     public void onBackPressed() {

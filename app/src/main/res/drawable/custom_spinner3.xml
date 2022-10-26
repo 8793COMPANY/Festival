@@ -14,7 +14,7 @@
 
             <item
                 android:gravity="center|end"
-                android:drawable="@drawable/arrow_down"
+                android:drawable="@drawable/ic_arrow_up_24"
                 android:width="20dp"
                 android:height="20dp"
                 android:right="10dp" />
@@ -27,16 +27,16 @@
                 <shape android:shape="rectangle">
                     <gradient
                         android:type="linear"
-                        android:startColor="#ffae4e"
-                        android:endColor="#ff31b0"
-                        android:angle="90" />
+                        android:startColor="#ff31b0"
+                        android:endColor="#ffae4e"
+                        android:angle="315" />
                     <corners android:radius="18dp" />
                 </shape>
             </item>
 
             <item
                 android:gravity="center|end"
-                android:drawable="@drawable/arrow_down"
+                android:drawable="@drawable/ic_arrow_down_24_white"
                 android:width="20dp"
                 android:height="20dp"
                 android:right="10dp" />

@@ -76,13 +76,14 @@ public class SearchFragment extends Fragment {
         recyclerView2.setLayoutManager(layoutManager);
         festivalCategoryAdapter = new FestivalCategoryAdapter(getActivity());
 
-        festivalCategoryAdapter.addItem(new Festival("꽃", R.drawable.search_flower));
-        festivalCategoryAdapter.addItem(new Festival("불꽃", R.drawable.search_fireworks));
-        festivalCategoryAdapter.addItem(new Festival("전통문화", R.drawable.search_traditional));
-        festivalCategoryAdapter.addItem(new Festival("음악", R.drawable.search_music));
-        festivalCategoryAdapter.addItem(new Festival("맥주", R.drawable.search_beer));
-        festivalCategoryAdapter.addItem(new Festival("단풍", R.drawable.search_maple));
-        festivalCategoryAdapter.addItem(new Festival("문화", R.drawable.search_culture));
+        festivalCategoryAdapter.addItem(new Festival("꽃", R.drawable.search_flower2));
+        festivalCategoryAdapter.addItem(new Festival("불꽃", R.drawable.search_fireworks2));
+        festivalCategoryAdapter.addItem(new Festival("전통문화", R.drawable.search_traditional2));
+        festivalCategoryAdapter.addItem(new Festival("음악", R.drawable.search_music2));
+        festivalCategoryAdapter.addItem(new Festival("맥주", R.drawable.search_beer2));
+        festivalCategoryAdapter.addItem(new Festival("단풍", R.drawable.search_maple2));
+        festivalCategoryAdapter.addItem(new Festival("문화", R.drawable.search_culture2));
+        festivalCategoryAdapter.addItem(new Festival("먹거리", R.drawable.search_food2));
 
         recyclerView2.setAdapter(festivalCategoryAdapter);
 
@@ -95,7 +96,11 @@ public class SearchFragment extends Fragment {
                 CategoryFragment categoryFragment = new CategoryFragment();
 
                 Bundle bundle = new Bundle();
-                bundle.putString("카테고리", item.name);
+                if(item.name.equals("먹거리")) {
+                    bundle.putString("카테고리", "음식");
+                } else {
+                    bundle.putString("카테고리", item.name);
+                }
 
                 categoryFragment.setArguments(bundle);
                 transaction.replace(R.id.containers, categoryFragment);
@@ -135,7 +140,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 //입력 중
-                search.setImageResource(R.drawable.search_resize_purple);
+                search.setImageResource(R.drawable.search_resize_pink);
                 if(rectangle13.getText().toString().equals("")) {
                     search.setImageResource(R.drawable.search_resize_white2);
                 }
