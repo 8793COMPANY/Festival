@@ -10,11 +10,14 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.corporation8793.festival.room.AppDatabase;
 import com.corporation8793.festival.activity.MainActivity;
@@ -40,6 +43,8 @@ public class ReservationDetailFragment extends Fragment {
     List<Reservation> reservationList = new ArrayList<>();
     List<Reservation> reservationList2 = new ArrayList<>();
 
+    String check;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -61,8 +66,10 @@ public class ReservationDetailFragment extends Fragment {
 
         if(bundle.getString("예약내역").equals("추가")) {
             uid = bundle.getInt("알람사용자구분");
+            check = "yes";
         }else {
             uid = bundle.getInt("알람사용자구분2");
+            check = "no";
         }
         //예약 내역 조회
         loadBreakdown();

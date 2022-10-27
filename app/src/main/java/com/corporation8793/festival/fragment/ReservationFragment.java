@@ -25,7 +25,9 @@ import com.corporation8793.festival.room.Reservation;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class ReservationFragment extends Fragment {
 
@@ -36,6 +38,8 @@ public class ReservationFragment extends Fragment {
     ImageView arrow_left;
     String year, month, date, total, num, name;
     int uid;
+
+    List<Reservation> reservationList = new ArrayList<Reservation>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,56 +72,72 @@ public class ReservationFragment extends Fragment {
         reservationButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AppDatabase db = AppDatabase.getDBInstance(getActivity());
+                reservationList = db.reservationDao().getAllReservation();
+                boolean check = false;
+
                 Bundle bundle = getArguments();
 
-                year = yearSpinner.getSelectedItem().toString();
-                month = monthSpinner.getSelectedItem().toString();
-                date = dateSpinner.getSelectedItem().toString();
-                total = year + "-" + month + "-" + date;
-                num = personnelSpinner.getSelectedItem().toString();
-                name = bundle.getString("예약축제이름");
-                uid = bundle.getInt("사용자구별");
-
-                //예약 날짜와 축제 기간 비교
-                String period = bundle.getString("예약축제기간");
-                String[] splitPeriod = period.split("~");
-
-                long now = System.currentTimeMillis();
-                Date date = new Date(now);
-
-                SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
-
-                try {
-                    Date getTime = simpleDate.parse(total);
-                    Date getTime2 = simpleDate.parse(splitPeriod[1]);
-
-                    int compare1 = getTime.compareTo(date);
-                    int compare2 = getTime.compareTo(getTime2);
-
-                    if(compare1 >= 0 && compare2 <= 0) {
-                        if(!num.equals("0")) {
-                            insertReservation(name, total, num, uid);
-
-                            customDialog = new CustomDialog(getActivity(), total, num, name, uid);
-                            customDialog.show();
-
-                            Display display = getActivity().getWindowManager().getDefaultDisplay();
-                            Point size = new Point();
-                            display.getSize(size);
-
-                            WindowManager.LayoutParams params = new WindowManager.LayoutParams();
-                            params.width = size.x * 640/720;
-                            params.height = size.y * 554/1329;
-                            customDialog.getWindow().setAttributes(params);
-                            customDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                        } else {
-                            Toast.makeText(getActivity(), "인원수를 선택해주세요.", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(getActivity(), "축제 기간이 맞지 않습니다.", Toast.LENGTH_SHORT).show();
+                //이미 예약되어있는 축제인 경우 안내메시지
+                for(int i=0; i < reservationList.size(); i++) {
+                    if((reservationList.get(i).uid == bundle.getInt("사용자구별")) &&
+                            reservationList.get(i).rFestival.equals(bundle.getString("예약축제이름"))) {
+                        check = true;
                     }
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                }
+
+                if(check) {
+                    Toast.makeText(getActivity(), "이미 예약되어있는 축제입니다.", Toast.LENGTH_SHORT).show();
+                } else {
+                    year = yearSpinner.getSelectedItem().toString();
+                    month = monthSpinner.getSelectedItem().toString();
+                    date = dateSpinner.getSelectedItem().toString();
+                    total = year + "-" + month + "-" + date;
+                    num = personnelSpinner.getSelectedItem().toString();
+                    name = bundle.getString("예약축제이름");
+                    uid = bundle.getInt("사용자구별");
+
+                    //예약 날짜와 축제 기간 비교
+                    String period = bundle.getString("예약축제기간");
+                    String[] splitPeriod = period.split("~");
+
+                    long now = System.currentTimeMillis();
+                    Date date = new Date(now);
+
+                    SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+
+                    try {
+                        Date getTime = simpleDate.parse(total);
+                        Date getTime2 = simpleDate.parse(splitPeriod[1]);
+
+                        int compare1 = getTime.compareTo(date);
+                        int compare2 = getTime.compareTo(getTime2);
+
+                        if(compare1 >= 0 && compare2 <= 0) {
+                            if(!num.equals("0")) {
+                                insertReservation(name, total, num, uid);
+
+                                customDialog = new CustomDialog(getActivity(), total, num, name, uid);
+                                customDialog.show();
+
+                                Display display = getActivity().getWindowManager().getDefaultDisplay();
+                                Point size = new Point();
+                                display.getSize(size);
+
+                                WindowManager.LayoutParams params = new WindowManager.LayoutParams();
+                                params.width = size.x * 640/720;
+                                params.height = size.y * 554/1329;
+                                customDialog.getWindow().setAttributes(params);
+                                customDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                            } else {
+                                Toast.makeText(getActivity(), "인원수를 선택해주세요.", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(getActivity(), "축제 기간이 맞지 않습니다.", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -143,4 +163,5 @@ public class ReservationFragment extends Fragment {
         AppDatabase db = AppDatabase.getDBInstance(getActivity());
         db.reservationDao().insertReservation(reservation);
     }
+
 }

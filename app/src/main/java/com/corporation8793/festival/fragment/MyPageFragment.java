@@ -9,6 +9,7 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ public class MyPageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_my_page, container, false);
+
         // 로그아웃 처리
         logoutText = view.findViewById(R.id.logoutText);
         logoutText.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +65,8 @@ public class MyPageFragment extends Fragment {
                 bundle.putString("예약내역", "추가안함");
                 bundle.putInt("알람사용자구분2", bundle1.getInt("메인예약구별"));
 
+                Log.e("myPageId", bundle1.getInt("메인예약구별")+"");
+
                 breakdownFragment.setArguments(bundle);
                 transaction.replace(R.id.containers,breakdownFragment);
                 transaction.addToBackStack(null);
@@ -82,6 +86,8 @@ public class MyPageFragment extends Fragment {
 
                 bundle.putString("예약내역", "추가안함");
                 bundle.putInt("알람사용자구분2", bundle1.getInt("메인예약구별"));
+
+                Log.e("myPageId", bundle1.getInt("메인예약구별")+"");
 
                 breakdownFragment.setArguments(bundle);
                 transaction.replace(R.id.containers,breakdownFragment);

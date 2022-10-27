@@ -17,6 +17,7 @@ import com.corporation8793.festival.R;
 import com.corporation8793.festival.fragment.EventFragment;
 import com.corporation8793.festival.fragment.MainFragment;
 import com.corporation8793.festival.fragment.MyPageFragment;
+import com.corporation8793.festival.fragment.ReservationDetailFragment;
 import com.corporation8793.festival.fragment.SearchFragment;
 import com.corporation8793.festival.room.AppDatabase2;
 import com.corporation8793.festival.room.FestivalInfo;
