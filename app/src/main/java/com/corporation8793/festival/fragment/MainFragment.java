@@ -7,9 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -20,6 +18,7 @@ import android.widget.Toast;
 
 import com.corporation8793.festival.R;
 import com.corporation8793.festival.adapter.FestivalInfoAdapter;
+import com.corporation8793.festival.mclass.NDSpinner;
 import com.corporation8793.festival.room.AppDatabase2;
 import com.corporation8793.festival.room.FestivalInfo;
 
@@ -32,16 +31,19 @@ public class MainFragment extends Fragment {
 
     RecyclerView recyclerView;
     FestivalInfoAdapter festivalInfoAdapter;
-    public Spinner choiceMonth, choiceArea;
+    public NDSpinner choiceMonth, choiceArea;
     ArrayAdapter<CharSequence> choiceMonth_adapter, choiceArea_adapter;
     Context context;
-    ImageView searchButton;
+    public ImageView searchButton;
     String choiceAreaText;
 
     List<FestivalInfo> festivalInfoList = new ArrayList<>();
     List<FestivalInfo> festivalInfoList2 = new ArrayList<>();
     List<FestivalInfo> festivalInfoList3 = new ArrayList<>();
     List<FestivalInfo> festivalInfoList4 = new ArrayList<>();
+
+    public static String check = "";
+    public static String check2 = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,7 +53,7 @@ public class MainFragment extends Fragment {
         context = container.getContext();
 
         recyclerView = view.findViewById(R.id.recyclerView);
-        choiceMonth = (Spinner) view.findViewById(R.id.choiceMonth);
+        choiceMonth = view.findViewById(R.id.choiceMonth);
         choiceArea = view.findViewById(R.id.choiceArea);
         searchButton = view.findViewById(R.id.searchButton);
         searchButton.setBackgroundResource(R.drawable.search_resize_off);
@@ -70,40 +72,27 @@ public class MainFragment extends Fragment {
         choiceMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                searchButton.setBackgroundResource(R.drawable.search_resize_on_pink);
-                choiceMonth.setBackgroundResource(R.drawable.custom_spinner3);
-                Log.e("touch", "on");
+                if(!check.equals("")) {
+                    searchButton.setBackgroundResource(R.drawable.search_resize_on_pink);
+                } else {
+                    check = "ok";
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Log.e("touch", "off");
             }
         });
 
-        choiceMonth.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        choiceMonth.setSpinnerEventsListener(new NDSpinner.OnSpinnerEventsListener() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    Log.e("touch", "spinner");
-                } else {
-                    Log.e("touch", "no spinner");
-                }
-            }
-        });
-
-        choiceMonth.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
+            public void onSpinnerOpened(Spinner spinner) {
                 choiceMonth.setBackgroundResource(R.drawable.custom_spinner4);
-                choiceMonth.setFocusableInTouchMode(true);
-                choiceMonth.requestFocus();
-                return false;
+            }
+            @Override
+            public void onSpinnerClosed(Spinner spinner) {
+                choiceMonth.setBackgroundResource(R.drawable.custom_spinner3);
             }
         });
-
-        /*if(!choiceMonth.isFocused()) {
-            choiceMonth.setBackgroundResource(R.drawable.custom_spinner3);
-        }*/
 
         choiceArea_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.area_array, R.layout.item_spinner_main);
         choiceArea_adapter.setDropDownViewResource(R.layout.item_spinner_dropdown_main);
@@ -112,8 +101,11 @@ public class MainFragment extends Fragment {
         choiceArea.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                searchButton.setBackgroundResource(R.drawable.search_resize_on_pink);
-                choiceArea.setBackgroundResource(R.drawable.custom_spinner3);
+                if(!check2.equals("")) {
+                    searchButton.setBackgroundResource(R.drawable.search_resize_on_pink);
+                } else {
+                    check2 = "ok";
+                }
 
                 if(choiceArea.getSelectedItem().toString().equals("경북/대구")) {
                     choiceAreaText = "경상북도/대구광역시";
@@ -126,16 +118,16 @@ public class MainFragment extends Fragment {
             }
         });
 
-        /*choiceArea.setOnTouchListener(new View.OnTouchListener() {
+        choiceArea.setSpinnerEventsListener(new NDSpinner.OnSpinnerEventsListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
+            public void onSpinnerOpened(Spinner spinner) {
                 choiceArea.setBackgroundResource(R.drawable.custom_spinner4);
-                Log.e("mainFocus choiceArea",choiceArea.isFocusable()+"");
-                choiceArea.setFocusableInTouchMode(true);
-                choiceArea.requestFocus();
-                return false;
             }
-        });*/
+            @Override
+            public void onSpinnerClosed(Spinner spinner) {
+                choiceArea.setBackgroundResource(R.drawable.custom_spinner3);
+            }
+        });
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,18 +191,6 @@ public class MainFragment extends Fragment {
         });
         return view;
     }
-
-    /*public void doSomething(String s) {
-        //Log.e("touch", "spinner");
-
-        if(s.equals("yes")) {
-            Log.e("touch", "spinner");
-        } else {
-            Log.e("touch", "no spinner");
-        }
-
-        //choiceMonth.setBackgroundResource(R.drawable.custom_spinner3);
-    }*/
 
     private void loadUserList() {
         AppDatabase2 db  = AppDatabase2.getDBInstance(this.getActivity());

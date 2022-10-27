@@ -64,7 +64,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Spinner
+        <com.corporation8793.festival.mclass.NDSpinner
             android:id="@+id/choiceMonth2"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -101,7 +101,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>
 
-        <Spinner
+        <com.corporation8793.festival.mclass.NDSpinner
             android:id="@+id/choiceArea2"
             android:layout_width="0dp"
             android:layout_height="0dp"

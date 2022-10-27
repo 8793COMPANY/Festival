@@ -43,12 +43,48 @@ public class NDSpinner extends AppCompatSpinner {
     }
 
     public interface OnSpinnerEventsListener {
-
         //Callback triggered when the spinner was opened.
         void onSpinnerOpened(Spinner spinner);
 
         //Callback triggered when the spinner was closed.
         void onSpinnerClosed(Spinner spinner);
+    }
+
+    private OnSpinnerEventsListener mListener;
+    private boolean mOpenInitiated = false;
+
+    @Override
+    public boolean performClick() {
+        // register that the Spinner was opened so we have a status
+        // indicator for when the container holding this Spinner may lose focus
+        mOpenInitiated = true;
+        if (mListener != null) {
+            mListener.onSpinnerOpened(this);
+        }
+        return super.performClick();
+    }
+
+    @Override
+    public void onWindowFocusChanged (boolean hasFocus) {
+        if (hasBeenOpened() && hasFocus) {
+            performClosedEvent();
+        }
+    }
+
+    public void setSpinnerEventsListener(
+            OnSpinnerEventsListener onSpinnerEventsListener) {
+        mListener = onSpinnerEventsListener;
+    }
+
+    public void performClosedEvent() {
+        mOpenInitiated = false;
+        if (mListener != null) {
+            mListener.onSpinnerClosed(this);
+        }
+    }
+
+    public boolean hasBeenOpened() {
+        return mOpenInitiated;
     }
 
    /* @Override

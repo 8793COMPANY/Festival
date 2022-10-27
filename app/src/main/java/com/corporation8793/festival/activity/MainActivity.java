@@ -3,11 +3,6 @@ package com.corporation8793.festival.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,9 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.corporation8793.festival.R;
@@ -25,7 +18,6 @@ import com.corporation8793.festival.fragment.EventFragment;
 import com.corporation8793.festival.fragment.MainFragment;
 import com.corporation8793.festival.fragment.MyPageFragment;
 import com.corporation8793.festival.fragment.SearchFragment;
-import com.corporation8793.festival.mclass.NDSpinner;
 import com.corporation8793.festival.room.AppDatabase2;
 import com.corporation8793.festival.room.FestivalInfo;
 import com.google.android.material.navigation.NavigationBarView;
@@ -36,7 +28,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 public class
@@ -87,6 +78,8 @@ MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.main:
                         if(mainFragment.choiceMonth != null) {
+                            mainFragment.check = "";
+                            mainFragment.check2 = "";
                             mainFragment.choiceMonth.setSelection(0);
                             mainFragment.choiceArea.setSelection(0);
                         }
@@ -107,6 +100,8 @@ MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.event:
                         if(eventFragment.choiceMonth2 != null) {
+                            eventFragment.check = "";
+                            eventFragment.check2 = "";
                             eventFragment.choiceMonth2.setSelection(0);
                             eventFragment.choiceArea2.setSelection(0);
                         }
@@ -136,23 +131,6 @@ MainActivity extends AppCompatActivity {
             Log.d("Is first Time?", "not first");
         }
     }
-
-    /*@Override
-    public boolean dispatchTouchEvent(MotionEvent event) {
-
-        Log.e("mainFocus", getCurrentFocus()+"");
-
-        MainFragment mainFragment = new MainFragment();
-
-        View view = getCurrentFocus();
-        if(view instanceof NDSpinner) {
-            mainFragment.doSomething("yes");
-        } else {
-            mainFragment.doSomething("no");
-        }
-
-        return super.dispatchTouchEvent(event);
-    }*/
 
     @Override
     public void onBackPressed() {
