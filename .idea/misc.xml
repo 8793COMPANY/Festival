@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable-v24/ic_festival_icon_foreground.xml" value="0.1965" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.252" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/arrow_resize_left.xml" value="0.3545" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/arrow_resize_right.xml" value="0.2175" />
@@ -34,7 +35,10 @@
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/festival_resize_month_pink.xml" value="0.1955" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/ic_arrow_down_24.xml" value="0.343" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/ic_arrow_down_24_white.xml" value="0.343" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/ic_arrow_up_24.xml" value="0.1965" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/ic_baseline_keyboard_arrow_up_24.xml" value="0.343" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/ic_baseline_place_24.xml" value="0.343" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/ic_festival_icon_background.xml" value="0.1965" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/ic_launcher_background.xml" value="0.252" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/image_shading.xml" value="0.343" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/menu_selector_color.xml" value="0.343" />
@@ -46,6 +50,7 @@
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/search_resize_off.xml" value="0.1965" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/search_resize_on.xml" value="0.1955" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/search_resize_on_pink.xml" value="0.1955" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/search_resize_pink.xml" value="0.343" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/search_resize_puple.xml" value="0.343" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/search_resize_purple.xml" value="0.343" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/search_resize_white.xml" value="0.3275" />
@@ -115,6 +120,9 @@
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/item_recyclerview_search.xml" value="0.2997007268063275" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/item_recyclerview_user.xml" value="0.2997007268063275" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/item_spinner_dropdown_main.xml" value="0.30055579307396324" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/item_spinner_dropdown_question.xml" value="0.30055579307396324" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/item_spinner_dropdown_reservation.xml" value="0.30055579307396324" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/item_spinner_main.xml" value="0.30055579307396324" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/item_spinner_question.xml" value="0.30055579307396324" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/item_spinner_reservation.xml" value="0.30055579307396324" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/layout/listview_item.xml" value="0.2997007268063275" />

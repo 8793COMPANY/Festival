@@ -87,8 +87,6 @@ public class MyPageFragment extends Fragment {
                 bundle.putString("예약내역", "추가안함");
                 bundle.putInt("알람사용자구분2", bundle1.getInt("메인예약구별"));
 
-                Log.e("myPageId", bundle1.getInt("메인예약구별")+"");
-
                 breakdownFragment.setArguments(bundle);
                 transaction.replace(R.id.containers,breakdownFragment);
                 transaction.addToBackStack(null);

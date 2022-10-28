@@ -3,8 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.corporation8793.festival">
 
+    <!-- 인터넷 권한 설정 -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 인터넷 연결 확인 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 카메라 권한 설정 -->
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -12,10 +15,9 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:hardwareAccelerated="true"
-        android:icon="@mipmap/ic_festival_icon3"
+        android:icon="@mipmap/ic_festival_icon"
         android:label="@string/app_name"
-        android:networkSecurityConfig="@xml/network_security_config"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_festival_icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Festival"
         android:usesCleartextTraffic="true"

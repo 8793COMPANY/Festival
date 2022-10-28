@@ -387,6 +387,5 @@ public class JoinActivity extends AppCompatActivity {
         setResult(Activity.RESULT_OK);
 
         finish();
-
     }
 }

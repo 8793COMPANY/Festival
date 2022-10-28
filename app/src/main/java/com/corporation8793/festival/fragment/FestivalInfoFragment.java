@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,8 @@ public class FestivalInfoFragment extends Fragment implements OnMapReadyCallback
     String address, x, y;
     // 마커 변수
     Marker marker = new Marker();
+    Thread thread;
+    String check;
 
     List<Reservation> reservationList = new ArrayList<Reservation>();
 
@@ -93,15 +96,13 @@ public class FestivalInfoFragment extends Fragment implements OnMapReadyCallback
                 address = bundle.getString("도로명");
             }
             if(bundle.getString("위도").isEmpty() || bundle.getString("경도").isEmpty()) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        requestGeocode();
-                    }
-                }).start();
+                Log.e("위도/경도", "없음-메인");
+                requestGeocode();
+                check = "no";
             } else {
                 latitude = Double.parseDouble(bundle.getString("위도"));
                 longitude = Double.parseDouble(bundle.getString("경도"));
+                check = "yes";
             }
             infoImage.setBackgroundResource(image[imageId]);
             reservationButton.setVisibility(View.GONE);
@@ -119,10 +120,13 @@ public class FestivalInfoFragment extends Fragment implements OnMapReadyCallback
                 address = bundle.getString("도로명");
             }
             if(bundle.getString("위도").isEmpty() || bundle.getString("경도").isEmpty()) {
+                Log.e("위도/경도", "없음-이벤트");
                 requestGeocode();
+                check = "no";
             } else {
                 latitude = Double.parseDouble(bundle.getString("위도"));
                 longitude = Double.parseDouble(bundle.getString("경도"));
+                check = "yes";
             }
             infoImage.setBackgroundResource(image[imageId]);
         }
@@ -169,6 +173,15 @@ public class FestivalInfoFragment extends Fragment implements OnMapReadyCallback
             }
         });
 
+        if(check.equals("no")) {
+            try {
+                thread.join(); // requestGeocode 종료때까지 정지
+                Log.e("thread", "실행완료");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
@@ -177,6 +190,10 @@ public class FestivalInfoFragment extends Fragment implements OnMapReadyCallback
 
     @Override
     public void onMapReady(@NonNull NaverMap naverMap) {
+        Log.e("onMapReady", "실행");
+        Log.e("latitude", latitude+"-onMapReady");
+        Log.e("longitude", longitude+"-onMapReady");
+
         this.naverMap = naverMap;
 
         naverMap.setLayerGroupEnabled(naverMap.LAYER_GROUP_BUILDING, true);     //건물
@@ -212,53 +229,63 @@ public class FestivalInfoFragment extends Fragment implements OnMapReadyCallback
     }
 
     public void requestGeocode() {
-        try {
-            BufferedReader bufferedReader;
-            StringBuilder stringBuilder = new StringBuilder();
-            String query = "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=" + URLEncoder.encode(address,"UTF-8");
+        // HttpUrlConnection
+        thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Log.e("requestGeocode", "실행");
+                    BufferedReader bufferedReader;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    String query = "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=" + URLEncoder.encode(address,"UTF-8");
                     //+ "&X-NCP-APIGW-API-KEY-ID=6rhjpfnap7&X-NCP-APIGW-API-KEY=PxOFqrhmSDXcCSHQPMun5n1dRHqFKzpzrf4ReTen";
-            URL url = new URL(query);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    URL url = new URL(query);
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-            if(connection != null) {
-                connection.setConnectTimeout(5000);
-                connection.setReadTimeout(5000);
-                connection.setRequestMethod("GET");
-                connection.setRequestProperty("X-NCP-APIGW-API-KEY-ID", "6rhjpfnap7");
-                connection.setRequestProperty("X-NCP-APIGW-API-KEY", "PxOFqrhmSDXcCSHQPMun5n1dRHqFKzpzrf4ReTen");
-                connection.setDoInput(true);
+                    if(connection != null) {
+                        connection.setConnectTimeout(5000);
+                        connection.setReadTimeout(5000);
+                        connection.setRequestMethod("GET");
+                        connection.setRequestProperty("X-NCP-APIGW-API-KEY-ID", "6rhjpfnap7");
+                        connection.setRequestProperty("X-NCP-APIGW-API-KEY", "PxOFqrhmSDXcCSHQPMun5n1dRHqFKzpzrf4ReTen");
+                        connection.setDoInput(true);
 
-                int responseCode = connection.getResponseCode();
+                        int responseCode = connection.getResponseCode();
 
-                if(responseCode == 200) {
-                    bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                } else {
-                    bufferedReader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+                        if(responseCode == 200) {
+                            bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                        } else {
+                            bufferedReader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+                        }
+
+                        String line = null;
+                        while ((line = bufferedReader.readLine()) != null) {
+                            stringBuilder.append(line + "\n");
+                        }
+
+                        int indexFirst, indexLast;
+
+                        indexFirst = stringBuilder.indexOf("\"x\":\"");
+                        indexLast = stringBuilder.indexOf("\",\"y\":");
+                        x = stringBuilder.substring(indexFirst + 5, indexLast);
+
+                        indexFirst = stringBuilder.indexOf("\"y\":\"");
+                        indexLast = stringBuilder.indexOf("\",\"distance\":");
+                        y = stringBuilder.substring(indexFirst + 5, indexLast);
+
+                        latitude = Double.parseDouble(y);
+                        longitude = Double.parseDouble(x);
+                        Log.e("latitude", latitude+"-requestGeocode");
+                        Log.e("longitude", longitude+"-requestGeocode");
+
+                        bufferedReader.close();
+                        connection.disconnect();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-
-                String line = null;
-                while ((line = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(line + "\n");
-                }
-
-                int indexFirst, indexLast;
-
-                indexFirst = stringBuilder.indexOf("\"x\":\"");
-                indexLast = stringBuilder.indexOf("\",\"y\":");
-                x = stringBuilder.substring(indexFirst + 5, indexLast);
-
-                indexFirst = stringBuilder.indexOf("\"y\":\"");
-                indexLast = stringBuilder.indexOf("\",\"distance\":");
-                y = stringBuilder.substring(indexFirst + 5, indexLast);
-
-                latitude = Double.parseDouble(x);
-                longitude = Double.parseDouble(y);
-
-                bufferedReader.close();
-                connection.disconnect();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
+        thread.start();
     }
 }

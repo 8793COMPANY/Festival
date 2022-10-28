@@ -35,7 +35,7 @@
             android:id="@+id/arrow_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arrow_resize_left"
+            android:src="@drawable/arrow_left_resize"
             android:layout_marginTop="40dp"
             app:layout_constraintHorizontal_bias="0.065"
             app:layout_constraintVertical_bias="0.047"

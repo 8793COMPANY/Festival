@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -106,34 +107,40 @@ public class ReservationFragment extends Fragment {
 
                     SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
 
+                    String now2 = simpleDate.format(date);
+
                     try {
                         Date getTime = simpleDate.parse(total);
                         Date getTime2 = simpleDate.parse(splitPeriod[1]);
+                        Date getTime3 = simpleDate.parse(now2);
 
-                        int compare1 = getTime.compareTo(date);
-                        int compare2 = getTime.compareTo(getTime2);
+                        // 예약 날짜가 축제 마감 날짜보다 전이거나 같은 경우
+                        if(getTime.before(getTime2) || getTime.equals(getTime2)) {
+                            //예약 날짜가 현재 날짜보다 이후이거나 같은 경우
+                            if(getTime.after(getTime3) || getTime.equals(getTime3)) {
+                                if(!num.equals("0")) {
+                                    insertReservation(name, total, num, uid);
 
-                        if(compare1 >= 0 && compare2 <= 0) {
-                            if(!num.equals("0")) {
-                                insertReservation(name, total, num, uid);
+                                    customDialog = new CustomDialog(getActivity(), total, num, name, uid);
+                                    customDialog.show();
 
-                                customDialog = new CustomDialog(getActivity(), total, num, name, uid);
-                                customDialog.show();
+                                    Display display = getActivity().getWindowManager().getDefaultDisplay();
+                                    Point size = new Point();
+                                    display.getSize(size);
 
-                                Display display = getActivity().getWindowManager().getDefaultDisplay();
-                                Point size = new Point();
-                                display.getSize(size);
-
-                                WindowManager.LayoutParams params = new WindowManager.LayoutParams();
-                                params.width = size.x * 640/720;
-                                params.height = size.y * 554/1329;
-                                customDialog.getWindow().setAttributes(params);
-                                customDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                                    WindowManager.LayoutParams params = new WindowManager.LayoutParams();
+                                    params.width = size.x * 640/720;
+                                    params.height = size.y * 554/1329;
+                                    customDialog.getWindow().setAttributes(params);
+                                    customDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                                } else {
+                                    Toast.makeText(getActivity(), "인원수를 선택해주세요.", Toast.LENGTH_SHORT).show();
+                                }
                             } else {
-                                Toast.makeText(getActivity(), "인원수를 선택해주세요.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "이미 지난 일자입니다. 다시 선택해주세요.", Toast.LENGTH_SHORT).show();
                             }
                         } else {
-                            Toast.makeText(getActivity(), "축제 기간이 맞지 않습니다.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "축제 기간이 아닙니다. 다시 선택해주세요.", Toast.LENGTH_SHORT).show();
                         }
                     } catch (ParseException e) {
                         e.printStackTrace();

@@ -12,7 +12,7 @@
 
     <item
         android:gravity="center|end"
-        android:drawable="@drawable/arrow_down2"
+        android:drawable="@drawable/arrow_down"
         android:width="23dp"
         android:height="20dp"
         android:right="20dp" />

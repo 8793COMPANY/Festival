@@ -14,7 +14,7 @@ import com.corporation8793.festival.R;
 
 public class FindResultActivity extends AppCompatActivity {
 
-    TextView maintextView, findIdText, findId;
+    TextView mainTextView, findIdText, findId;
     Button loginButton2, pwChangeButton;
     ImageView arrow_left;
     String id;
@@ -24,7 +24,7 @@ public class FindResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_result);
 
-        maintextView = findViewById(R.id.maintextView);
+        mainTextView = findViewById(R.id.maintextView);
         findIdText = findViewById(R.id.findIdText);
         loginButton2 = findViewById(R.id.loginButton2);
         findId = findViewById(R.id.findId);
@@ -34,12 +34,12 @@ public class FindResultActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         if(intent.hasExtra("아이디제목")) {
-            maintextView.setText(intent.getStringExtra("아이디제목"));
+            mainTextView.setText(intent.getStringExtra("아이디제목"));
             findIdText.setText(intent.getStringExtra("아이디상단"));
             findId.setText(intent.getStringExtra("아이디"));
             loginButton2.setText(intent.getStringExtra("아이디버튼"));
         }else if(intent.hasExtra("비밀번호제목")) {
-            maintextView.setText(intent.getStringExtra("비밀번호제목"));
+            mainTextView.setText(intent.getStringExtra("비밀번호제목"));
             findIdText.setText(intent.getStringExtra("비밀번호상단"));
             findId.setText(intent.getStringExtra("비밀번호"));
             loginButton2.setText(intent.getStringExtra("비밀번호버튼"));
