@@ -5,14 +5,14 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/custom_dialog"
+    android:background="@drawable/custom_dialog_background"
     tools:context=".dialog.CustomDialog">
 
     <ImageView
         android:id="@+id/dialogImage"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@drawable/dialog_image_pink"
+        android:background="@drawable/custom_dialog_image"
         android:layout_marginTop="10dp"
         app:layout_constraintWidth_percent="0.205"
         app:layout_constraintHeight_percent="0.111"

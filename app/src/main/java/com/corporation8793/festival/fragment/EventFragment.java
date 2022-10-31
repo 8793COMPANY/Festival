@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -44,7 +43,7 @@ public class EventFragment extends Fragment {
     DotsIndicator dots_indicator;
     ViewPager2 view_pager;
     ImageSliderAdapter imageSliderAdapter;
-    int [] images = new int[] {R.drawable.event_image1, R.drawable.event_image2, R.drawable.event_image1};
+    int [] images = new int[] {R.drawable.event_slide_image1, R.drawable.event_slide_image2, R.drawable.event_slide_image1};
 
     List<FestivalInfo> festivalInfoList = new ArrayList<>();
     List<FestivalInfo> festivalInfoList2 = new ArrayList<>();
@@ -65,7 +64,7 @@ public class EventFragment extends Fragment {
         choiceMonth2 = view.findViewById(R.id.choiceMonth2);
         choiceArea2 = view.findViewById(R.id.choiceArea2);
         searchButton2 = view.findViewById(R.id.searchButton2);
-        searchButton2.setBackgroundResource(R.drawable.search_resize_off);
+        searchButton2.setBackgroundResource(R.drawable.search_off_button_resize);
 
         dots_indicator = view.findViewById(R.id.dots_indicator);
         view_pager = view.findViewById(R.id.view_pager);
@@ -92,7 +91,7 @@ public class EventFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(!check.equals("")) {
-                    searchButton2.setBackgroundResource(R.drawable.search_resize_on_pink);
+                    searchButton2.setBackgroundResource(R.drawable.search_on_button_spinner_resize);
                 } else {
                     check = "ok";
                 }
@@ -121,7 +120,7 @@ public class EventFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(!check2.equals("")) {
-                    searchButton2.setBackgroundResource(R.drawable.search_resize_on_pink);
+                    searchButton2.setBackgroundResource(R.drawable.search_on_button_spinner_resize);
                 } else {
                     check2 = "ok";
                 }
@@ -151,7 +150,7 @@ public class EventFragment extends Fragment {
         searchButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                searchButton2.setBackgroundResource(R.drawable.search_resize_off);
+                searchButton2.setBackgroundResource(R.drawable.search_off_button_resize);
 
                 if(choiceArea2.getSelectedItem().toString().equals("강원도") || choiceArea2.getSelectedItem().toString().equals("제주도")) {
                     if(choiceMonth2.getSelectedItem().toString().equals("전체")) {

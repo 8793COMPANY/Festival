@@ -5,10 +5,16 @@
       <map>
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable-v24/ic_festival_icon_foreground.xml" value="0.1965" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.252" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/arrow_left_resize.xml" value="0.343" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/arrow_resize_left.xml" value="0.3545" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/arrow_resize_right.xml" value="0.2175" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/arrow_resize_right_white.xml" value="0.262" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/arrow_resize_right_white2.xml" value="0.343" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/arrow_right_pink_resize.xml" value="0.343" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/arrow_right_white_resize_join.xml" value="0.343" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/arrow_right_white_resize_my_page.xml" value="0.343" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/checkbox_off_resize.xml" value="0.343" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/checkbox_on_resize.xml" value="0.343" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/checkbox_resize_off.xml" value="0.2175" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/checkbox_resize_on.xml" value="0.2175" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/custom_button.xml" value="0.192" />
@@ -31,9 +37,11 @@
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/custum_button.xml" value="0.22" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/eye.xml" value="0.2175" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/eye_resize_off.xml" value="0.2175" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/festival_month_image_pink_resize.xml" value="0.1955" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/festival_resize_month.xml" value="0.2505" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/festival_resize_month_pink.xml" value="0.1955" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/ic_arrow_down_24.xml" value="0.343" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/ic_arrow_down_24_pink.xml" value="0.1955" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/ic_arrow_down_24_white.xml" value="0.343" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/ic_arrow_up_24.xml" value="0.1965" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/ic_baseline_keyboard_arrow_up_24.xml" value="0.343" />
@@ -47,6 +55,7 @@
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/rounded_corner.xml" value="0.343" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/rounded_corner2.xml" value="0.343" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/rounded_corner3.xml" value="0.1955" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/search_off_button_resize.xml" value="0.1955" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/search_resize_off.xml" value="0.1965" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/search_resize_on.xml" value="0.1955" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/search_resize_on_pink.xml" value="0.1955" />
@@ -56,10 +65,14 @@
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/search_resize_white.xml" value="0.3275" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/search_resize_white2.xml" value="0.1965" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/selector_switch.xml" value="0.343" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/shading_image.xml" value="0.1955" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/shape_circle.xml" value="0.343" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/shape_rectangle.xml" value="0.22" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/shape_rectangle2.xml" value="0.343" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/shape_rectangle3.xml" value="0.343" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/shape_rectangle_pink.xml" value="0.1955" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/shape_rectangle_pink_empty.xml" value="0.1955" />
+        <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/shape_rectangle_pink_off.xml" value="0.1955" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/shape_rectangle_puple.xml" value="0.316" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/shape_rectangle_puple2.xml" value="0.343" />
         <entry key="..\:/Users/ksy/AndroidStudioProjects/Festival/app/src/main/res/drawable/shape_rectangle_purple.xml" value="0.343" />

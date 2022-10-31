@@ -42,7 +42,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
 
         rFestivalImage = view.findViewById(R.id.rFestivalImage);
 
-        image = new int[] {R.drawable.mypage_festival, R.drawable.mypage_festival2};
+        image = new int[] {R.drawable.mypage_festival_image1, R.drawable.mypage_festival_image2};
         int imageId = (int)(Math.random() * image.length);
 
         rFestivalImage.setClipToOutline(true);

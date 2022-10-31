@@ -70,7 +70,7 @@ public class FestivalBoothAdapter extends RecyclerView.Adapter<FestivalBoothAdap
 
                         holder.boothImage.setImageResource(R.drawable.rounded_corner3);
                         holder.cameraButton.setText("이용 완료");
-                        holder.cameraButton.setBackgroundResource(R.drawable.custom_button_camera_off);
+                        holder.cameraButton.setBackgroundResource(R.drawable.custom_button_scan_off);
                         holder.boothName.setTextColor(Color.parseColor("#cccccc"));
                         holder.boothTime.setTextColor(Color.parseColor("#cccccc"));
                         holder.boothPoint.setTextColor(Color.parseColor("#cccccc"));
@@ -139,7 +139,7 @@ public class FestivalBoothAdapter extends RecyclerView.Adapter<FestivalBoothAdap
         public void setOff() {
             boothImage.setImageResource(R.drawable.rounded_corner3);
             cameraButton.setText("이용 완료");
-            cameraButton.setBackgroundResource(R.drawable.custom_button_camera_off);
+            cameraButton.setBackgroundResource(R.drawable.custom_button_scan_off);
             boothName.setTextColor(Color.parseColor("#cccccc"));
             boothTime.setTextColor(Color.parseColor("#cccccc"));
             boothPoint.setTextColor(Color.parseColor("#cccccc"));

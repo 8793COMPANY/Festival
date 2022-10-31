@@ -56,7 +56,7 @@ public class MainFragment extends Fragment {
         choiceMonth = view.findViewById(R.id.choiceMonth);
         choiceArea = view.findViewById(R.id.choiceArea);
         searchButton = view.findViewById(R.id.searchButton);
-        searchButton.setBackgroundResource(R.drawable.search_resize_off);
+        searchButton.setBackgroundResource(R.drawable.search_off_button_resize);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         festivalInfoAdapter = new FestivalInfoAdapter(context, 1, 1);
@@ -73,7 +73,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(!check.equals("")) {
-                    searchButton.setBackgroundResource(R.drawable.search_resize_on_pink);
+                    searchButton.setBackgroundResource(R.drawable.search_on_button_spinner_resize);
                 } else {
                     check = "ok";
                 }
@@ -102,7 +102,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(!check2.equals("")) {
-                    searchButton.setBackgroundResource(R.drawable.search_resize_on_pink);
+                    searchButton.setBackgroundResource(R.drawable.search_on_button_spinner_resize);
                 } else {
                     check2 = "ok";
                 }
@@ -132,7 +132,7 @@ public class MainFragment extends Fragment {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                searchButton.setBackgroundResource(R.drawable.search_resize_off);
+                searchButton.setBackgroundResource(R.drawable.search_off_button_resize);
 
                 if(choiceArea.getSelectedItem().toString().equals("강원도") || choiceArea.getSelectedItem().toString().equals("제주도")) {
                     if(choiceMonth.getSelectedItem().toString().equals("전체")) {

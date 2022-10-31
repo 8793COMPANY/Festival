@@ -96,7 +96,7 @@
             android:id="@+id/productButton"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/custom_button"
+            android:background="@drawable/custom_button_gradation"
             android:fontFamily="@font/pretendard_medium"
             android:text="상품이용하기"
             android:textColor="#ffffff"

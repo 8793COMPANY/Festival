@@ -10,7 +10,7 @@
 
     <item
         android:gravity="center"
-        android:drawable="@drawable/mypage_image"
+        android:drawable="@drawable/bottom_mypage_image"
         android:width="40dp"
         android:height="40dp"/>
 

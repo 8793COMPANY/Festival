@@ -77,7 +77,7 @@ public class FestivalInfoFragment extends Fragment implements OnMapReadyCallback
         subText3 = view.findViewById(R.id.subText3);
         mapView = view.findViewById(R.id.mapView);
 
-        image = new int[] {R.drawable.event_image1, R.drawable.event_image2};
+        image = new int[] {R.drawable.event_slide_image1, R.drawable.event_slide_image2};
         int imageId = (int)(Math.random() * image.length);
 
         Bundle bundle = getArguments();
@@ -203,7 +203,7 @@ public class FestivalInfoFragment extends Fragment implements OnMapReadyCallback
         CameraPosition cameraPosition = new CameraPosition(new LatLng(latitude, longitude), 15);
 
         //Marker
-        setMarker(marker, latitude, longitude, R.drawable.ic_baseline_place_24);
+        setMarker(marker, latitude, longitude, R.drawable.ic_baseline_place_24_pink);
 
         marker.setOnClickListener(new Overlay.OnClickListener() {
             @Override

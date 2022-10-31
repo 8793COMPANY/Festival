@@ -42,7 +42,7 @@ public class FestivalInfoAdapter extends RecyclerView.Adapter<FestivalInfoAdapte
 
         festivalImage = view.findViewById(R.id.festivalImage);
 
-        image = new int[] {R.drawable.festival_image_1, R.drawable.festival_image_2, R.drawable.festival_image_3};
+        image = new int[] {R.drawable.festival_image1, R.drawable.festival_image2, R.drawable.festival_image3};
         int imageId = (int)(Math.random() * image.length);
 
         festivalImage.setBackgroundResource(image[imageId]);

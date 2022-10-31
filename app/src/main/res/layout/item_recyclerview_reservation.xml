@@ -27,7 +27,7 @@
         android:id="@+id/rEtcImage"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:background="@drawable/etc_image"
+        android:background="@drawable/etc"
         app:layout_constraintVertical_bias="0.058"
         app:layout_constraintHorizontal_bias="0.94"
         app:layout_constraintTop_toTopOf="parent"

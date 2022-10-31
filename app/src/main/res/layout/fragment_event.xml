@@ -15,7 +15,7 @@
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@drawable/event_image1"
+            android:background="@drawable/event_slide_image1"
             app:layout_constraintHeight_percent="0.459"
             app:layout_constraintVertical_bias="0"
             app:layout_constraintTop_toTopOf="parent"
@@ -26,7 +26,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@drawable/image_shading"
+            android:background="@drawable/shading_image"
             app:layout_constraintHeight_percent="0.224"
             app:layout_constraintVertical_bias="0.305"
             app:layout_constraintTop_toTopOf="parent"

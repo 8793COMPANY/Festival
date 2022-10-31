@@ -140,9 +140,9 @@ public class SearchFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 //입력 중
-                search.setImageResource(R.drawable.search_resize_pink);
+                search.setImageResource(R.drawable.search_on_button_edittext_resize);
                 if(rectangle13.getText().toString().equals("")) {
-                    search.setImageResource(R.drawable.search_resize_white2);
+                    search.setImageResource(R.drawable.search_off_button_edittext_resize);
                 }
             }
             @Override
@@ -162,7 +162,7 @@ public class SearchFragment extends Fragment {
                         } else {
                             recyclerView5.setVisibility((View.VISIBLE));
                             loadUserList(rectangle13.getText().toString());
-                            search.setImageResource(R.drawable.search_resize_white2);
+                            search.setImageResource(R.drawable.search_off_button_edittext_resize);
                         }
                         break;
                     }
@@ -179,7 +179,7 @@ public class SearchFragment extends Fragment {
                 } else {
                     recyclerView5.setVisibility((View.VISIBLE));
                     loadUserList(rectangle13.getText().toString());
-                    search.setImageResource(R.drawable.search_resize_white2);
+                    search.setImageResource(R.drawable.search_off_button_edittext_resize);
                 }
             }
         });
